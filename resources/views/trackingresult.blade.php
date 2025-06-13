@@ -18,7 +18,7 @@
         <p class="font-display font-bold text-accent2">Instansi: {{ $submission->instansi_tujuan }}</p>
         <p class="font-display font-bold text-accent2">Tanggal: {{ $submission->tanggal_mulai }} s/d {{ $submission->tanggal_selesai }}</p>
 
-        <p class="font-display font-bold text-accent2">Status Pengajuan: {{ ucfirst($submission->status_pengajuan) }}</p>
+        <p class="font-display font-bold text-green-600">Status Pengajuan: {{ ucfirst($submission->status_pengajuan) }}</p>
 
         @if($submission->status_pengajuan === 'rejected' && $submission->alasan_penolakan)
             <p class="font-display font-bold text-accent2">Alasan Penolakan: {{ $submission->alasan_penolakan }}</p>

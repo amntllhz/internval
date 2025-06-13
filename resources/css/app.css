@@ -17,13 +17,17 @@
     
     /* Colors */
     
-    --color-deep: #00030a;
-    --color-primary: #010914;
-    --color-accent1: #1e1b4b;
-    --color-accent2: #3b0764;
-    --color-accent3: #6366f1;
-    --color-accent4: #e0f2fe;
-    --color-accent5: #14b8a6;
+    --color-apple-50: #eeffef;
+    --color-apple-100: #d7ffdb;
+    --color-apple-200: #b2ffb9;
+    --color-apple-300: #76ff84;
+    --color-apple-400: #33f548;
+    --color-apple-500: #09de20;
+    --color-apple-600: #00aa13;
+    --color-apple-700: #049115;
+    --color-apple-800: #0a7117;
+    --color-apple-900: #0a5d16;
+    --color-apple-950: #003408;
     
     /* Font */
     --font-display: "Manrope", sans-serif; 
