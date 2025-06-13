@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('start');
+});
+
+Route::get('/home', function () {
+    return view('home');
 });
 
 // submission
