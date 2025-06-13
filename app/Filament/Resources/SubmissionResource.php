@@ -41,28 +41,28 @@ class SubmissionResource extends Resource
 
                 // dosen hanya bisa melihat dan ubah status pengajuan
                 Select::make('status_pengajuan')
-                ->options([
-                    'pending' => 'Pending',
-                    'accepted' => 'Accepted',
-                    'rejected' => 'Rejected',
-                ])
-                ->required()
-                ->hidden($user->role !== 'dosen'),
+                    ->options([
+                        'pending' => 'Pending',
+                        'accepted' => 'Accepted',
+                        'rejected' => 'Rejected',
+                    ])
+                    ->required()                
+                    ->visible(fn () => $user->role === 'dosen'),
 
                 Textarea::make('alasan_penolakan')
-                ->label('Alasan Penolakan')
-                ->rows(3)
-                ->hidden($user->role !== 'dosen'),
+                    ->label('Alasan Penolakan')
+                    ->rows(3)
+                    ->visible(fn () => $user->role === 'dosen'),
 
                 // BAAK hanya bisa melihat dan ubah status surat
                 Select::make('status_surat')
-                ->options([
-                    'none' => 'Belum dibuat',
-                    'made' => 'Sudah dibuat',
-                    'ready' => 'Siap diambil',
-                ])
-                ->required()
-                ->hidden($user->role !== 'baak'),
+                    ->options([
+                        'none' => 'Belum dibuat',
+                        'made' => 'Sudah dibuat',
+                        'ready' => 'Siap diambil',
+                    ])
+                    ->required()                
+                    ->visible(fn () => $user->role === 'baak'),
             ]);
     }
 
@@ -71,14 +71,44 @@ class SubmissionResource extends Resource
         return $table
             ->columns([
                 //
-                Tables\Columns\TextColumn::make('nama_mahasiswa'),
-                Tables\Columns\TextColumn::make('nim'),
-                Tables\Columns\TextColumn::make('instansi_tujuan'),
-                Tables\Columns\TextColumn::make('status_pengajuan')->badge(),
-                Tables\Columns\TextColumn::make('status_surat')->badge(),
+                Tables\Columns\TextColumn::make('nama_mahasiswa')
+                    ->label('Nama Mahasiswa'),
+                Tables\Columns\TextColumn::make('nim')
+                    ->label('NIM'),
+                Tables\Columns\TextColumn::make('instansi_tujuan')
+                    ->label('Instansi Tujuan'),
+                Tables\Columns\TextColumn::make('status_pengajuan')
+                    ->label('Status Pengajuan')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'gray',
+                        'accepted' => 'success',
+                        'rejected' => 'danger',
+                    }),
+                Tables\Columns\TextColumn::make('status_surat')
+                    ->label('Status Surat')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'none' => 'gray',
+                        'made' => 'warning',
+                        'ready' => 'success',
+                    }),
             ])
             ->filters([
                 //
+                Tables\Filters\SelectFilter::make('status_pengajuan')
+                    ->options([
+                        'pending' => 'Pending',
+                        'accepted' => 'Accepted',
+                        'rejected' => 'Rejected',
+                    ]),
+
+                Tables\Filters\SelectFilter::make('status_surat')
+                    ->options([
+                        'none' => 'Belum dibuat',
+                        'made' => 'Sudah dibuat',
+                        'ready' => 'Siap diambil',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -116,4 +146,11 @@ class SubmissionResource extends Resource
     {
         return false;
     }
+
+    public static function canAccess(): bool
+    {
+        $user = Filament::auth()->user();
+        return in_array($user->role, ['dosen', 'baak']);
+    }
+    
 }

@@ -14,8 +14,9 @@ class Submission extends Model
     protected static function booted()
     {
         parent::boot();
+        
         static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
+        $model->id = strtoupper(Str::random(16));
         });
     }
 
