@@ -10,8 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <section class="max-w-5xl w-full mx-auto flex flex-col justify-center items-center min-h-screen bglin">        
-            
-    </section>
+    <x-navbar></x-navbar>
+    
 </body>
 </html>
