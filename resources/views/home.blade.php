@@ -12,6 +12,9 @@
 <body>
     <x-navbar></x-navbar>
     <x-hero></x-hero>
-    <x-flow></x-flow>
+    <div class="flex flex-col justify-center items-center gap-20">
+        <x-flow></x-flow>
+        <x-feature></x-feature>
+    </div>
 </body>
 </html>
