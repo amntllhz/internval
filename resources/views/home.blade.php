@@ -11,6 +11,7 @@
 </head>
 <body>
     <x-navbar></x-navbar>
-    
+    <x-hero></x-hero>
+    <x-flow></x-flow>
 </body>
 </html>
