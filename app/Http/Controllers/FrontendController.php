@@ -31,7 +31,9 @@ class FrontendController extends Controller
 
         $submission = Submission::create($data);
 
-        return redirect()->route('submission.success', ['id' => $submission->id]);
+        return redirect()
+            ->route('submission.form')
+            ->with('success_id', $submission->id);
     }
 
     public function success($id)
