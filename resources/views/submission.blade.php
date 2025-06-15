@@ -112,6 +112,31 @@
                     <label for="instansi_tujuan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Instansi Tujuan <span class="text-gray-400">*</span></label>            
                     <input name="instansi_tujuan" id="instansi_tujuan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nama Instansi / Perusahaan / Lembaga" required autocomplete="off"/>
                 </div>
+
+                <div class="col-span-3">
+                    <label for="provinsi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Provinsi <span class="text-gray-400">*</span></label>            
+                    <input name="provinsi" id="provinsi" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Provinsi" required autocomplete="off"/>
+                </div>
+
+                <div class="col-span-3">
+                    <label for="kabupaten_kota" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kabupaten / Kota <span class="text-gray-400">*</span></label>            
+                    <input name="kabupaten_kota" id="kabupaten_kota" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Kabupaten / Kota" required autocomplete="off"/>
+                </div>
+
+                <div class="col-span-3">
+                    <label for="kecamatan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kecamatan <span class="text-gray-400">*</span></label>            
+                    <input name="kecamatan" id="kecamatan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Kecamatan" required autocomplete="off"/>
+                </div>
+
+                <div class="col-span-3">
+                    <label for="desa_kelurahan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Desa / Kelurahan <span class="text-gray-400">*</span></label>            
+                    <input name="desa_kelurahan" id="desa_kelurahan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Desa / Kelurahan" required autocomplete="off"/>
+                </div>
+
+                <div class="col-span-3">
+                    <label for="jalan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Jalan / No <span class="text-gray-400">*</span></label>            
+                    <input name="jalan" id="jalan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Jalan / No" required autocomplete="off"/>
+                </div>
     
                 <div class="col-span-3">
                     <label for="tanggal_mulai" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Tanggal Mulai <span class="text-gray-400">*</span></label>            

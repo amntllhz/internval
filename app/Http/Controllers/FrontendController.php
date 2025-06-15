@@ -23,6 +23,11 @@ class FrontendController extends Controller
             'instansi_tujuan' => 'required|string',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date',
+            'provinsi' => 'required|string',
+            'kabupaten_kota' => 'required|string',
+            'kecamatan' => 'required|string',
+            'desa_kelurahan' => 'required|string',
+            'jalan' => 'required|string',
         ]);
 
         $data['id'] = strtoupper(Str::random(8)); // kode unik

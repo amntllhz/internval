@@ -38,6 +38,11 @@ class SubmissionResource extends Resource
                 TextInput::make('instansi_tujuan')->disabled(),
                 DatePicker::make('tanggal_mulai')->disabled(),
                 DatePicker::make('tanggal_selesai')->disabled(),
+                TextInput::make('provinsi')->disabled(),
+                TextInput::make('kabupaten_kota')->disabled(),
+                TextInput::make('kecamatan')->disabled(),
+                TextInput::make('desa_kelurahan')->disabled(),
+                TextInput::make('jalan')->disabled(),
 
                 // dosen hanya bisa melihat dan ubah status pengajuan
                 Select::make('status_pengajuan')
@@ -93,6 +98,16 @@ class SubmissionResource extends Resource
                         'made' => 'warning',
                         'ready' => 'success',
                     }),
+                Tables\Columns\TextColumn::make('provinsi')
+                    ->label('Provinsi'),
+                Tables\Columns\TextColumn::make('kabupaten_kota')
+                    ->label('Kabupaten/Kota'),
+                Tables\Columns\TextColumn::make('kecamatan')
+                    ->label('Kecamatan'),
+                Tables\Columns\TextColumn::make('desa_kelurahan')
+                    ->label('Desa/Kelurahan'),
+                Tables\Columns\TextColumn::make('jalan')
+                    ->label('Jalan'),
             ])
             ->filters([
                 //

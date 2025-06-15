@@ -24,5 +24,6 @@ class Submission extends Model
         'nama_mahasiswa', 'nim', 'prodi',
         'instansi_tujuan', 'tanggal_mulai', 'tanggal_selesai',
         'status_pengajuan', 'status_surat', 'alasan_penolakan',
+        'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan',
     ];
 }
