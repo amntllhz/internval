@@ -30,18 +30,18 @@
 
         {{-- Menu utama (inline horizontal di lg) --}}
         <div class="hidden lg:flex items-center gap-8">
-            <a href="/home" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Beranda</a>
+            <a href={{ url('/home') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Beranda</a>
             <a href={{ url('/tracking') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Cek Status</a>
-            <a href="/Pengajuan" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Pengajuan</a>
+            <a href={{ url('/submission') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Pengajuan</a>
             <a href="/Contact" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Kontak</a>  
         </div>
     </div>
 
     {{-- Menu responsif (stacked vertical in xs) --}}
     <div x-show="open" x-collapse x-cloak class="mt-8 flex flex-col gap-3 lg:hidden">
-        <a href="/home" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Beranda</a>
+        <a href={{ url('/home') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Beranda</a>
         <a href={{ url('/tracking') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Cek Status</a>
-        <a href="/Pengajuan" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Pengajuan</a>
+        <a href={{ url('/submission') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Pengajuan</a>
         <a href="/Contact" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Kontak</a>
     </div>
 </div>
