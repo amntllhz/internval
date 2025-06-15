@@ -112,8 +112,12 @@ class SubmissionResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
-            ->bulkActions([]);
+            ->bulkActions([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]);
     }
 
     public static function getRelations(): array
@@ -136,16 +140,7 @@ class SubmissionResource extends Resource
     {
         return false;
     }
-
-    public static function canDeleteAny(): bool
-    {
-        return false;
-    }
-
-    public static function canDelete(Model $record): bool
-    {
-        return false;
-    }
+    
 
     public static function canAccess(): bool
     {
