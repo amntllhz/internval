@@ -29,26 +29,55 @@
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg col-span-2 font-semibold text-sm text-gray-800 text-left w-full"> {{ $submission->nim }}</p>
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg col-span-2 font-semibold text-sm text-gray-800 text-left w-full"> {{ $submission->prodi }}</p>
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->instansi_tujuan }}</p>
-                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} s/d {{ $submission->tanggal_selesai }}</p>
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} <span class="text-apple-600 text-sm">s/d</span> {{ $submission->tanggal_selesai }}</p>
         
             </div>
+            
 
-            <div class=" grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10 w-full">
+            @php
+                $statusPengajuanColor = match($submission->status_pengajuan) {
+                    'pending' => 'text-gray-800',
+                    'accepted' => 'text-apple-600',
+                    'rejected' => 'text-red-600',
+                    default => 'text-gray-800'
+                };
+
+                $statusSuratColor = match($submission->status_surat) {
+                    'none' => 'text-gray-800',
+                    'made' => 'text-yellow-600',
+                    'ready' => 'text-apple-600',
+                    default => 'text-gray-800'
+                };
+            @endphp
+
+            <div class="grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10 w-full">
                 <div class="col-span-full">
                     <h2 class="text-gray-800 text-left w-full font-semibold text-sm font-display">Status Pengajuan</h2>
                     <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
                 </div>
 
-                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-green-600"> {{ ucfirst($submission->status_pengajuan) }}</p>
-        
+                {{-- Status Pengajuan --}}
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 {{ $statusPengajuanColor }} text-left w-full">
+                    {{ ucfirst($submission->status_pengajuan) }}
+                </p>
+
+                {{-- Alasan Penolakan --}}
                 @if($submission->status_pengajuan === 'rejected' && $submission->alasan_penolakan)
-                    <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->alasan_penolakan }}</p>
+                    <p class="font-display bg-red-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-red-600 text-left w-full">
+                        {{ $submission->alasan_penolakan }}
+                    </p>
                 @endif
-        
-                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ ucfirst($submission->status_surat) }}</p>
-        
+
+                {{-- Status Surat --}}
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 {{ $statusSuratColor }} text-left w-full">
+                    {{ ucfirst($submission->status_surat) }}
+                </p>
+
+                {{-- Catatan Pengambilan Surat --}}
                 @if($submission->status_surat === 'ready')
-                    <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full">Catatan: Surat sudah bisa diambil di ruang BAAK</p>
+                    <p class="font-display bg-green-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-green-700 text-left w-full">
+                        Catatan: Surat sudah bisa diambil di ruang BAAK
+                    </p>
                 @endif
             </div>
         </div>
