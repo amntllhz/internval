@@ -19,3 +19,8 @@ Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->
 // tracking
 Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form');
 Route::post('/tracking', [FrontendController::class, 'track'])->name('tracking.result');
+
+// data wilayah
+Route::get('/get-kabupaten', [\App\Http\Controllers\WilayahController::class, 'getKabupaten']);
+Route::get('/get-kecamatan', [\App\Http\Controllers\WilayahController::class, 'getKecamatan']);
+Route::get('/get-desa', [\App\Http\Controllers\WilayahController::class, 'getDesa']);

@@ -115,22 +115,32 @@
 
                 <div class="col-span-3">
                     <label for="provinsi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Provinsi <span class="text-gray-400">*</span></label>            
-                    <input name="provinsi" id="provinsi" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Provinsi" required autocomplete="off"/>
+                    <select id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                        @foreach(\Indonesia::allProvinces() as $provinsi)
+                            <option class="text-xs font-display" value="{{ $provinsi->code }}">{{ $provinsi->name }}</option>                        
+                        @endforeach
+                    </select>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="kabupaten_kota" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kabupaten / Kota <span class="text-gray-400">*</span></label>            
-                    <input name="kabupaten_kota" id="kabupaten_kota" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Kabupaten / Kota" required autocomplete="off"/>
+                    <select id="kabupaten_kota" name="kabupaten_kota" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                            <option class="text-xs font-display" value="">-- Pilih Kabupaten / Kota --</option>                                                
+                    </select>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="kecamatan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kecamatan <span class="text-gray-400">*</span></label>            
-                    <input name="kecamatan" id="kecamatan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Kecamatan" required autocomplete="off"/>
+                    <select id="kecamatan" name="kecamatan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                            <option class="text-xs font-display" value="">-- Pilih Kecamatan --</option>
+                    </select>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="desa_kelurahan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Desa / Kelurahan <span class="text-gray-400">*</span></label>            
-                    <input name="desa_kelurahan" id="desa_kelurahan" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Desa / Kelurahan" required autocomplete="off"/>
+                    <select id="desa_kelurahan" name="desa_kelurahan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                            <option class="text-xs font-display" value="">-- Pilih Desa / Kelurahan --</option>                        
+                    </select>                    
                 </div>
 
                 <div class="col-span-3">
@@ -158,5 +168,49 @@
     </section>
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const provinsi = document.getElementById('provinsi');
+        const kabupaten = document.getElementById('kabupaten_kota');
+        const kecamatan = document.getElementById('kecamatan');
+        const desa = document.getElementById('desa_kelurahan');
+
+        provinsi.addEventListener('change', function () {
+            fetch(`/get-kabupaten?provinsi_id=${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    kabupaten.innerHTML = '<option value="">-- Pilih Kabupaten/Kota --</option>';
+                    kecamatan.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+                    desa.innerHTML = '<option value="">-- Pilih Desa/Kelurahan --</option>';
+                    data.forEach(item => {
+                        kabupaten.innerHTML += `<option value="${item.code}">${item.name}</option>`;
+                    });
+                });
+        });
+
+        kabupaten.addEventListener('change', function () {
+            fetch(`/get-kecamatan?kabupaten_id=${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    kecamatan.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+                    desa.innerHTML = '<option value="">-- Pilih Desa/Kelurahan --</option>';
+                    data.forEach(item => {
+                        kecamatan.innerHTML += `<option value="${item.code}">${item.name}</option>`;
+                    });
+                });
+        });
+
+        kecamatan.addEventListener('change', function () {
+            fetch(`/get-desa?kecamatan_id=${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    desa.innerHTML = '<option value="">-- Pilih Desa/Kelurahan --</option>';
+                    data.forEach(item => {
+                        desa.innerHTML += `<option value="${item.code}">${item.name}</option>`;
+                    });
+                });
+        });
+    });
+</script>
 </body>
 </html>
