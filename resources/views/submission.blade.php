@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
             >
                 
-                <div class="bg-apple-50 backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center mt-20 ring ring-apple-600 relative z-60">
+                <div class="bg-apple-50 backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-apple-600 relative z-60">
                     <!-- Gambar -->
                     <div class="bg-apple-900/10 p-2 rounded-xl">
                         <img src="{{ asset('img/successub.svg') }}" alt="" class="h-36 mx-auto">

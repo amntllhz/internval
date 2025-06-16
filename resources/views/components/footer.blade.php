@@ -1,4 +1,4 @@
-<section class="w-screen relative bg-gradient-to-b from-apple-600 to-apple-950 mt-10 p-8 overflow-hidden">
+<section id="footer" class="w-screen relative bg-gradient-to-b from-apple-600 to-apple-950 mt-10 p-8 overflow-hidden">
     <img src="{{ asset('img/geolines.svg') }}" alt="" class="absolute opacity-15 mx-auto h-[580px] w-full lg:-bottom-48 xs:-bottom-56 left-0 z-0">
       <div class="max-w-5xl mx-auto w-full py-10 flex flex-col justify-center items-center gap-x-10">        
 

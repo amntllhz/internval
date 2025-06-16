@@ -74,7 +74,7 @@ class FrontendController extends Controller
         $submission = Submission::where('id', $request->id)->first();
 
         if (!$submission) {
-            return back()->with('error', 'ID Pengajuan tidak ditemukan.');
+            return back()->with('error', 'Pengajuan tidak ditemukan !');
         }
 
         return view('trackingresult', compact('submission'));

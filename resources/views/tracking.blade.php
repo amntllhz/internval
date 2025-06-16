@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,36 @@
         </div>
 
         @if(session('error'))
-            <p style="color: red;">{{ session('error') }}</p>
+            {{-- <p style="color: red;">{{ session('error') }}</p> --}}
+            <!-- Modal Overlay -->
+            <div 
+                x-data="{ open: true }" 
+                x-show="open" 
+                x-transition 
+                class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
+            >
+                
+                <div class="bg-red-50 backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-red-400 relative z-60">
+                    <!-- Gambar -->
+                    <div class="bg-apple-900/10 p-2 rounded-xl">
+                        <img src="{{ asset('img/nodata.svg') }}" alt="" class="h-36 mx-auto">
+                    </div>
+
+                    <!-- Konten Modal -->
+                    <div class="mt-4">
+                        <h2 class="text-lg font-display font-bold text-red-500 mb-1">{{ session('error') }}</h2>
+                        <p class="font-display text-xs text-gray-400 mb-2">Pastikan ID yang anda tuliskan benar</p>                                           
+
+                        <!-- Tombol Tutup -->
+                        <button 
+                            @click="open = false" 
+                            class="text-white font-display font-bold bg-gradient-to-b from-red-400 to-red-500 hover:from-red-400 hover:to-red-600 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md w-full cursor-pointer"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
         @endif    
 
         <form action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-2xl mt-6">

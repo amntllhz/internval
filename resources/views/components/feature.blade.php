@@ -1,7 +1,7 @@
-<section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex lg:flex-row xs:flex-col justify-center items-center h-fit gap-6">
+<section id="feature" class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex lg:flex-row xs:flex-col justify-center items-center h-fit gap-6 pt-24">
     <div class="lg:w-1/3 xs:w-full flex flex-col justify-center items-center gap-1">
         <h1 class="text-apple-600 text-3xl w-full font-bold font-display lg:text-left xs:text-center">What You Can Do</h1>
-        <p class="text-sm lg:max-w-lg xs:max-w-8/10 text-gray-400 lg:text-left xs:text-center font-display font-semibold w-fit">Kemudahan, Kecepatan, Waktu dan Efisiensi dalam satu wadah</p>
+        <p class="text-sm lg:max-w-lg xs:max-w-8/10 text-gray-400 lg:text-left xs:text-center font-display font-semibold w-fit">Kemudahan, Kecepatan, Waktu dan Efisiensi dalam satu genggaman</p>
     </div>
     <div class="flex flex-col gap-6 lg:w-2/3 xs:w-full justify-center rounded-xl">
         <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-6 justify-center items-center">

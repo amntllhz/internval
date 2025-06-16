@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="scroll-smooth" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,6 +29,10 @@
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg col-span-2 font-semibold text-sm text-gray-800 text-left w-full"> {{ $submission->nim }}</p>
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg col-span-2 font-semibold text-sm text-gray-800 text-left w-full"> {{ $submission->prodi }}</p>
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->instansi_tujuan }}</p>
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->provinsi }}</p>
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->kabupaten_kota }}</p>
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->kecamatan }}</p>
+                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->desa_kelurahan }}</p>
                 <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} <span class="text-apple-600 text-sm">s/d</span> {{ $submission->tanggal_selesai }}</p>
         
             </div>

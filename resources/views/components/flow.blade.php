@@ -1,4 +1,4 @@
-<section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center h-fit">
+<section id="flow" class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center h-fit lg:pt-24">
     <div class="flex flex-col bg-gradient-to-b from-apple-500 to-apple-800 gap-6 w-full p-10 justify-center rounded-xl">
         <h1 class="text-white text-3xl font-bold font-display text-center">Just Like This</h1>
         <div class="grid lg:grid-cols-3 xs:grid-cols-1 gap-6 justify-center items-center px-10">
