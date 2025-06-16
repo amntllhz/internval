@@ -18,7 +18,7 @@
                 <img id="circle-fx" class=" absolute h-full opacity-30 w-full z-0" src="{{ asset('img/grid.png') }}" alt="">
             </div>
             <div class="flex flex-col gap-2 p-8 items-center justify-center">
-                <a href="/home" class="text-white font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-28 xs:w-56 text-center">Mahasiswa</a>
+                <a href={{ route('mahasiswa.redirect') }} class="text-white font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-28 xs:w-56 text-center">Mahasiswa</a>
                 <a href="/admin/login" class="text-white font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-28 xs:w-56 text-center">Dosen</a>
                 <a href="/admin/login" class="text-white font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-28 xs:w-56 text-center">Baak</a>
             </div>
