@@ -36,12 +36,12 @@ class FrontendController extends Controller
         $province = Indonesia::allProvinces()->firstWhere('code', $request->provinsi);
         $city = Indonesia::allCities()->firstWhere('code', $request->kabupaten_kota);
         $district = Indonesia::allDistricts()->firstWhere('code', $request->kecamatan);
-        $village = Indonesia::allVillages()->firstWhere('code', $request->desa_kelurahan);
+        $village = Indonesia::allVillages()->firstWhere('code', $request->desa_kelurahan);        
 
-        $data['provinsi'] = $province?->name ?? '-';
-        $data['kabupaten_kota'] = $city?->name ?? '-';
-        $data['kecamatan'] = $district?->name ?? '-';
-        $data['desa_kelurahan'] = $village?->name ?? '-';
+        $data['provinsi'] = $province ? Str::title(Str::lower($province->name)) : '-';
+        $data['kabupaten_kota'] = $city ? Str::title(Str::lower($city->name)) : '-';
+        $data['kecamatan'] = $district ? Str::title(Str::lower($district->name)) : '-';
+        $data['desa_kelurahan'] = $village ? Str::title(Str::lower($village->name)) : '-';
 
 
         $data['id'] = strtoupper(Str::random(8)); // kode unik
