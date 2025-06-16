@@ -10,7 +10,7 @@
 </head>
 <body>
     <x-navbar></x-navbar>
-    <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 gap-8">
+    <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 gap-8 mb-20">
         
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Status Pengajuan</h1>
@@ -82,5 +82,6 @@
             </div>
         </div>
     </section>
+    <x-footer></x-footer>
 </body>
 </html>

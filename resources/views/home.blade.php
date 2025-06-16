@@ -15,6 +15,7 @@
     <div class="flex flex-col justify-center items-center gap-20">
         <x-flow></x-flow>
         <x-feature></x-feature>
+        <x-footer></x-footer>
     </div>
 </body>
 </html>
