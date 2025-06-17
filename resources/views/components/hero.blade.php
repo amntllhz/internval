@@ -1,4 +1,4 @@
-<section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center h-screen">
+<section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col lg:justify-center xs:justify-start items-center h-screen lg:pt-0 md:pt-40 xs:pt-40">
     <div class="lg:max-w-3xl xs:max-w-9/10 w-full flex flex-col justify-center items-center gap-2 z-0">
         <h1 class="lg:text-5xl xs:text-2xl text-apple-600 text-center font-display font-bold w-full lg:leading-14 xs:leading-8">Internship Validation <br> Fast - Efficient - Helpful</h1>        
         <p class="text-sm max-w-lg text-gray-400 text-center font-display font-semibold w-fit">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dibuat untuk mempermudah, mempercepat, dan meningkatkan efisiensi</p>
