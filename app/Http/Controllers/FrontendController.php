@@ -19,7 +19,7 @@ class FrontendController extends Controller
     {           
 
         $data = $request->validate([
-            'nama_mahasiswa' => 'required|string',
+            'nama_mahasiswa' => ['required', 'string','regex:/^[A-Za-z\s]+$/'],
             'nim' => 'required|string',
             'prodi' => 'required|string',
             'instansi_tujuan' => 'required|string',
@@ -29,7 +29,7 @@ class FrontendController extends Controller
             'kabupaten_kota' => 'required|string',
             'kecamatan' => 'required|string',
             'desa_kelurahan' => 'required|string',
-            'jalan' => 'required|string',
+            'jalan' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
         ]);
 
         // Konversi kode ke nama wilayah
@@ -42,6 +42,11 @@ class FrontendController extends Controller
         $data['kabupaten_kota'] = $city ? Str::title(Str::lower($city->name)) : '-';
         $data['kecamatan'] = $district ? Str::title(Str::lower($district->name)) : '-';
         $data['desa_kelurahan'] = $village ? Str::title(Str::lower($village->name)) : '-';
+
+        // Format nama dan jalan jadi kapital awal kata untuk nama, instansi, dan jalan
+        $data['nama_mahasiswa'] = Str::title(Str::lower($data['nama_mahasiswa']));
+        $data['instansi_tujuan'] = Str::title(Str::lower($data['instansi_tujuan']));
+        $data['jalan'] = Str::title(Str::lower($data['jalan']));
 
 
         $data['id'] = strtoupper(Str::random(8)); // kode unik

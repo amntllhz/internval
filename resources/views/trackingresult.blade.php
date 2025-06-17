@@ -55,7 +55,7 @@
                 };
             @endphp
 
-            <div class="grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10 w-full">
+            <div class="grid lg:grid-cols-4 xs:grid-cols-1 gap-6 mt-10 w-full">
                 <div class="col-span-full">
                     <h2 class="text-gray-800 text-left w-full font-semibold text-sm font-display">Status Pengajuan</h2>
                     <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
@@ -80,7 +80,7 @@
 
                 {{-- Catatan Pengambilan Surat --}}
                 @if($submission->status_surat === 'ready')
-                    <p class="font-display bg-green-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-green-700 text-left w-full">
+                    <p class="font-display bg-apple-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-full text-apple-600 text-left w-full">
                         Catatan: Surat sudah bisa diambil di ruang BAAK
                     </p>
                 @endif
