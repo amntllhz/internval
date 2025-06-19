@@ -7,7 +7,7 @@
         <div class="grid lg:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-6 justify-center items-center">
             <div class="flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-3xl">
                 <div class="bg-apple-900/10 justify-center items-center flex flex-col rounded-xl p-6">
-                    <img class="h-32" src="{{ asset('img/feature/submission.svg') }}" alt="">
+                    <img class="h-32" src="{{ asset('img/feature/sendsub2.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 w-full mx-auto">
                     <a href={{ url('/submission') }} class="flex justify-center items-center text-white text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-xl w-full">

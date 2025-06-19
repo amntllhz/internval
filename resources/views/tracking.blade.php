@@ -27,7 +27,7 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
             >
                 
-                <div class="bg-red-50 backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-red-400 relative z-60">
+                <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-red-400 relative z-60">
                     <!-- Gambar -->
                     <div class="bg-apple-900/10 p-2 rounded-xl">
                         <img src="{{ asset('img/nodata.svg') }}" alt="" class="h-36 mx-auto">
