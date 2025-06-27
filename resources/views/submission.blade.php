@@ -26,7 +26,7 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
             >
                 
-                <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-apple-600 relative z-60">
+                {{-- <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-apple-600 relative z-60">
                     <!-- Gambar -->
                     <div class="bg-apple-900/10 p-2 rounded-xl">
                         <img src="{{ asset('img/successub.svg') }}" alt="" class="h-36 mx-auto">
@@ -68,6 +68,55 @@
                         >
                             Tutup
                         </button>
+                    </div>
+                </div> --}}
+                <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative z-60">
+
+                    {{-- Close --}}
+                    <button 
+                            @click="open = false" 
+                            class="flex justify-end w-full cursor-pointer"
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-gray-400 hover:text-gray-800 transition duration-300 ease-in-out">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+
+                    <!-- Gambar -->
+                    <div class="bg-apple-900/10 p-2.5 rounded-full w-fit mx-auto mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-apple-600">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+                        </svg>                        
+                    </div>
+
+                    <!-- Konten Modal -->
+                    <div class="mt-4">
+                        <h2 class="text-base font-display font-bold text-apple-600 mb-1">Pengajuan Terkirim !</h2>
+                        <p class="font-display text-xs text-gray-400 mb-1">Salin ID untuk melakukan tracking</p>
+                        
+                        <div class="w-full mt-4 mb-1">
+                            <div class="relative">
+                                <label for="npm-install-copy-button" class="sr-only">Label</label>
+                                <input id="npm-install-copy-button" type="text" class="font-display bg-gray-50  text-gray-800 text-center border border-gray-300 text-sm block w-full p-2.5 rounded-lg" value={{ session('success_id') }} disabled readonly>
+                                <button data-copy-to-clipboard-target="npm-install-copy-button" data-tooltip-target="tooltip-copy-npm-install-copy-button" class="absolute cursor-pointer end-2 top-1/2 -translate-y-1/2 text-gray-500 bg-apple-600  hover:bg-apple-700 transition duration-200 ease-in-out rounded-lg p-2 inline-flex items-center justify-center">
+                                    <span id="default-icon">
+                                        <svg class="w-3.5 h-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                            <path d="M16 1h-3.278A1.992 1.992 0 0 0 11 0H7a1.993 1.993 0 0 0-1.722 1H2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2Zm-3 14H5a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2Zm0-4H5a1 1 0 0 1 0-2h8a1 1 0 1 1 0 2Zm0-5H5a1 1 0 0 1 0-2h2V2h4v2h2a1 1 0 1 1 0 2Z"/>
+                                        </svg>
+                                    </span>
+                                    <span id="success-icon" class="hidden">
+                                        <svg class="w-3.5 h-3.5 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5.917 5.724 10.5 15 1.5"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <div id="tooltip-copy-npm-install-copy-button" role="tooltip" class="absolute z-10 invisible inline-block px-2 py-1.5 text-sm font-medium text-white transition-opacity duration-300 bg-apple-600 rounded-lg opacity-0 tooltip">
+                                    <span id="default-tooltip-message" class="text-xs font-display">Copy to clipboard</span>
+                                    <span id="success-tooltip-message" class="hidden text-xs font-display">Copied !</span>
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+                            </div>
+                        </div>                                                
                     </div>
                 </div>
             </div>

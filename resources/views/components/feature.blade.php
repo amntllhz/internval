@@ -6,7 +6,7 @@
     <div class="flex md:flex-row xs:flex-col gap-6 md:w-3/4 lg:w-2/3 xs:w-full justify-center rounded-xl">
         <div class="grid lg:grid-cols-2 md:grid-cols-2 xs:grid-cols-1 gap-6 justify-center items-center">
             <div class="flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-3xl">
-                <div class="bg-apple-900/10 justify-center items-center flex flex-col rounded-xl p-6">
+                <div class="bg-apple-900/5 justify-center items-center flex flex-col rounded-xl p-6">
                     <img class="h-32" src="{{ asset('img/feature/sendsub2.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 w-full mx-auto">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-3xl">
-                <div class="bg-apple-900/10 justify-center items-center flex flex-col rounded-xl p-6">
+                <div class="bg-apple-900/5 justify-center items-center flex flex-col rounded-xl p-6">
                     <img class="h-32" src="{{ asset('img/feature/tracking.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 w-full mx-auto">

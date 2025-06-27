@@ -27,21 +27,23 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
             >
                 
-                <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center ring ring-red-400 relative z-60">
+                <div class="bg-white backdrop-blur-lg p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative z-60">
                     <!-- Gambar -->
-                    <div class="bg-apple-900/10 p-2 rounded-xl">
-                        <img src="{{ asset('img/nodata.svg') }}" alt="" class="h-36 mx-auto">
+                    <div class="bg-red-100 p-2.5 rounded-full w-fit mx-auto mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>                        
                     </div>
 
                     <!-- Konten Modal -->
                     <div class="mt-4">
-                        <h2 class="text-lg font-display font-bold text-red-500 mb-1">{{ session('error') }}</h2>
-                        <p class="font-display text-xs text-gray-400 mb-2">Pastikan ID yang anda tuliskan benar</p>                                           
+                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">{{ session('error') }}</h2>
+                        <p class="font-display text-xs text-gray-400 mb-1">Pastikan ID yang anda tuliskan benar</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
                             @click="open = false" 
-                            class="text-white font-display font-bold bg-gradient-to-b from-red-400 to-red-500 hover:from-red-400 hover:to-red-600 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md w-full cursor-pointer"
+                            class="text-white mt-4 font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md w-full cursor-pointer"
                         >
                             Tutup
                         </button>
@@ -56,7 +58,7 @@
                 <label for="id" class="block text-xs font-display text-apple-600 font-semibold">ID Pengajuan</label>            
                 <input name="id" id="id" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5" placeholder="Tuliskan ID Pengajuan" required autocomplete="off"/>
             </div>
-            <button type="submit" class="text-white text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-xl w-full cursor-pointer">Cek status</button>
+            <button type="submit" class="text-white text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg w-full cursor-pointer">Cek status</button>
         </form>
 
     </section>
