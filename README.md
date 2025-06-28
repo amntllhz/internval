@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/amntllhz/internval/blob/558efec91ad37fbe4f3b5d36bc9dda294c543025/internvallogo.svg" alt="internval logo" width="240">    
+    <img src="https://github.com/amntllhz/internval/blob/7d89f97a1a30c59821260cd73f9c21235555bb1d/internvallogo.png" alt="internval logo" width="240">    
 </p>
 
 <p align="center">
