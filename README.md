@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="internval logo">
+    <img src="https://github.com/amntllhz/internval/blob/558efec91ad37fbe4f3b5d36bc9dda294c543025/internvallogo.svg" alt="internval logo" width="240">    
 </p>
 
 <p align="center">
