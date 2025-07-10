@@ -28,17 +28,17 @@
 
                     @php
                         $statusPengajuanColor = match($submission->status_pengajuan) {
-                            'pending' => 'bg-gray-100 px-2 py-[0.5px] rounded-full ring-1 ring-gray-300 text-gray-600',
-                            'accepted' => 'bg-apple-50 px-2 py-[0.5px] rounded-full ring-1 ring-apple-400 text-apple-600',
-                            'rejected' => 'bg-red-50 px-2 py-[0.5px] rounded-full ring-1 ring-red-400 text-red-600',
-                            default => 'bg-gray-100 px-2 py-[0.5px] rounded-full ring-1 ring-gray-300 text-gray-600'
+                            'pending' => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600',
+                            'accepted' => 'bg-apple-50 px-2 py-[0.8px] rounded-full ring-1 ring-apple-400 text-apple-600',
+                            'rejected' => 'bg-red-50 px-2 py-[0.8px] rounded-full ring-1 ring-red-400 text-red-600',
+                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600'
                         };
 
                         $statusSuratColor = match($submission->status_surat) {
-                            'none' => 'bg-gray-100 px-2 py-[0.5px] rounded-full ring-1 ring-gray-300 text-gray-600',
-                            'made' => 'bg-yellow-50 px-2 py-[0.5px] rounded-full ring-1 ring-yellow-400 text-yellow-600',
-                            'ready' => 'bg-apple-50 px-2 py-[0.5px] rounded-full ring-1 ring-apple-400 text-apple-600',
-                            default => 'bg-gray-100 px-2 py-[0.5px] rounded-full ring-1 ring-gray-300 text-gray-600'
+                            'none' => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600',
+                            'made' => 'bg-yellow-50 px-2 py-[0.8px] rounded-full ring-1 ring-yellow-400 text-yellow-600',
+                            'ready' => 'bg-apple-50 px-2 py-[0.8px] rounded-full ring-1 ring-apple-400 text-apple-600',
+                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600'
                         };
                     @endphp
 
@@ -81,7 +81,7 @@
                     </div>                    
                 </div>
 
-                <div class="grid grid-cols-2 gap-2 px-3 py-2 w-full">
+                <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-2 px-3 py-2 w-full">
 
                     <div class="flex flex-col gap-1.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Status Pengajuan</p>
@@ -90,11 +90,12 @@
                         </p>
                     </div>
                     <div class="flex flex-col gap-1.5">
-                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Status Pengajuan</p>
+                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Status Surat</p>
                         <p class="font-display font-medium text-[10px] {{ $statusSuratColor }} text-left w-fit">
                             {{ ucfirst($submission->status_surat) }}
                         </p>
                     </div>
+
                     {{-- Alasan Penolakan --}}
                     @if($submission->status_pengajuan === 'rejected' && $submission->alasan_penolakan)
                         <div class="flex flex-col gap-1">
@@ -103,62 +104,18 @@
                         </div>                        
                     @endif
 
+                    {{-- Catatan Pengambilan Surat --}}
+                    @if($submission->status_surat === 'ready')
+                        <div class="flex flex-col gap-1">
+                            <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Informasi Surat</p>
+                            <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full">Surat dapat diambil di Ruang BAAK</p>
+                        </div>
+                    @endif
+
 
                 </div>
             </div>
-        </div>
-            
-        <div class="flex flex-col justify-center items-center gap-1 w-full rounded-2xl p-4 pb-12">             
-            
-
-            @php
-                $statusPengajuanColor = match($submission->status_pengajuan) {
-                    'pending' => 'text-gray-800',
-                    'accepted' => 'text-apple-600',
-                    'rejected' => 'text-red-600',
-                    default => 'text-gray-800'
-                };
-
-                $statusSuratColor = match($submission->status_surat) {
-                    'none' => 'text-gray-800',
-                    'made' => 'text-yellow-600',
-                    'ready' => 'text-apple-600',
-                    default => 'text-gray-800'
-                };
-            @endphp
-
-            <div class="grid lg:grid-cols-4 xs:grid-cols-1 gap-6 mt-10 w-full">
-                <div class="col-span-full">
-                    <h2 class="text-gray-800 text-left w-full font-semibold text-sm font-display">Status Pengajuan</h2>
-                    <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
-                </div>
-
-                {{-- Status Pengajuan --}}
-                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 {{ $statusPengajuanColor }} text-left w-full">
-                    {{ ucfirst($submission->status_pengajuan) }}
-                </p>
-
-                {{-- Alasan Penolakan --}}
-                @if($submission->status_pengajuan === 'rejected' && $submission->alasan_penolakan)
-                    <p class="font-display bg-red-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 text-red-600 text-left w-full">
-                        {{ $submission->alasan_penolakan }}
-                    </p>
-                @endif
-
-                {{-- Status Surat --}}
-                <p class="font-display bg-apple-900/10 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-2 {{ $statusSuratColor }} text-left w-full">
-                    {{ ucfirst($submission->status_surat) }}
-                </p>
-
-                {{-- Catatan Pengambilan Surat --}}
-                @if($submission->status_surat === 'ready')
-                    <p class="font-display bg-apple-100 px-3 py-1.5 rounded-lg font-semibold text-sm col-span-full text-apple-600 text-left w-full">
-                        Catatan: Surat sudah bisa diambil di ruang BAAK
-                    </p>
-                @endif
-            </div>
-
-        </div>
+        </div>        
 
     </section>
     <x-footer></x-footer>
