@@ -129,7 +129,7 @@
                 x-transition 
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
             >
-                <div class="bg-white p-4 rounded-xl lg:max-w-xs w-full text-center relative">
+                <div class="bg-white p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative">
                     
 
                     {{-- Icon Warning --}}
