@@ -183,6 +183,11 @@
                         <option class="text-xs font-display" value="S1 Teknik Mesin">S1 Teknik Mesin</option>                        
                     </select>
                 </div>     
+
+                <div class="col-span-3">
+                    <label for="email" class="block mb-2 text-xs font-display text-apple-600 font-semibold">E-mail <span class="text-gray-400">*</span></label>            
+                    <input name="email" id="email" type="email" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Example@gmail.com" required autocomplete="off"/>
+                </div>
             </div>
             
             {{-- data instansi --}}

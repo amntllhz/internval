@@ -20,6 +20,7 @@ class FrontendController extends Controller
 
         $data = $request->validate([
             'nama_mahasiswa' => ['required', 'string','regex:/^[A-Za-z\s]+$/'],
+            'email' => 'required|email',
             'nim' => 'required|string',
             'prodi' => 'required|string',
             'instansi_tujuan' => 'required|string',
