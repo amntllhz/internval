@@ -16,6 +16,7 @@ Route::get('/home', function () {
 Route::get('/submission', [FrontendController::class, 'showForm'])->name('submission.form')->middleware(CheckFromStart::class);
 Route::post('/submission', [FrontendController::class, 'submitForm'])->name('submission.submit');
 Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->name('submission.success');
+Route::get('/submission/delete/{id}', [FrontendController::class, 'deleteSubmission'])->name('submission.delete');
 
 // tracking
 Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form')->middleware(CheckFromStart::class);

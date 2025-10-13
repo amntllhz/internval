@@ -106,4 +106,17 @@ class FrontendController extends Controller
 
         return view('trackingresult', compact('submission'));
     }
+
+    public function deleteSubmission($id)
+    {
+        $submission = Submission::findOrFail($id);
+
+        // Optional: pastikan hanya pemilik kode yang bisa menghapus
+        // Jika kamu punya sistem login, bisa dicek di sini
+        // misal: auth()->user()->email == $submission->email
+
+        $submission->delete();
+
+        return view('delete-success'); // akan menampilkan halaman sukses
+    }
 }

@@ -115,7 +115,62 @@
 
                 </div>
             </div>
-        </div>        
+        </div>
+                
+        <div x-data="{ open: false }">
+            <!-- Tombol Hapus Pengajuan -->
+            <div class="flex justify-center items-center gap-1 mt-1 text-center">
+                <p class="font-display text-xs text-gray-400">Ingin mengajukan ulang ? </p>
+                <button
+                    @click="open = true"
+                    class="text-red-600 font-display text-xs font-semibold hover:text-red-800 cursor-pointer"                    
+                >
+                    Hapus Pengajuan
+                </button>
+            </div>
+
+            <!-- Modal Konfirmasi Hapus -->
+            <div
+                x-show="open"
+                x-transition
+                class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50"
+            >
+                <div class="bg-white p-6 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative z-60">
+                    <!-- Icon Warning -->
+                    <div class="bg-red-100 p-2.5 rounded-full w-fit mx-auto mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg>                        
+                    </div>
+
+                    <!-- Konten Modal -->
+                    <div class="mt-4">
+                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Hapus Pengajuan</h2>
+                        <p class="font-display text-xs text-gray-400 mb-4">
+                            Anda yakin ingin menghapus pengajuan ini? Tindakan ini tidak dapat dikembalikan.
+                        </p>                                           
+
+                        <!-- Tombol Batal & Hapus -->
+                        <div class="flex gap-2">
+                            <button 
+                                @click="open = false" 
+                                class="flex-1 text-gray-700 font-display font-bold bg-white ring-1 ring-gray-300 hover:bg-gray-100 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md cursor-pointer"
+                            >
+                                Batal
+                            </button>
+
+                            <a 
+                                href="{{ route('submission.delete', ['id' => $submission->id]) }}"
+                                class="flex-1 text-white font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md"
+                            >
+                                Hapus
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </section>
     <x-footer></x-footer>
