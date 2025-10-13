@@ -25,7 +25,7 @@
                     <img class="h-32" src="{{ asset('img/flow/getmail.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 lg:w-52 xs:w-full  mx-auto">
-                    <h1 class="text-apple-600 text-center font-semibold font-display">Dapatkan Surat</h1>
+                    <h1 class="text-apple-600 text-center font-semibold font-display">Ambil Surat</h1>
                     <p class="text-apple-600 text-center font-display text-xs">Ambil surat ke ruang BAAK setelah status pengajuan terverifikasi</p>
                 </div>
             </div>
