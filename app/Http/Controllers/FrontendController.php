@@ -32,6 +32,18 @@ class FrontendController extends Controller
             'jalan' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
         ]);
 
+        // 🔍 Cek apakah NIM sudah pernah digunakan untuk submission
+        $existing = Submission::where('nim', $request->nim)->first();
+
+        if ($existing) {
+            // Kirim pesan error ke session agar bisa tampil sebagai modal
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('nim_exists', true)
+                ->with('nim_value', $request->nim);
+        }
+
         // Konversi kode ke nama wilayah
         $province = Indonesia::allProvinces()->firstWhere('code', $request->provinsi);
         $city = Indonesia::allCities()->firstWhere('code', $request->kabupaten_kota);
