@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Models\Submission;
+use Illuminate\Support\Str;
+use App\Mail\SubmissionMail;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Laravolt\Indonesia\Facade as Indonesia;
 
 class FrontendController extends Controller
@@ -67,6 +70,12 @@ class FrontendController extends Controller
         $data['status_surat'] = 'none';
 
         $submission = Submission::create($data);
+
+        try {
+            Mail::to($submission->email)->send(new SubmissionMail($submission));
+        } catch (\Exception $e) {
+            Log::error('Gagal mengirim email ke: '.$submission->email.' | Error: '.$e->getMessage());
+        }
 
         return redirect()
             ->route('submission.form')
