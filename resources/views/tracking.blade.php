@@ -52,7 +52,7 @@
             </div>
         @endif    
 
-        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-2xl mt-6">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-400 p-4 rounded-2xl mt-6">
             @csrf
 
             <div class="flex flex-col gap-2">
@@ -60,7 +60,7 @@
                 <input name="id" id="id" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5" placeholder="Tuliskan ID Pengajuan" required autocomplete="off"/>
             </div>            
 
-            <div class="lg:col-span-full xs:col-span-3 w-full">
+            <div class="flex justify-center w-full">
                 <button 
                     type="submit"
                     :disabled="loading"
