@@ -157,7 +157,7 @@
         @endif
 
         
-        <form method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
             @csrf
 
             <div class="border-b border-gray-900/10 pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6">
@@ -247,13 +247,26 @@
                     <label for="tanggal_selesai" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Tanggal Selesai <span class="text-gray-400">*</span></label>            
                     <input name="tanggal_selesai" id="tanggal_selesai" type="date" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="" required autocomplete="off"/>
                 </div>
-            </div>
+            </div>            
 
-            <div class="lg:col-span-full xs:col-span-3 w-full ">
-                <button type="submit" class="text-white cursor-pointer text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-xl w-full">                                       
-                    Ajukan
+            <div class="lg:col-span-full xs:col-span-3 w-full">
+                <button 
+                    type="submit"
+                    :disabled="loading"
+                    class="flex items-center justify-center gap-2 text-white cursor-pointer text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-xl w-full disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                    <template x-if="!loading">
+                        <span>Ajukan</span>
+                    </template>
+                    <template x-if="loading">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 border-2 border-white border-t-white/20 rounded-full animate-spin"></div>
+                            <span>Mengirim...</span>
+                        </div>
+                    </template>
                 </button>
             </div>
+
         </form>        
     </section>
     <x-footer></x-footer>
