@@ -117,12 +117,12 @@
             </div>
         </div>
                 
-        <div x-data="{ open: false }">
+        <div x-data="{ open: false, alasan: '' }">
             <!-- Tombol Hapus Pengajuan -->
             <div class="flex justify-center items-center gap-1 mt-1 text-center">
                 <p class="font-display text-xs text-gray-400">Ingin mengajukan ulang ? </p>
                 <button
-                    @click="open = true"
+                    @click="alasan = ''; open = true"
                     class="text-red-600 font-display text-xs font-semibold hover:text-red-800 cursor-pointer"                    
                 >
                     Hapus Pengajuan
@@ -148,7 +148,23 @@
                         <h2 class="text-base font-display font-bold text-gray-800 mb-1">Hapus Pengajuan</h2>
                         <p class="font-display text-xs text-gray-400 mb-4">
                             Anda yakin ingin menghapus pengajuan ini? Tindakan ini tidak dapat dikembalikan.
-                        </p>                                           
+                        </p>
+                        
+                        <!-- Radio Alasan -->
+                        <div class="flex flex-col text-left max-w-xs space-y-2 mb-6">
+                            <label class="flex w-full px-4 py-3 justify-between items-center gap-2 text-xs font-display text-gray-400 cursor-pointer rounded-md hover:bg-gray-100 transition duration-100 ease-in-out has-checked:bg-red-50 has-checked:text-red-600 has-checked:ring-red-200 has-checked:ring-[1px]">
+                                Ingin mengganti tujuan PKL
+                                <input type="radio" name="alasan" value="opsi1" x-model="alasan" class="text-red-600 focus:ring-0 focus:ring-offset-0">
+                            </label>
+                            <label class="flex w-full px-4 py-3 justify-between items-center gap-2 text-xs font-display text-gray-400 cursor-pointer rounded-md hover:bg-gray-100 transition duration-100 ease-in-out has-checked:bg-red-50 has-checked:text-red-600 has-checked:ring-red-200 has-checked:ring-[1px]">
+                                Terdapat kesalahan penulisan data
+                                <input type="radio" name="alasan" value="opsi2" x-model="alasan" class="text-red-600 focus:ring-0 focus:ring-offset-0">
+                            </label>
+                            <label class="flex w-full px-4 py-3 justify-between items-center gap-2 text-xs font-display text-gray-400 cursor-pointer rounded-md hover:bg-gray-100 transition duration-100 ease-in-out has-checked:bg-red-50 has-checked:text-red-600 has-checked:ring-red-200 has-checked:ring-[1px]">
+                                Perubahan jadwal pelaksanaan
+                                <input type="radio" name="alasan" value="opsi3" x-model="alasan" class="text-red-600 focus:ring-0 focus:ring-offset-0">
+                            </label>                            
+                        </div>
 
                         <!-- Tombol Batal & Hapus -->
                         <div class="flex gap-2">
@@ -160,6 +176,9 @@
                             </button>
 
                             <a 
+                                :class="alasan === '' 
+                                    ? 'pointer-events-none opacity-50 bg-red-400' 
+                                    : 'bg-red-600 hover:bg-red-700 cursor-pointer'"
                                 href="{{ route('submission.delete', ['id' => $submission->id]) }}"
                                 class="flex-1 text-white font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md"
                             >
