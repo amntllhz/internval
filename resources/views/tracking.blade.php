@@ -52,13 +52,31 @@
             </div>
         @endif    
 
-        <form action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-2xl mt-6">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-600 p-4 rounded-2xl mt-6">
             @csrf
+
             <div class="flex flex-col gap-2">
                 <label for="id" class="block text-xs font-display text-apple-600 font-semibold">ID Pengajuan</label>            
                 <input name="id" id="id" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5" placeholder="Tuliskan ID Pengajuan" required autocomplete="off"/>
+            </div>            
+
+            <div class="lg:col-span-full xs:col-span-3 w-full">
+                <button 
+                    type="submit"
+                    :disabled="loading"
+                    class="flex items-center justify-center gap-2 text-white cursor-pointer text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg w-full disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                    <template x-if="!loading">
+                        <span>Cek Status</span>
+                    </template>
+                    <template x-if="loading">
+                        <div class="flex items-center gap-2">
+                            <div class="w-4 h-4 border-2 border-white border-t-white/20 rounded-full animate-spin"></div>
+                            <span>Mencari...</span>
+                        </div>
+                    </template>
+                </button>
             </div>
-            <button type="submit" class="text-white text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg w-full cursor-pointer">Cek status</button>
         </form>
 
     </section>
