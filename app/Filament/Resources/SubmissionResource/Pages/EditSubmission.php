@@ -22,7 +22,7 @@ class EditSubmission extends EditRecord
     {
         $user = Filament::auth()->user();
 
-        if ($user->role === 'dosen') {
+        if (str_starts_with($user->role, 'dosen')) {
             // Dosen hanya boleh ubah status_pengajuan dan alasan_penolakan
             return [
                 'status_pengajuan' => $data['status_pengajuan'],

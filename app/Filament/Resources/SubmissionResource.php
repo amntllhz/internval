@@ -23,6 +23,30 @@ class SubmissionResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
+    public static function getEloquentQuery(): Builder
+    {
+        $user = Filament::auth()->user();
+        $query = parent::getEloquentQuery();
+
+        if (str_starts_with($user->role, 'dosen')) {
+            
+            $roleToProdi = [
+                
+                'dosen_informatika' => 'S1 Informatika',
+                'dosen_mesin' => 'S1 Teknik Mesin',
+            ];
+        }
+
+        $prodi = $roleToProdi[$user->role] ?? null;
+
+        if ($prodi) {
+            $query->where('prodi', $prodi);
+        }
+
+        return $query;
+    }
+
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -160,7 +184,7 @@ class SubmissionResource extends Resource
     public static function canAccess(): bool
     {
         $user = Filament::auth()->user();
-        return in_array($user->role, ['dosen', 'baak']);
+        return in_array($user->role, ['dosen_informatika', 'dosen_mesin', 'baak']);
     }
     
 }
