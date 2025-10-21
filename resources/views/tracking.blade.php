@@ -57,7 +57,7 @@
 
             <div class="flex flex-col gap-2">
                 <label for="id" class="block text-xs font-display text-apple-600 font-semibold">ID Pengajuan</label>            
-                <input name="id" id="id" type="text" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5" placeholder="Tuliskan ID Pengajuan" required autocomplete="off"/>
+                <input name="id" id="id" type="text" pattern="[A-Za-z0-9\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5" placeholder="Tuliskan ID Pengajuan" required autocomplete="off"/>
             </div>            
 
             <div class="flex justify-center w-full">
