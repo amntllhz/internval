@@ -98,9 +98,14 @@
 
                     {{-- Alasan Penolakan --}}
                     @if($submission->status_pengajuan === 'rejected' && $submission->alasan_penolakan)
-                        <div class="flex flex-col gap-1">
+                        <div class="flex flex-col col-span-full gap-1 mt-1">
                             <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Alasan Penolakan</p>
-                            <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->alasan_penolakan }}</p>
+                            <div class="relative flex flex-row bg-red-50 ring ring-red-200 px-2.5 py-2.5 rounded-lg items-start gap-2 w-full">                                   
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-red-600 pt-0.5">
+                                    <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+                                </svg>                       
+                                <p class="font-display text-xs font-medium text-red-600 text-left w-full items-start"> {{ $submission->alasan_penolakan }}</p>
+                            </div>
                         </div>                        
                     @endif
 
