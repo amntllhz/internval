@@ -35,5 +35,11 @@
     
     /* Font */
     --font-display: "Manrope", sans-serif; 
-    --font-head: "Clash Display", sans-serif;
+    --font-head: "Clash Display", sans-serif;    
 }
+
+/* Cloak */
+
+    [x-cloak] {
+        display: none !important;
+    }

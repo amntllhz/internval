@@ -143,6 +143,7 @@
             <div
                 x-show="open"
                 x-transition
+                x-cloak
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50"
             >
                 <div class="bg-white p-6 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative z-60">
