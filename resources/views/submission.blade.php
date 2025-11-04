@@ -12,11 +12,14 @@
 <body>
     <x-navbar></x-navbar>
     <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 mb-20">
+        
+        {{-- Judul --}}
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Formulir Pengajuan</h1>
             <p class="text-gray-400 text-sm font-display text-center w-full">Baca peraturan mengenai Praktik Kerja Lapangan sebelum melakukan pengajuan</p>        
         </div>
 
+        {{-- Modal Success --}}
         @if(session('success_id'))
             <!-- Modal Overlay -->
             <div 
@@ -122,6 +125,7 @@
             </div>
         @endif
 
+        {{-- Modal NIM Exists --}}
         @if(session('nim_exists'))
             <div 
                 x-data="{ open: true }" 
@@ -155,8 +159,8 @@
                 </div>
             </div>
         @endif
-
         
+        {{-- Form Submission --}}
         <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
             @csrf
 
@@ -267,7 +271,8 @@
                 </button>
             </div>
 
-        </form>        
+        </form> 
+
     </section>
     <x-footer></x-footer>
 
