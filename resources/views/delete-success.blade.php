@@ -15,6 +15,7 @@
         <div class="items-center justify-center min-h-screen w-full flex">
             <div class="flex flex-col gap-2 mt-10 bg-white p-4 lg:max-w-sm xs:max-w-9/10 w-full rounded-xl text-center">
 
+                {{-- Delete Success --}}
                 <div class="flex flex-col gap-4 justify-center w-full">
                     <div class="bg-gradient-to-b from-white to-apple-300/50 justify-center items-center flex flex-col rounded-lg p-6">
                         <img class="h-40" src="{{ asset('img/delsuccess/delete-success.svg') }}" alt="">
