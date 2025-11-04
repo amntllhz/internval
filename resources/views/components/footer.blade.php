@@ -1,16 +1,18 @@
 <section id="footer" class="w-full relative bg-gradient-to-b from-apple-600 to-apple-950 mt-10 p-8 overflow-hidden">
     <img src="{{ asset('img/geolines.svg') }}" alt="" class="absolute opacity-15 mx-auto lg:h-[800px] xs:h-[580px] w-full lg:-bottom-48 xs:-bottom-56 left-0 z-0">
       <div class="max-w-5xl mx-auto w-full py-10 flex flex-col justify-center items-center gap-x-10">        
-
         <div class=" flex flex-col lg:max-w-lg xs:max-w-9/10 w-full justify-center items-center gap-y-7 z-20">
+
+          {{-- Logo --}}
           <img class="w-36 bg-white backdrop-blur-xs px-3 py-1.5 rounded-lg" src="{{ asset('img/logo.svg') }}" alt="logo">                      
           <div class="flex flex-col gap-y-2">              
               <p class="text-sm w-full text-center leading-loose text-apple-50 font-display">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dibuat untuk mempermudah, mempercepat, dan meningkatkan efisiensi, dikembangkan berdasarkan experience mahasiswa dalam mengajukan Praktik Kerja Lapangan</p>
           </div>
+
+          {{-- Contact --}}
           <div class="flex flex-row gap-x-4">
 
-            <!-- phone -->
-
+            {{-- Phone --}}
             <a href="#" class="group">
               <div class="bg-apple-100/10 backdrop-blur-xs rounded-lg flex p-[10px] items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-white group-hover:transform group-hover:rotate-45 transition duration-300 ease-in-out">
@@ -18,9 +20,8 @@
                 </svg>                                 
               </div>
             </a>
-
-            <!-- instagram -->
-
+            
+            {{-- Instagram --}}
             <a href="#" class="group">
               <div class="bg-apple-100/10 backdrop-blur-xs rounded-lg flex p-[10px] items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-white group-hover:transform group-hover:rotate-45 transition duration-300 ease-in-out">
@@ -29,9 +30,8 @@
                 </svg>                                               
               </div>            
             </a>
-
-            <!-- web -->
-
+            
+            {{-- Web --}}
             <a href="#" class="group">
               <div class="bg-apple-100/10 backdrop-blur-xs rounded-lg flex p-[10px] items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-white group-hover:transform group-hover:rotate-45 transition duration-300 ease-in-out">
@@ -39,11 +39,13 @@
                 </svg>
               </div>
             </a>
-          </div>
-        </div>        
 
+          </div>
+
+        </div>        
       </div>
 
+      {{-- Copyright --}}
       <div class="mt-2 flex items-center justify-center gap-x-6">                  
         <h3 class="text-xs text-center text-white/50 font-display"><span>&#169</span> 2024 Internval - All Rights Reserved</h3>
       </div>

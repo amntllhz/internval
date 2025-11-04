@@ -8,7 +8,10 @@
     class="lg:max-w-5xl xs:max-w-9/10 w-full fixed left-1/2 -translate-x-1/2 top-4 z-50 
            bg-apple-200/30 backdrop-blur-lg px-6 py-4 rounded-2xl transition-all duration-300"
 >
+
+    {{-- Navbar --}}
     <div class="flex items-center justify-between">
+
         {{-- Logo --}}
         <a href={{ url('/home') }}>
             <img class="lg:h-6 xs:h-5" src="{{ asset('img/logo.svg') }}" alt=""> 
@@ -44,5 +47,6 @@
         <a href={{ url('/submission') }} class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Pengajuan</a>
         <a href="#footer" class="text-apple-600 font-display text-sm font-bold hover:text-apple-900 transition">Kontak</a>
     </div>
+
 </div>
 
