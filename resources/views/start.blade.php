@@ -13,11 +13,16 @@
 <body>
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
         <div class="relative flex p-2 lg:flex-row xs:flex-col max-w-5xl justify-center gap-4 items-center bg-white rounded-2xl mx-auto ring ring-apple-600">
+
+            {{-- Masuk sebagai --}}
             <div class="flex relative overflow-hidden flex-col bg-linear-to-b/hsl from-apple-600 to-apple-900 h-full lg:p-16 xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">
                 <h1 class="text-4xl text-white font-head font-semibold w-fit z-10">Masuk Sebagai</h1>                                
                 <img id="circle-fx" class=" absolute h-full opacity-30 w-full z-0" src="{{ asset('img/grid.png') }}" alt="">
             </div>
+
+            {{-- Opsi Role --}}
             <div class="relative flex flex-col space-y-1 p-6 items-center justify-center">
+                
                 <a href={{ route('mahasiswa.redirect') }} class="text-white flex justify-center items-center gap-2 font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-56 xs:w-56 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
                         <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
@@ -47,7 +52,9 @@
                         BAAK
                     </a>
                 </div>
+
             </div>
+
         </div>
                         
     </section>
