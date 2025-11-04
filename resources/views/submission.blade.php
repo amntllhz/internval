@@ -160,6 +160,7 @@
         <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
             @csrf
 
+            {{-- data mahasiswa --}}
             <div class="border-b border-gray-900/10 pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6">
                 <div class="col-span-full">
                     <h2 class="text-gray-800 text-left w-full font-bold font-display">Data Mahasiswa</h2>
@@ -178,7 +179,7 @@
     
                 <div class="col-span-3">
                     <label for="prodi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Prodi <span class="text-gray-400">*</span></label>            
-                    <select id="prodi" name="prodi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                        
+                    <select id="prodi" name="prodi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                        
                         <option class="text-xs font-display" value="S1 Informatika">S1 Informatika</option>
                         <option class="text-xs font-display" value="S1 Teknik Mesin">S1 Teknik Mesin</option>                        
                     </select>
@@ -191,7 +192,6 @@
             </div>
             
             {{-- data instansi --}}
-
             <div class="border-b border-gray-900/10 pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10">
                 <div class="col-span-full">
                     <h2 class="text-gray-800 text-left w-full font-bold font-display">Data Instansi / Perusahaan / Lembaga</h2>
@@ -205,7 +205,7 @@
 
                 <div class="col-span-3">
                     <label for="provinsi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Provinsi <span class="text-gray-400">*</span></label>            
-                    <select id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                    <select id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
                         @foreach(\Indonesia::allProvinces() as $provinsi)
                             <option class="text-xs font-display" value="{{ $provinsi->code }}">{{ $provinsi->name }}</option>                        
                         @endforeach
@@ -214,21 +214,21 @@
 
                 <div class="col-span-3">
                     <label for="kabupaten_kota" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kabupaten / Kota <span class="text-gray-400">*</span></label>            
-                    <select id="kabupaten_kota" name="kabupaten_kota" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                    <select id="kabupaten_kota" name="kabupaten_kota" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
                             <option class="text-xs font-display" value="">-- Pilih Kabupaten / Kota --</option>                                                
                     </select>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="kecamatan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kecamatan <span class="text-gray-400">*</span></label>            
-                    <select id="kecamatan" name="kecamatan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                    <select id="kecamatan" name="kecamatan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
                             <option class="text-xs font-display" value="">-- Pilih Kecamatan --</option>
                     </select>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="desa_kelurahan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Desa / Kelurahan <span class="text-gray-400">*</span></label>            
-                    <select id="desa_kelurahan" name="desa_kelurahan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 ">                                                
+                    <select id="desa_kelurahan" name="desa_kelurahan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
                             <option class="text-xs font-display" value="">-- Pilih Desa / Kelurahan --</option>                        
                     </select>                    
                 </div>
