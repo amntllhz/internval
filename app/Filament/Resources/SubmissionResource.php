@@ -114,12 +114,14 @@ class SubmissionResource extends Resource
                             'rejected' => 'Rejected',
                         ])
                         ->native(false)
-                        ->required()                
+                        ->required()           
+                        ->reactive()     
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
                     Textarea::make('alasan_penolakan')
                         ->label('Alasan Penolakan')
                         ->rows(3)
+                        ->hidden(fn ($get) => $get('status_pengajuan') !== 'rejected')                                                
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
                     // BAAK hanya bisa melihat dan ubah status surat
