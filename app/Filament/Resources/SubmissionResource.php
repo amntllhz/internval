@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SubmissionResource\Pages;
 use App\Filament\Resources\SubmissionResource\RelationManagers;
 use App\Models\Submission;
+use Dom\Text;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,6 +18,7 @@ use Filament\Facades\Filament;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 
 class SubmissionResource extends Resource
@@ -55,44 +57,57 @@ class SubmissionResource extends Resource
 
         return $form
             ->schema([
+
+                Section::make('Data Mahasiswa')            
+                ->schema([
+                    TextInput::make('nama_mahasiswa')->disabled(),
+                    TextInput::make('nim')->disabled(),
+                    TextInput::make('prodi')->disabled(),
+                    TextInput::make('email')->disabled(),    
+                ])->columns(2),
                 //
-                TextInput::make('nama_mahasiswa')->disabled(),
-                TextInput::make('nim')->disabled(),
-                TextInput::make('prodi')->disabled(),
-                TextInput::make('instansi_tujuan')->disabled(),
-                DatePicker::make('tanggal_mulai')->disabled(),
-                DatePicker::make('tanggal_selesai')->disabled(),
-                TextInput::make('provinsi')->disabled(),
-                TextInput::make('kabupaten_kota')->disabled(),
-                TextInput::make('kecamatan')->disabled(),
-                TextInput::make('desa_kelurahan')->disabled(),
-                TextInput::make('jalan')->disabled(),
+                
+                Section::make('Data Pengajuan')
+                ->schema([
+                    TextInput::make('instansi_tujuan')->disabled()->columnSpan(2),                
+                    TextInput::make('provinsi')->disabled(),
+                    TextInput::make('kabupaten_kota')->disabled(),
+                    TextInput::make('kecamatan')->disabled(),
+                    TextInput::make('desa_kelurahan')->disabled(),
+                    TextInput::make('jalan')->disabled(),
+                    DatePicker::make('tanggal_mulai')->disabled(),
+                    DatePicker::make('tanggal_selesai')->disabled(),
+                ])->columns(3),
 
-                // dosen hanya bisa melihat dan ubah status pengajuan
-                Select::make('status_pengajuan')
-                    ->options([
-                        'pending' => 'Pending',
-                        'accepted' => 'Accepted',
-                        'rejected' => 'Rejected',
-                    ])
-                    ->required()                
-                    ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                Section::make('Action')
+                ->schema([
+                    // dosen hanya bisa melihat dan ubah status pengajuan
+                    Select::make('status_pengajuan')
+                        ->options([
+                            'pending' => 'Pending',
+                            'accepted' => 'Accepted',
+                            'rejected' => 'Rejected',
+                        ])
+                        ->required()                
+                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
-                Textarea::make('alasan_penolakan')
-                    ->label('Alasan Penolakan')
-                    ->rows(3)
-                    ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                    Textarea::make('alasan_penolakan')
+                        ->label('Alasan Penolakan')
+                        ->rows(3)
+                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
-                // BAAK hanya bisa melihat dan ubah status surat
-                Select::make('status_surat')
-                    ->options([
-                        'none' => 'Belum dibuat',
-                        'made' => 'Sudah dibuat',
-                        'ready' => 'Siap diambil',
-                    ])
-                    ->required()                
-                    ->visible(fn () => $user->role === 'baak'),
-            ]);
+                    // BAAK hanya bisa melihat dan ubah status surat
+                    Select::make('status_surat')
+                        ->options([
+                            'none' => 'Belum dibuat',
+                            'made' => 'Sudah dibuat',
+                            'ready' => 'Siap diambil',
+                        ])
+                        ->required()                
+                        ->visible(fn () => $user->role === 'baak')
+                ]),
+                                
+            ])->columns(3);
     }
 
     public static function table(Table $table): Table
