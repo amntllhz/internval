@@ -58,28 +58,53 @@ class SubmissionResource extends Resource
         return $form
             ->schema([
 
-                Section::make('Data Mahasiswa')            
+                Section::make('Data Mahasiswa')                    
                 ->schema([
-                    TextInput::make('nama_mahasiswa')->disabled(),
-                    TextInput::make('nim')->disabled(),
-                    TextInput::make('prodi')->disabled(),
-                    TextInput::make('email')->disabled(),    
+                    TextInput::make('nama_mahasiswa')
+                        ->disabled()                        
+                        ->label('Nama Mahasiswa'),
+                    TextInput::make('nim')
+                        ->disabled()
+                        ->label('Nomor Induk Mahasiswa'),
+                    TextInput::make('prodi')
+                        ->disabled()
+                        ->label('Progam Studi'),
+                    TextInput::make('email')
+                        ->disabled()
+                        ->label('E-mail'),    
                 ])->columns(2),
                 //
                 
-                Section::make('Data Pengajuan')
+                Section::make('Data Instansi / Perusahaan / Lembaga')
                 ->schema([
-                    TextInput::make('instansi_tujuan')->disabled()->columnSpan(2),                
-                    TextInput::make('provinsi')->disabled(),
-                    TextInput::make('kabupaten_kota')->disabled(),
-                    TextInput::make('kecamatan')->disabled(),
-                    TextInput::make('desa_kelurahan')->disabled(),
-                    TextInput::make('jalan')->disabled(),
-                    DatePicker::make('tanggal_mulai')->disabled(),
-                    DatePicker::make('tanggal_selesai')->disabled(),
+                    TextInput::make('instansi_tujuan')
+                        ->disabled()
+                        ->label('Instansi Tujuan')
+                        ->columnSpan(2),                
+                    TextInput::make('provinsi')
+                        ->label('Provinsi')
+                        ->disabled(),
+                    TextInput::make('kabupaten_kota')
+                        ->label('Kabupaten / Kota')
+                        ->disabled(),
+                    TextInput::make('kecamatan')
+                        ->label('Kecamatan')
+                        ->disabled(),
+                    TextInput::make('desa_kelurahan')
+                        ->label('Desa / Kelurahan')
+                        ->disabled(),
+                    TextInput::make('jalan')
+                        ->label('Jalan')
+                        ->disabled(),
+                    DatePicker::make('tanggal_mulai')
+                        ->label('Tanggal Mulai')
+                        ->disabled(),
+                    DatePicker::make('tanggal_selesai')
+                        ->label('Tanggal Selesai')
+                        ->disabled(),
                 ])->columns(3),
 
-                Section::make('Action')
+                Section::make('Verifikasi Pengajuan')
                 ->schema([
                     // dosen hanya bisa melihat dan ubah status pengajuan
                     Select::make('status_pengajuan')
@@ -88,6 +113,7 @@ class SubmissionResource extends Resource
                             'accepted' => 'Accepted',
                             'rejected' => 'Rejected',
                         ])
+                        ->native(false)
                         ->required()                
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
@@ -103,6 +129,7 @@ class SubmissionResource extends Resource
                             'made' => 'Sudah dibuat',
                             'ready' => 'Siap diambil',
                         ])
+                        ->native(false)
                         ->required()                
                         ->visible(fn () => $user->role === 'baak')
                 ]),
@@ -136,17 +163,7 @@ class SubmissionResource extends Resource
                         'none' => 'gray',
                         'made' => 'warning',
                         'ready' => 'success',
-                    }),
-                Tables\Columns\TextColumn::make('provinsi')
-                    ->label('Provinsi'),
-                Tables\Columns\TextColumn::make('kabupaten_kota')
-                    ->label('Kabupaten/Kota'),
-                Tables\Columns\TextColumn::make('kecamatan')
-                    ->label('Kecamatan'),
-                Tables\Columns\TextColumn::make('desa_kelurahan')
-                    ->label('Desa/Kelurahan'),
-                Tables\Columns\TextColumn::make('jalan')
-                    ->label('Jalan'),
+                    }),                
             ])
             ->filters([
                 //
