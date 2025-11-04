@@ -12,11 +12,14 @@
 <body>
     <x-navbar></x-navbar>
     <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 mb-20">
+
+        {{-- Judul --}}
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Cek Status Pengajuan</h1>
             <p class="text-gray-400 text-sm font-display">Lakukan pengecekan status pengajuan secara berkala</p>           
         </div>
 
+        {{-- Wrong ID --}}
         @if(session('error'))
             {{-- <p style="color: red;">{{ session('error') }}</p> --}}
             <!-- Modal Overlay -->
@@ -52,6 +55,7 @@
             </div>
         @endif    
 
+        {{-- Form Tracking --}}
         <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-400 p-4 rounded-2xl mt-6">
             @csrf
 
@@ -77,6 +81,7 @@
                     </template>
                 </button>
             </div>
+            
         </form>
 
     </section>
