@@ -13,11 +13,13 @@
     <x-navbar></x-navbar>
     <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 gap-8 mb-20">
         
+        {{-- Judul --}}
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Status Pengajuan</h1>
             <p class="text-gray-400 text-sm font-display text-center w-full">Baca peraturan mengenai Praktik Kerja Lapangan sebelum melakukan pengajuan</p>        
         </div>
 
+        {{-- Status Pengajuan --}}
         <div class="flex lg:w-2/3 xs:max-w-9/10 lg:flex-row xs:flex-col w-full ring-1 ring-apple-200 gap-4 p-4 rounded-xl">
             <div class="bg-apple-50 p-4 rounded-md flex justify-center items-center">
                 <img src="{{ asset('img/flow/sendsub.svg') }}" class="w-36" alt="">
@@ -126,9 +128,11 @@
                 </div>
             </div>
         </div>
-                
+            
+        {{-- Modal Hapus Pengajuan --}}
         <div x-data="{ open: false, alasan: '' }">
-            <!-- Tombol Hapus Pengajuan -->
+            
+            {{-- Button Hapus Pengajuan --}}
             <div class="flex justify-center items-center gap-1 mt-1 text-center">
                 <p class="font-display text-xs text-gray-400">Ingin mengajukan ulang ? </p>
                 <button
@@ -139,7 +143,7 @@
                 </button>
             </div>
 
-            <!-- Modal Konfirmasi Hapus -->
+            {{-- Modal Hapus --}}
             <div
                 x-show="open"
                 x-transition
@@ -147,21 +151,22 @@
                 class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50"
             >
                 <div class="bg-white p-6 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative z-60">
-                    <!-- Icon Warning -->
+                    
+                    {{-- Icon Modal --}}
                     <div class="bg-red-100 p-2.5 rounded-full w-fit mx-auto mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-500">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
                         </svg>                        
                     </div>
 
-                    <!-- Konten Modal -->
+                    {{-- Pesan --}}
                     <div class="mt-4">
                         <h2 class="text-base font-display font-bold text-gray-800 mb-1">Hapus Pengajuan</h2>
                         <p class="font-display text-xs text-gray-400 mb-4">
                             Anda yakin ingin menghapus pengajuan ini? Tindakan ini tidak dapat dikembalikan.
                         </p>
                         
-                        <!-- Radio Alasan -->
+                        {{-- Alasan --}}
                         <div class="flex flex-col text-left max-w-xs space-y-2 mb-6">
                             <label class="flex w-full px-4 py-3 justify-between items-center gap-2 text-xs font-display text-gray-400 cursor-pointer rounded-md hover:bg-gray-100 transition duration-100 ease-in-out has-checked:bg-red-50 has-checked:text-red-600 has-checked:ring-red-200 has-checked:ring-[1px]">
                                 Ingin mengganti tujuan PKL
@@ -177,7 +182,7 @@
                             </label>                            
                         </div>
 
-                        <!-- Tombol Batal & Hapus -->
+                        {{-- Button Hapus --}}
                         <div class="flex gap-2">
                             <button 
                                 @click="open = false" 
@@ -197,6 +202,7 @@
                             </a>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
