@@ -145,8 +145,8 @@
 
                     {{-- Pesan --}}
                     <div class="mt-4">
-                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Pengajuan Ditolak</h2>
-                        <p class="font-display text-xs text-gray-400 mb-1">Pengajuan anda sedang berlangsung</p>                                           
+                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Sedang Berlangsung !</h2>
+                        <p class="font-display text-xs text-gray-400 mb-1">Hapus pengajuan lama apabila perlu perubahan</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
