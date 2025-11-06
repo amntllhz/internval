@@ -22,9 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('submissions', function (Blueprint $table) {
-            //
-            $table->dropColumn('email');
-        });
+        // 
     }
 };

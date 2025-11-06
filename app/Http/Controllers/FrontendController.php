@@ -72,7 +72,7 @@ class FrontendController extends Controller
         $submission = Submission::create($data);
 
         try {
-            Mail::to($submission->email)->send(new SubmissionMail($submission));
+            Mail::to($submission->email)->queue(new SubmissionMail($submission));
         } catch (\Exception $e) {
             Log::error('Gagal mengirim email ke: '.$submission->email.' | Error: '.$e->getMessage());
         }

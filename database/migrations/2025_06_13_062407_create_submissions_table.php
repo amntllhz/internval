@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('submissions', function (Blueprint $table) {
             $table->char('id', 16)->primary(); // UUID sebagai id pengajuan
             $table->string('nama_mahasiswa');
-            $table->string('nim');
+            $table->string('nim')->index();
             $table->string('prodi');
             $table->string('instansi_tujuan');
             $table->date('tanggal_mulai');
