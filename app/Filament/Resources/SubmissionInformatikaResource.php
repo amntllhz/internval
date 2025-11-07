@@ -142,6 +142,8 @@ class SubmissionInformatikaResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                ->hidden(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                 Tables\Actions\EditAction::make()
                 ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                 Tables\Actions\DeleteAction::make(),
