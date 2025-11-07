@@ -1,4 +1,4 @@
-<section id="footer" class="w-full relative bg-gradient-to-b from-apple-600 to-apple-950 mt-10 p-8 overflow-hidden">
+<section id="footer" class="w-full relative bg-gradient-to-b from-apple-600 to-apple-950 mt-10 p-8 overflow-hidden z-0">
     <img src="{{ asset('img/geolines.svg') }}" alt="" class="absolute opacity-15 mx-auto lg:h-[800px] xs:h-[580px] w-full lg:-bottom-48 xs:-bottom-56 left-0 z-0">
       <div class="max-w-5xl mx-auto w-full py-10 flex flex-col justify-center items-center gap-x-10">        
         <div class=" flex flex-col lg:max-w-lg xs:max-w-9/10 w-full justify-center items-center gap-y-7 z-20">
