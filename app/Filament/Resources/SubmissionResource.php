@@ -57,7 +57,7 @@ class SubmissionResource extends Resource
         return $form
             ->schema([
 
-                Section::make('Data Mahasiswa')                                   
+                Section::make('Data Mahasiswa')                                                
                 ->schema([
                     TextInput::make('nama_mahasiswa')
                         ->disabled()                        
@@ -122,6 +122,9 @@ class SubmissionResource extends Resource
                         ])
                         ->native(false)                                                    
                         ->live()
+                        ->extraAttributes([
+                            'class' => 'cursor-pointer',
+                        ])
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
 
                     Textarea::make('alasan_penolakan')

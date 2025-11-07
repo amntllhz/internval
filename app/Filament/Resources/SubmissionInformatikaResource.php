@@ -25,10 +25,10 @@ class SubmissionInformatikaResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'BAAK';
-    protected static ?string $navigationLabel = 'Submission Informatika';
-    protected static ?string $pluralModelLabel = 'Submission Informatika';
+    protected static ?string $navigationIcon = 'heroicon-o-command-line';
+    protected static ?string $navigationGroup = 'Pengajuan';
+    protected static ?string $navigationLabel = 'S1 Informatika';
+    protected static ?string $pluralModelLabel = 'S1 Informatika';
     protected static ?string $slug = 'submission-informatika';
 
     public static function form(Form $form): Form
@@ -99,6 +99,9 @@ class SubmissionInformatikaResource extends Resource
                             'none' => 'Belum dibuat',
                             'made' => 'Sudah dibuat',
                             'ready' => 'Siap diambil',
+                        ])
+                        ->extraAttributes([
+                            'class' => 'cursor-pointer'
                         ])
                         ->native(false)
                         ->required()                                        
