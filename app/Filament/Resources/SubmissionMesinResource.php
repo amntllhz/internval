@@ -2,58 +2,35 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SubmissionResource\Pages;
-use App\Filament\Resources\SubmissionResource\RelationManagers;
-use App\Models\Submission;
-use Dom\Text;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\Submission;
 use Filament\Tables\Table;
+use Filament\Facades\Filament;
+use App\Models\SubmissionMesin;
+use Filament\Resources\Resource;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Database\Eloquent\Model;
-use Filament\Facades\Filament;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Textarea;
+use App\Filament\Resources\SubmissionMesinResource\Pages;
+use App\Filament\Resources\SubmissionMesinResource\RelationManagers;
 
-class SubmissionResource extends Resource
+class SubmissionMesinResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    public static function getEloquentQuery(): Builder
-    {
-        $user = Filament::auth()->user();
-        $query = parent::getEloquentQuery();
-
-        if (str_starts_with($user->role, 'dosen')) {
-            
-            $roleToProdi = [
-                
-                'dosen_informatika' => 'S1 Informatika',
-                'dosen_mesin' => 'S1 Teknik Mesin',
-            ];
-        }
-
-        $prodi = $roleToProdi[$user->role] ?? null;
-
-        if ($prodi) {
-            $query->where('prodi', $prodi);
-        }
-
-        return $query;
-    }
-
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'BAAK';
+    protected static ?string $navigationLabel = 'Submission Mesin';
+    protected static ?string $pluralModelLabel = 'Submission Mesin';
+    protected static ?string $slug = 'submission-mesin';    
 
     public static function form(Form $form): Form
-    {   
-        $user = Filament::auth()->user();
-
+    {
         return $form
             ->schema([
 
@@ -112,25 +89,17 @@ class SubmissionResource extends Resource
                 ]),
 
                 Section::make('Verifikasi Pengajuan')
-                ->schema([
-                    // dosen hanya bisa melihat dan ubah status pengajuan
-                    Select::make('status_pengajuan')
-                        ->options([
-                            'pending' => 'Pending',
-                            'accepted' => 'Accepted',
-                            'rejected' => 'Rejected',
-                        ])
-                        ->native(false)                                                    
-                        ->live()
-                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                ->schema([                                        
 
-                    Textarea::make('alasan_penolakan')
-                        ->label('Alasan Penolakan')
-                        ->rows(3)                        
-                        ->required(fn ($get) => $get('status_pengajuan') === 'rejected')
-                        ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
-                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
-                                        
+                    // BAAK hanya bisa melihat dan ubah status surat
+                    Select::make('status_surat')
+                        ->options([
+                            'none' => 'Belum dibuat',
+                            'made' => 'Sudah dibuat',
+                            'ready' => 'Siap diambil',
+                        ])
+                        ->native(false)
+                        ->required()                                        
                 ]),
                                 
             ])->columns(3);
@@ -162,30 +131,20 @@ class SubmissionResource extends Resource
                         'none' => 'gray',
                         'made' => 'warning',
                         'ready' => 'success',
-                    }),                
+                    }),
             ])
             ->filters([
                 //
-                Tables\Filters\SelectFilter::make('status_pengajuan')
-                    ->options([
-                        'pending' => 'Pending',
-                        'accepted' => 'Accepted',
-                        'rejected' => 'Rejected',
-                    ]),
-
-                Tables\Filters\SelectFilter::make('status_surat')
-                    ->options([
-                        'none' => 'Belum dibuat',
-                        'made' => 'Sudah dibuat',
-                        'ready' => 'Siap diambil',
-                    ]),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),                
+                Tables\Actions\EditAction::make()
+                ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make(),
+                ]),
             ]);
     }
 
@@ -196,24 +155,34 @@ class SubmissionResource extends Resource
         ];
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+        ->where('prodi', 'S1 Teknik Mesin');
+    }
+
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSubmissions::route('/'),
-            'create' => Pages\CreateSubmission::route('/create'),
-            'edit' => Pages\EditSubmission::route('/{record}/edit'),
+            'index' => Pages\ListSubmissionMesins::route('/'),
+            'create' => Pages\CreateSubmissionMesin::route('/create'),
+            'edit' => Pages\EditSubmissionMesin::route('/{record}/edit'),
         ];
     }
 
     public static function canCreate(): bool
     {
         return false;
-    }    
+    }
+
+    public static function canEdit($record): bool
+    {
+        return $record->status_pengajuan === 'accepted';
+    }
 
     public static function canAccess(): bool
     {
         $user = Filament::auth()->user();
-        return in_array($user->role, ['dosen_informatika', 'dosen_mesin']);
+        return in_array($user->role, ['baak']);
     }
-    
 }
