@@ -95,7 +95,7 @@ class SubmissionMesinResource extends Resource
                     Select::make('status_surat')
                         ->options([
                             'none' => 'Belum dibuat',
-                            'made' => 'Sudah dibuat',
+                            'made' => 'Sedang dibuat',
                             'ready' => 'Siap diambil',
                         ])
                         ->extraAttributes([
