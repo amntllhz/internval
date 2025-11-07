@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SubmissionRequest;
 use App\Models\Submission;
 use Illuminate\Support\Str;
 use App\Mail\SubmissionMail;
@@ -22,26 +23,13 @@ class FrontendController extends Controller
         return view('submission');
     }
 
-    public function submitForm(Request $request)
+    public function submitForm(SubmissionRequest $request)
     {           
 
-        $data = $request->validate([
-            'nama_mahasiswa' => ['required', 'string','regex:/^[A-Za-z\s]+$/'],
-            'email' => 'required|email',
-            'nim' => 'required|string',
-            'prodi' => 'required|string',
-            'instansi_tujuan' => 'required|string',
-            'tanggal_mulai' => 'required|date',
-            'tanggal_selesai' => 'required|date',
-            'provinsi' => 'required|string',
-            'kabupaten_kota' => 'required|string',
-            'kecamatan' => 'required|string',
-            'desa_kelurahan' => 'required|string',
-            'jalan' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
-        ]);
+        $data = $request->validated();
 
         // 🔍 Cek apakah NIM sudah pernah digunakan untuk submission
-        $existing = Submission::where('nim', $request->nim)->first();
+        $existing = Submission::where('nim', $data['nim'])->first();
 
         if ($existing) {
             // Kirim pesan error ke session agar bisa tampil sebagai modal
@@ -49,14 +37,14 @@ class FrontendController extends Controller
                 ->back()
                 ->withInput()
                 ->with('nim_exists', true)
-                ->with('nim_value', $request->nim);
+                ->with('nim_value', $data['nim']);
         }
 
         // Konversi kode ke nama wilayah
-        $province = Province::where('code', $request->provinsi)->first();
-        $city = City::where('code', $request->kabupaten_kota)->first();
-        $district = District::where('code', $request->kecamatan)->first();
-        $village = Village::where('code', $request->desa_kelurahan)->first();        
+        $province = Province::where('code', $data['provinsi'])->first();
+        $city = City::where('code', $data['kabupaten_kota'])->first();
+        $district = District::where('code', $data['kecamatan'])->first();
+        $village = Village::where('code', $data['desa_kelurahan'])->first();        
 
         $data['provinsi'] = $province ? Str::title(Str::lower($province->name)) : '-';
         $data['kabupaten_kota'] = $city ? Str::title(Str::lower($city->name)) : '-';
