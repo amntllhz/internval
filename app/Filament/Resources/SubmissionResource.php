@@ -58,7 +58,7 @@ class SubmissionResource extends Resource
         return $form
             ->schema([
 
-                Section::make('Data Mahasiswa')                    
+                Section::make('Data Mahasiswa')                                   
                 ->schema([
                     TextInput::make('nama_mahasiswa')
                         ->disabled()                        
@@ -75,12 +75,15 @@ class SubmissionResource extends Resource
                 ])->columns(2),
                 //
                 
-                Section::make('Data Instansi / Perusahaan / Lembaga')
+                Section::make('Data Instansi / Perusahaan / Lembaga')                
                 ->schema([
                     TextInput::make('instansi_tujuan')
                         ->disabled()
                         ->label('Instansi Tujuan')
-                        ->columnSpan(2),                
+                        ->columnSpan([
+                            'sm' => 1,
+                            'md' => 2
+                        ]),                
                     TextInput::make('provinsi')
                         ->label('Provinsi')
                         ->disabled(),
@@ -102,7 +105,12 @@ class SubmissionResource extends Resource
                     DatePicker::make('tanggal_selesai')
                         ->label('Tanggal Selesai')
                         ->disabled(),
-                ])->columns(3),
+                ])->columns([
+                    'default' => 1,
+                    'xs' => 1,
+                    'md' => 2,
+                    'lg' => 3
+                ]),
 
                 Section::make('Verifikasi Pengajuan')
                 ->schema([
@@ -212,8 +220,7 @@ class SubmissionResource extends Resource
     public static function canCreate(): bool
     {
         return false;
-    }
-    
+    }    
 
     public static function canAccess(): bool
     {
