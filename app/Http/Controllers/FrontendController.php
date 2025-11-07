@@ -7,7 +7,11 @@ use Illuminate\Support\Str;
 use App\Mail\SubmissionMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Laravolt\Indonesia\Models\City;
 use Illuminate\Support\Facades\Mail;
+use Laravolt\Indonesia\Models\Village;
+use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Facade as Indonesia;
 
 class FrontendController extends Controller
@@ -49,10 +53,10 @@ class FrontendController extends Controller
         }
 
         // Konversi kode ke nama wilayah
-        $province = Indonesia::allProvinces()->firstWhere('code', $request->provinsi);
-        $city = Indonesia::allCities()->firstWhere('code', $request->kabupaten_kota);
-        $district = Indonesia::allDistricts()->firstWhere('code', $request->kecamatan);
-        $village = Indonesia::allVillages()->firstWhere('code', $request->desa_kelurahan);        
+        $province = Province::where('code', $request->provinsi)->first();
+        $city = City::where('code', $request->kabupaten_kota)->first();
+        $district = District::where('code', $request->kecamatan)->first();
+        $village = Village::where('code', $request->desa_kelurahan)->first();        
 
         $data['provinsi'] = $province ? Str::title(Str::lower($province->name)) : '-';
         $data['kabupaten_kota'] = $city ? Str::title(Str::lower($city->name)) : '-';
