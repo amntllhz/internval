@@ -182,11 +182,117 @@
                 </div>
     
                 <div class="col-span-3">
-                    <label for="prodi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Prodi <span class="text-gray-400">*</span></label>            
-                    <select id="prodi" name="prodi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                        
-                        <option class="text-xs font-display" value="S1 Informatika">S1 Informatika</option>
-                        <option class="text-xs font-display" value="S1 Teknik Mesin">S1 Teknik Mesin</option>                        
-                    </select>
+                    <label for="prodi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Prodi <span class="text-gray-400">*</span></label>                                
+                    <div 
+                        x-data="{
+                            selectOpen: false,
+                            selectedItem: null,
+                            selectableItems: [
+                                { title: 'S1 Informatika', value: 'S1 Informatika', disabled: false },
+                                { title: 'S1 Teknik Mesin', value: 'S1 Teknik Mesin', disabled: false },
+                            ],
+                            selectableItemActive: null,
+                            selectId: $id('select'),
+                            selectDropdownPosition: 'bottom',
+                            selectScrollToActiveItem() {
+                                if (this.selectableItemActive) {
+                                    const activeElement = document.getElementById(this.selectableItemActive.value + '-' + this.selectId)
+                                    const newScrollPos = (activeElement.offsetTop + activeElement.offsetHeight) - this.$refs.selectableItemsList.offsetHeight;
+                                    this.$refs.selectableItemsList.scrollTop = newScrollPos > 0 ? newScrollPos : 0;
+                                }
+                            },
+                            selectableItemIsActive(item) {
+                                return this.selectableItemActive && this.selectableItemActive.value === item.value;
+                            },
+                            selectableItemActiveNext() {
+                                const index = this.selectableItems.indexOf(this.selectableItemActive);
+                                if (index < this.selectableItems.length - 1) {
+                                    this.selectableItemActive = this.selectableItems[index + 1];
+                                    this.selectScrollToActiveItem();
+                                }
+                            },
+                            selectableItemActivePrevious() {
+                                const index = this.selectableItems.indexOf(this.selectableItemActive);
+                                if (index > 0) {
+                                    this.selectableItemActive = this.selectableItems[index - 1];
+                                    this.selectScrollToActiveItem();
+                                }
+                            },
+                            selectPositionUpdate() {
+                                const bottomPos = this.$refs.selectButton.getBoundingClientRect().top + this.$refs.selectButton.offsetHeight + parseInt(window.getComputedStyle(this.$refs.selectableItemsList).maxHeight);
+                                this.selectDropdownPosition = window.innerHeight < bottomPos ? 'top' : 'bottom';
+                            }
+                        }"
+                        x-init="
+                            $watch('selectOpen', function() {
+                                if (!selectedItem) {
+                                    selectableItemActive = selectableItems[0];
+                                } else {
+                                    selectableItemActive = selectedItem;
+                                }
+                                setTimeout(() => selectScrollToActiveItem(), 10);
+                                selectPositionUpdate();
+                                window.addEventListener('resize', () => selectPositionUpdate());
+                            });
+                        "
+                        class="relative w-full"
+                    >
+                        <!-- Tombol Dropdown -->
+                        <button 
+                            x-ref="selectButton" 
+                            @click="selectOpen = !selectOpen"
+                            type="button"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:outline-1 focus:ring-1 focus:ring-apple-600 focus:outline-apple-600 focus:border-green-400 w-full p-2.5"
+                        >
+                            <span x-text="selectedItem ? selectedItem.title : 'Pilih Program Studi'" class="truncate"></span>
+                            <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </span>
+                        </button>
+
+                        <!-- Dropdown List -->
+                        <ul 
+                            x-show="selectOpen"
+                            x-ref="selectableItemsList"
+                            @click.away="selectOpen = false"
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="opacity-0 -translate-y-1"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            :class="{ 'bottom-0 mb-11': selectDropdownPosition == 'top', 'top-0 mt-11': selectDropdownPosition == 'bottom' }"
+                            class="absolute w-full py-1 mt-1 overflow-auto text-xs bg-white rounded-md shadow-md max-h-56 border border-gray-200 focus:outline-none z-10"
+                            x-cloak
+                        >
+                            <template x-for="item in selectableItems" :key="item.value">
+                                <li 
+                                    @click="selectedItem = item; selectOpen = false; $refs.selectButton.focus();"
+                                    :id="item.value + '-' + selectId"
+                                    :class="{ 'bg-gray-100 text-gray-900': selectableItemIsActive(item) }"
+                                    @mousemove="selectableItemActive = item"
+                                    class="relative flex items-center h-full py-2 pl-8 text-gray-700 cursor-pointer select-none hover:bg-gray-50"
+                                >
+                                    <svg 
+                                        x-show="selectedItem && selectedItem.value === item.value" 
+                                        class="absolute left-0 w-3.5 h-3.5 ml-2 stroke-current text-green-500" 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        fill="none" 
+                                        viewBox="0 0 24 24" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"
+                                    >
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="block font-medium font-display truncate" x-text="item.title"></span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <!-- Hidden input agar tetap dikirim ke backend -->
+                        <input type="hidden" name="prodi" x-model="selectedItem.value">
+                    </div>
+
                 </div>     
 
                 <div class="col-span-3">
