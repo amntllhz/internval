@@ -315,32 +315,233 @@
 
                 <div class="col-span-3">
                     <label for="provinsi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Provinsi <span class="text-gray-400">*</span></label>            
-                    <select id="provinsi" name="provinsi" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
-                        @foreach(\Indonesia::allProvinces() as $provinsi)
-                            <option class="text-xs font-display" value="{{ $provinsi->code }}">{{ $provinsi->name }}</option>                        
-                        @endforeach
-                    </select>                    
+                    <div 
+                        x-data="{
+                            selectOpen: false,
+                            selectedItem: null,
+                            selectableItems: {{ \Indonesia::allProvinces()->map(fn($p) => ['title' => $p->name, 'value' => $p->code]) }},
+                            setItem(item) {
+                                this.selectedItem = item;
+                                this.selectOpen = false;
+                                this.$refs.hiddenSelect.value = item.value;
+                                this.$refs.hiddenSelect.dispatchEvent(new Event('change'));
+                            }
+                        }"
+                        class="relative w-full"
+                    >                        
+                        
+                        <button 
+                            type="button"
+                            @click="selectOpen = !selectOpen"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                        >
+                            <span x-text="selectedItem ? selectedItem.title : '-- Pilih Provinsi --'" class="truncate"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <ul 
+                            x-show="selectOpen"
+                            x-transition
+                            class="absolute w-full py-1 mt-1 bg-white rounded-md shadow-md max-h-56 overflow-auto border border-gray-200 z-10"
+                            x-cloak
+                        >
+                            <template x-for="item in selectableItems" :key="item.value">
+                                <li 
+                                    @click="setItem(item)"
+                                    class="py-2 pl-8 pr-2 text-xs text-gray-700 cursor-pointer hover:bg-gray-50 relative"
+                                >
+                                    <svg 
+                                        x-show="selectedItem && selectedItem.value === item.value" 
+                                        class="absolute left-2 w-3.5 h-3.5 text-green-500" 
+                                        xmlns="http://www.w3.org/2000/svg" 
+                                        fill="none" 
+                                        viewBox="0 0 24 24" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"
+                                    >
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="font-display" x-text="item.title"></span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <input type="hidden" id="provinsi" name="provinsi" x-ref="hiddenSelect">
+                    </div>                                                                        
                 </div>
 
                 <div class="col-span-3">
                     <label for="kabupaten_kota" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kabupaten / Kota <span class="text-gray-400">*</span></label>            
-                    <select id="kabupaten_kota" name="kabupaten_kota" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
-                            <option class="text-xs font-display" value="">-- Pilih Kabupaten / Kota --</option>                                                
-                    </select>                    
+                    <div 
+                        x-data="{
+                            selectOpen: false,
+                            selectedItem: null,
+                            selectableItems: [],
+                            setItem(item) {
+                                this.selectedItem = item;
+                                this.selectOpen = false;
+                                this.$refs.hiddenSelect.value = item.value;
+                                this.$refs.hiddenSelect.dispatchEvent(new Event('change'));
+                            },
+                            updateItems(data) {
+                                this.selectableItems = data.map(i => ({ title: i.name, value: i.code }));
+                            }
+                        }"
+                        x-init="
+                            const kabupatenInput = $refs.hiddenSelect;
+                            const provinsiInput = document.getElementById('provinsi');
+                            provinsiInput.addEventListener('change', async (e) => {
+                                kabupatenInput.value = '';
+                                selectedItem = null;
+                                selectableItems = [];
+                                const response = await fetch(`/get-kabupaten?provinsi_id=${e.target.value}`);
+                                const data = await response.json();
+                                updateItems(data);
+                            });
+                        "
+                        class="relative w-full"
+                    >                        
+
+                        <button type="button"
+                            @click="selectOpen = !selectOpen"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                        >
+                            <span x-text="selectedItem ? selectedItem.title : '-- Pilih Kabupaten/Kota --'" class="truncate"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <ul x-show="selectOpen" x-transition class="absolute w-full py-1 mt-1 bg-white rounded-md shadow-md max-h-56 overflow-auto border border-gray-200 z-10" x-cloak>
+                            <template x-for="item in selectableItems" :key="item.value">
+                                <li @click="setItem(item)" class="py-2 pl-8 pr-2 text-xs text-gray-700 cursor-pointer hover:bg-gray-50 relative">
+                                    <svg x-show="selectedItem && selectedItem.value === item.value" class="absolute left-2 w-3.5 h-3.5 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="font-display" x-text="item.title"></span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <input type="hidden" id="kabupaten_kota" name="kabupaten_kota" x-ref="hiddenSelect">
+                    </div>                  
                 </div>
 
                 <div class="col-span-3">
                     <label for="kecamatan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Kecamatan <span class="text-gray-400">*</span></label>            
-                    <select id="kecamatan" name="kecamatan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
-                            <option class="text-xs font-display" value="">-- Pilih Kecamatan --</option>
-                    </select>                    
+                    <div 
+                        x-data="{
+                            selectOpen: false,
+                            selectedItem: null,
+                            selectableItems: [],
+                            setItem(item) {
+                                this.selectedItem = item;
+                                this.selectOpen = false;
+                                this.$refs.hiddenSelect.value = item.value;
+                                this.$refs.hiddenSelect.dispatchEvent(new Event('change'));
+                            },
+                            updateItems(data) {
+                                this.selectableItems = data.map(i => ({ title: i.name, value: i.code }));
+                            }
+                        }"
+                        x-init="
+                            const kecamatanInput = $refs.hiddenSelect;
+                            const kabupatenInput = document.getElementById('kabupaten_kota');
+                            kabupatenInput.addEventListener('change', async (e) => {
+                                kecamatanInput.value = '';
+                                selectedItem = null;
+                                selectableItems = [];
+                                const response = await fetch(`/get-kecamatan?kabupaten_id=${e.target.value}`);
+                                const data = await response.json();
+                                updateItems(data);
+                            });
+                        "
+                        class="relative w-full"
+                    >                        
+
+                        <button type="button"
+                            @click="selectOpen = !selectOpen"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                        >
+                            <span x-text="selectedItem ? selectedItem.title : '-- Pilih Kecamatan --'" class="truncate"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <ul x-show="selectOpen" x-transition class="absolute w-full py-1 mt-1 bg-white rounded-md shadow-md max-h-56 overflow-auto border border-gray-200 z-10" x-cloak>
+                            <template x-for="item in selectableItems" :key="item.value">
+                                <li @click="setItem(item)" class="py-2 pl-8 pr-2 text-xs text-gray-700 cursor-pointer hover:bg-gray-50 relative">
+                                    <svg x-show="selectedItem && selectedItem.value === item.value" class="absolute left-2 w-3.5 h-3.5 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="font-display" x-text="item.title"></span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <input type="hidden" id="kecamatan" name="kecamatan" x-ref="hiddenSelect">
+                    </div>                    
                 </div>
 
                 <div class="col-span-3">
                     <label for="desa_kelurahan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Desa / Kelurahan <span class="text-gray-400">*</span></label>            
-                    <select id="desa_kelurahan" name="desa_kelurahan" class="bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs placeholder:font-display block w-full p-2.5 focus:ring-apple-600 focus:border-green-400">                                                
-                            <option class="text-xs font-display" value="">-- Pilih Desa / Kelurahan --</option>                        
-                    </select>                    
+                    <div 
+                        x-data="{
+                            selectOpen: false,
+                            selectedItem: null,
+                            selectableItems: [],
+                            setItem(item) {
+                                this.selectedItem = item;
+                                this.selectOpen = false;
+                                this.$refs.hiddenSelect.value = item.value;
+                                this.$refs.hiddenSelect.dispatchEvent(new Event('change'));
+                            },
+                            updateItems(data) {
+                                this.selectableItems = data.map(i => ({ title: i.name, value: i.code }));
+                            }
+                        }"
+                        x-init="
+                            const desaInput = $refs.hiddenSelect;
+                            const kecamatanInput = document.getElementById('kecamatan');
+                            kecamatanInput.addEventListener('change', async (e) => {
+                                desaInput.value = '';
+                                selectedItem = null;
+                                selectableItems = [];
+                                const response = await fetch(`/get-desa?kecamatan_id=${e.target.value}`);
+                                const data = await response.json();
+                                updateItems(data);
+                            });
+                        "
+                        class="relative w-full"
+                    >                        
+
+                        <button type="button"
+                            @click="selectOpen = !selectOpen"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                        >
+                            <span x-text="selectedItem ? selectedItem.title : '-- Pilih Desa/Kelurahan --'" class="truncate"></span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <ul x-show="selectOpen" x-transition class="absolute w-full py-1 mt-1 bg-white rounded-md shadow-md max-h-56 overflow-auto border border-gray-200 z-10" x-cloak>
+                            <template x-for="item in selectableItems" :key="item.value">
+                                <li @click="setItem(item)" class="py-2 pl-8 pr-2 text-xs text-gray-700 cursor-pointer hover:bg-gray-50 relative">
+                                    <svg x-show="selectedItem && selectedItem.value === item.value" class="absolute left-2 w-3.5 h-3.5 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    <span class="font-display" x-text="item.title"></span>
+                                </li>
+                            </template>
+                        </ul>
+
+                        <input type="hidden" id="desa_kelurahan" name="desa_kelurahan" x-ref="hiddenSelect">
+                    </div>                                        
                 </div>
 
                 <div class="col-span-3">
