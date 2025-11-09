@@ -266,7 +266,12 @@
                         >
                             <template x-for="item in selectableItems" :key="item.value">
                                 <li 
-                                    @click="selectedItem = item; selectOpen = false; $refs.selectButton.focus();"
+                                    @click="
+                                        selectedItem = item;
+                                        selectOpen = false;
+                                        $refs.hiddenSelect.value = item.value;  // set value hidden input
+                                        $refs.selectButton.focus();
+                                    "
                                     :id="item.value + '-' + selectId"
                                     :class="{ 'bg-gray-100 text-gray-900': selectableItemIsActive(item) }"
                                     @mousemove="selectableItemActive = item"
@@ -290,7 +295,7 @@
                         </ul>
 
                         <!-- Hidden input agar tetap dikirim ke backend -->
-                        <input type="hidden" name="prodi" x-model="selectedItem.value">
+                        <input type="hidden" name="prodi" x-ref="hiddenSelect">
                     </div>
 
                 </div>     
