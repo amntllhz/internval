@@ -27,7 +27,7 @@
             <div class="items-center justify-center min-h-screen w-full flex">
                 <div class="flex flex-col gap-2 mt-10 bg-white p-4 lg:max-w-sm xs:max-w-9/10 w-full rounded-xl text-center">
 
-                    {{-- Delete Success --}}
+                    
                     <div class="flex flex-col gap-4 justify-center w-full">
                         <div class="bg-gradient-to-b from-white to-apple-300/50 justify-center items-center flex flex-col rounded-lg p-6">
                             <img class="h-40" src="{{ asset('img/delsuccess/delete-success.svg') }}" alt="">
@@ -37,8 +37,8 @@
                                 <h1 class="text-gray-600 text-center font-bold font-display">@yield('code')</h1>
                                 <p class="text-gray-400 text-center font-display text-xs">@yield('message')</p>
                             </div>
-                            <a href="{{ url('/home') }}" class="text-white font-display w-fit font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg">
-                                Kembali ke Beranda
+                            <a href="{{ url()->previous() }}" class="text-white font-display w-fit font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg">
+                                Kembali ke Halaman Sebelumnya
                             </a>
                         </div>
                     </div>
