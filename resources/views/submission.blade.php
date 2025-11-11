@@ -161,7 +161,7 @@
         @endif
         
         {{-- Form Submission --}}
-        <form x-data="{ loading: false }" x-on:submit="loading = true" method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
+        <form x-data="formHandler" x-on:submit.prevent="validateAndSubmit" novalidate method="POST" action="{{ route('submission.submit') }}" class="mt-8 mb-10 w-full gap-6">
             @csrf
 
             {{-- data mahasiswa --}}
@@ -295,7 +295,7 @@
                         </ul>
 
                         <!-- Hidden input agar tetap dikirim ke backend -->
-                        <input type="hidden" name="prodi" x-ref="hiddenSelect">
+                        <input type="hidden" name="prodi" x-ref="hiddenSelect" required >
                     </div>
 
                 </div>     
@@ -374,7 +374,7 @@
                             </template>
                         </ul>
 
-                        <input type="hidden" id="provinsi" name="provinsi" x-ref="hiddenSelect">
+                        <input type="hidden" id="provinsi" name="provinsi" x-ref="hiddenSelect" required >
                     </div>                                                                        
                 </div>
 
@@ -431,7 +431,7 @@
                             </template>
                         </ul>
 
-                        <input type="hidden" id="kabupaten_kota" name="kabupaten_kota" x-ref="hiddenSelect">
+                        <input type="hidden" id="kabupaten_kota" name="kabupaten_kota" x-ref="hiddenSelect" required >
                     </div>                  
                 </div>
 
@@ -488,7 +488,7 @@
                             </template>
                         </ul>
 
-                        <input type="hidden" id="kecamatan" name="kecamatan" x-ref="hiddenSelect">
+                        <input type="hidden" id="kecamatan" name="kecamatan" x-ref="hiddenSelect" required >
                     </div>                    
                 </div>
 
@@ -545,7 +545,7 @@
                             </template>
                         </ul>
 
-                        <input type="hidden" id="desa_kelurahan" name="desa_kelurahan" x-ref="hiddenSelect">
+                        <input type="hidden" id="desa_kelurahan" name="desa_kelurahan" x-ref="hiddenSelect" required >
                     </div>                                        
                 </div>
 
@@ -853,6 +853,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 <script>
+
+    // script fetch data wilayah
     document.addEventListener('DOMContentLoaded', function () {
         const provinsi = document.getElementById('provinsi');
         const kabupaten = document.getElementById('kabupaten_kota');
@@ -894,7 +896,122 @@
                     });
                 });
         });
+    });            
+    
+    // script validasi form submission
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('formHandler', () => ({
+            loading: false,
+
+            async validateAndSubmit(e) {
+                this.loading = true;
+                let valid = true;
+                let firstErrorElement = null;
+
+                // === 1️⃣ Validasi SELECT (input hidden dari Pines UI)
+                const requiredHiddenInputs = document.querySelectorAll('input[required][type="hidden"]');
+
+                requiredHiddenInputs.forEach(input => {
+                    const wrapper = input.closest('div.relative');
+                    const selectButton = wrapper?.querySelector('button');
+
+                    if (!input.value) {
+                        valid = false;
+                        if (!firstErrorElement && wrapper) firstErrorElement = wrapper;
+
+                        // Tambahkan efek fokus/error
+                        if (selectButton) {
+                            selectButton.classList.add('ring-1', 'ring-red-400');
+                        }
+                    } else if (selectButton) {
+                        selectButton.classList.remove('ring-1', 'ring-red-400');
+                    }
+                });
+
+                // === 2️⃣ Validasi INPUT TEXT (nama, nim, email, instansi_tujuan, jalan)
+                const textFields = ['nama_mahasiswa', 'nim', 'email', 'instansi_tujuan', 'jalan'];
+                textFields.forEach(name => {
+                    const input = document.querySelector(`input[name="${name}"]`);
+                    if (input) {
+                        if (!input.value.trim()) {
+                            valid = false;
+                            if (!firstErrorElement) firstErrorElement = input;
+                            input.classList.add('ring-1', 'ring-red-400');
+                        } else {
+                            input.classList.remove('ring-1', 'ring-red-400');
+                        }
+                    }
+                });
+
+                // === 3️⃣ Validasi DATEPICKER
+                const dateMulaiInput = document.querySelector('input[name="tanggal_mulai"]');
+                const dateSelesaiInput = document.querySelector('input[name="tanggal_selesai"]');
+
+                // Hapus pesan error lama (jika ada)
+                document.querySelectorAll('.date-error-msg').forEach(el => el.remove());
+
+                // Ambil wrapper & elemen utama untuk highlight
+                const dateMulaiWrapper = dateMulaiInput?.closest('div.relative');
+                const dateSelesaiWrapper = dateSelesaiInput?.closest('div.relative');
+                const dateMulaiButton = dateMulaiWrapper?.querySelector('input[type="text"]');
+                const dateSelesaiButton = dateSelesaiWrapper?.querySelector('input[type="text"]');
+
+                // Cek wajib isi
+                if (!dateMulaiInput?.value) {
+                    valid = false;
+                    if (!firstErrorElement && dateMulaiWrapper) firstErrorElement = dateMulaiWrapper;
+                    dateMulaiButton?.classList.add('ring-1', 'ring-red-400');
+                } else {
+                    dateMulaiButton?.classList.remove('ring-1', 'ring-red-400');
+                }
+
+                if (!dateSelesaiInput?.value) {
+                    valid = false;
+                    if (!firstErrorElement && dateSelesaiWrapper) firstErrorElement = dateSelesaiWrapper;
+                    dateSelesaiButton?.classList.add('ring-1', 'ring-red-400');
+                } else {
+                    dateSelesaiButton?.classList.remove('ring-1', 'ring-red-400');
+                }
+
+                // === 3️⃣ Validasi durasi minimal 30 hari
+                if (dateMulaiInput?.value && dateSelesaiInput?.value) {
+                    const startDate = new Date(dateMulaiInput.value);
+                    const endDate = new Date(dateSelesaiInput.value);
+                    const diffDays = (endDate - startDate) / (1000 * 60 * 60 * 24);
+
+                    if (diffDays < 30) {
+                        valid = false;
+                        if (!firstErrorElement && dateSelesaiWrapper) firstErrorElement = dateSelesaiWrapper;
+
+                        dateSelesaiButton?.classList.add('ring-1', 'ring-red-400');
+
+                        // Tambahkan pesan error khusus durasi
+                        const msg = document.createElement('p');
+                        msg.className = 'text-red-400/80 font-medium pl-1 font-display text-[11px] mt-1 date-error-msg';
+                        msg.textContent = 'Durasi magang diwajibkan lebih dari 30 hari.';
+                        dateSelesaiWrapper.parentElement.appendChild(msg);
+                    }
+                }
+
+                // === 4️⃣ Jika ada field yang tidak valid → hentikan submit
+                if (!valid) {
+                    this.loading = false;
+                    e.preventDefault();
+
+                    if (firstErrorElement) {
+                        firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstErrorElement.classList.add('animate-shake');
+                        setTimeout(() => firstErrorElement.classList.remove('animate-shake'), 500);
+                    }
+                    return;
+                }
+
+                // === 5️⃣ Submit form jika semua valid
+                e.target.submit();
+            },
+        }));
     });
+
 </script>
 </body>
 </html>
