@@ -17,12 +17,17 @@ return new class extends Migration
             $table->string('email');
             $table->string('nim')->index();
             $table->string('prodi');
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->string('jenis_kelamin');
+            $table->string('telepon');
             $table->string('instansi_tujuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->enum('status_pengajuan', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->enum('status_surat', ['none', 'made', 'ready'])->default('none');
             $table->text('alasan_penolakan')->nullable(); // untuk dosen jika menolak
+            $table->foreignId('dospem_id')->nullable()->constrained('dospems')->onDelete('set null');
             $table->timestamps();
         });
     }
