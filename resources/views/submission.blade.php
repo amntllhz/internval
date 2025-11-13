@@ -315,7 +315,7 @@
     
                 <div class="col-span-3">
                     <label for="instansi_tujuan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Instansi Tujuan <span class="text-gray-400">*</span></label>            
-                    <input name="instansi_tujuan" id="instansi_tujuan" type="text" pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nama Instansi / Perusahaan / Lembaga" required autocomplete="off"/>
+                    <input name="instansi_tujuan" id="instansi_tujuan" type="text" pattern="[A-Za-z\s.]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nama Instansi / Perusahaan / Lembaga" required autocomplete="off"/>
                 </div>
 
                 <div class="col-span-3">
@@ -551,7 +551,7 @@
 
                 <div class="col-span-3">
                     <label for="jalan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Jalan / No <span class="text-gray-400">*</span></label>            
-                    <input name="jalan" id="jalan" type="text" pattern="[A-Za-z\s.,]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s.,]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Jalan / No" required autocomplete="off"/>
+                    <input name="jalan" id="jalan" type="text" pattern="[A-Za-z0-9\s.,]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s.,]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Jl. Kemerdekaan No. 1" required autocomplete="off"/>
                 </div>                
 
                 <div class="col-span-3" 
