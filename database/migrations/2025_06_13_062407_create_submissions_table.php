@@ -16,9 +16,7 @@ return new class extends Migration
             $table->string('nama_mahasiswa');
             $table->string('email');
             $table->string('nim')->index();
-            $table->string('prodi');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
+            $table->string('prodi');            
             $table->string('jenis_kelamin');
             $table->string('telepon');
             $table->string('instansi_tujuan');
