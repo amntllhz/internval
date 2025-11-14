@@ -6,10 +6,16 @@ use Filament\Actions;
 use Filament\Facades\Filament;
 use Filament\Resources\Pages\EditRecord;
 use App\Filament\Resources\SubmissionResource;
+use Illuminate\Database\Eloquent\Model;
 
 class EditSubmission extends EditRecord
 {
     protected static string $resource = SubmissionResource::class;
+
+    protected function resolveRecord(int|string $key): Model
+    {
+        return parent::resolveRecord($key)->load('dospem');
+    }
 
     protected function getHeaderActions(): array
     {

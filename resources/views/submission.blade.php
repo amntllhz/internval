@@ -967,7 +967,10 @@
                         x-data="{
                             selectOpen: false,
                             selectedItem: null,
-                            selectableItems: {{ \App\Models\Dospem::all()->map(fn($d) => ['title' => $d->nama_dosen, 'value' => $d->id]) }},
+                            selectableItems: {{ \App\Models\Dospem::select('id', 'nama_dosen')->get()->map(fn($d) => [
+                                'title' => $d->nama_dosen, 
+                                'value' => $d->id
+                            ]) }},
                             setItem(item) {
                                 this.selectedItem = item;
                                 this.selectOpen = false;
