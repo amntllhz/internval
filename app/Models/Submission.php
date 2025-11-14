@@ -20,10 +20,15 @@ class Submission extends Model
         });
     }
 
+    public function dospem()
+    {
+        return $this->belongsTo(Dospem::class, 'dospem_id');
+    }
+
     protected $fillable = [
-        'nama_mahasiswa','email', 'nim', 'prodi',
+        'nama_mahasiswa','email', 'nim', 'prodi', 'jenis_kelamin', 'telepon',
         'instansi_tujuan', 'tanggal_mulai', 'tanggal_selesai',
         'status_pengajuan', 'status_surat', 'alasan_penolakan',
-        'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan',
+        'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan', 'dospem_id',
     ];
 }

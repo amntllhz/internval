@@ -68,6 +68,12 @@ class SubmissionResource extends Resource
                     TextInput::make('prodi')
                         ->disabled()
                         ->label('Progam Studi'),
+                    TextInput::make('jenis_kelamin')
+                        ->disabled()
+                        ->label('Jenis Kelamin'),
+                    TextInput::make('telepon')
+                        ->disabled()
+                        ->label('Nomor Telepon'),
                     TextInput::make('email')
                         ->disabled()
                         ->label('E-mail'),    
@@ -79,10 +85,7 @@ class SubmissionResource extends Resource
                     TextInput::make('instansi_tujuan')
                         ->disabled()
                         ->label('Instansi Tujuan')
-                        ->columnSpan([
-                            'sm' => 1,
-                            'md' => 2
-                        ]),                
+                        ->columnSpan(1),                
                     TextInput::make('provinsi')
                         ->label('Provinsi')
                         ->disabled(),
@@ -97,12 +100,24 @@ class SubmissionResource extends Resource
                         ->disabled(),
                     TextInput::make('jalan')
                         ->label('Jalan')
-                        ->disabled(),
+                        ->disabled(),                    
+                ])->columns([
+                    'default' => 1,
+                    'xs' => 1,
+                    'md' => 2,
+                ]),
+
+                Section::make('Periode Magang')                
+                ->schema([                    
                     DatePicker::make('tanggal_mulai')
                         ->label('Tanggal Mulai')
                         ->disabled(),
                     DatePicker::make('tanggal_selesai')
                         ->label('Tanggal Selesai')
+                        ->disabled(),
+                    TextInput::make('dospem_id')
+                        ->label('Dosen Pembimbing')
+                        ->formatStateUsing(fn ($state, $record) => $record?->dospem?->nama_dosen ?? '-')
                         ->disabled(),
                 ])->columns([
                     'default' => 1,
