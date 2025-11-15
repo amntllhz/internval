@@ -691,60 +691,89 @@
 
                 <div class="col-span-2" 
                     x-data="{
-                    datePickerOpen: false,
-                    datePickerValue: '',
-                    datePickerFormat: 'YYYY-MM-DD',
-                    datePickerMonth: '',
-                    datePickerYear: '',
-                    datePickerDay: '',
-                    datePickerDaysInMonth: [],
-                    datePickerBlankDaysInMonth: [],
-                    datePickerMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-                    datePickerDays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-                    datePickerDayClicked(day) {
-                        let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        this.datePickerDay = day;
-                        this.datePickerValue = this.datePickerFormatDate(selectedDate);
-                        this.datePickerOpen = false;
-                    },
-                    datePickerPreviousMonth(){
-                        if (this.datePickerMonth == 0) { 
-                        this.datePickerYear--; 
-                        this.datePickerMonth = 12; 
-                        } 
-                        this.datePickerMonth--;
-                        this.datePickerCalculateDays();
-                    },
-                    datePickerNextMonth(){
-                        if (this.datePickerMonth == 11) { 
-                        this.datePickerMonth = 0; 
-                        this.datePickerYear++; 
-                        } else { 
-                        this.datePickerMonth++; 
-                        }
-                        this.datePickerCalculateDays();
-                    },
-                    datePickerIsSelectedDate(day) {
-                        const d = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        return this.datePickerValue === this.datePickerFormatDate(d);
-                    },
-                    datePickerIsToday(day) {
-                        const today = new Date();
-                        const d = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        return today.toDateString() === d.toDateString();
-                    },
-                    datePickerCalculateDays() {
-                        let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
-                        let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
-                        this.datePickerBlankDaysInMonth = Array.from({length: dayOfWeek}, (_, i) => i + 1);
-                        this.datePickerDaysInMonth = Array.from({length: daysInMonth}, (_, i) => i + 1);
-                    },
-                    datePickerFormatDate(date) {
-                        let dd = ('0' + date.getDate()).slice(-2);
-                        let mm = ('0' + (date.getMonth() + 1)).slice(-2);
-                        let yyyy = date.getFullYear();
-                        return `${yyyy}-${mm}-${dd}`;
-                    },
+                        datePickerOpen: false,
+                        datePickerValue: '',
+                        datePickerFormat: 'YYYY-MM-DD',
+                        datePickerMonth: '',
+                        datePickerYear: '',
+                        datePickerDay: '',
+                        datePickerDaysInMonth: [],
+                        datePickerBlankDaysInMonth: [],
+                        datePickerMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                        datePickerDays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+
+                        // view: date / year
+                        datePickerView: 'date',
+
+                        // year picker
+                        yearPickerStart: 0,
+
+                        openYearPicker() {
+                            this.datePickerView = 'year';
+                            this.yearPickerStart = Math.floor(this.datePickerYear / 12) * 12;
+                        },
+                        selectYear(year) {
+                            this.datePickerYear = year;
+                            this.datePickerCalculateDays();
+                            this.datePickerView = 'date';
+                        },
+                        prevYearRange() {
+                            this.yearPickerStart -= 12;
+                        },
+                        nextYearRange() {
+                            this.yearPickerStart += 12;
+                        },
+
+                        // day click
+                        datePickerDayClicked(day) {
+                            let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            this.datePickerDay = day;
+                            this.datePickerValue = this.datePickerFormatDate(selectedDate);
+                            this.datePickerOpen = false;
+                        },
+
+                        // month nav
+                        datePickerPreviousMonth(){
+                            if (this.datePickerMonth == 0) {
+                                this.datePickerYear--;
+                                this.datePickerMonth = 11;
+                            } else {
+                                this.datePickerMonth--;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+                        datePickerNextMonth(){
+                            if (this.datePickerMonth == 11) {
+                                this.datePickerMonth = 0;
+                                this.datePickerYear++;
+                            } else {
+                                this.datePickerMonth++;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+
+                        datePickerIsSelectedDate(day) {
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return this.datePickerValue === this.datePickerFormatDate(d);
+                        },
+                        datePickerIsToday(day) {
+                            const today = new Date();
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return today.toDateString() === d.toDateString();
+                        },
+
+                        datePickerCalculateDays() {
+                            let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
+                            let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
+                            this.datePickerBlankDaysInMonth = Array.from({length: dayOfWeek}, (_, i) => i + 1);
+                            this.datePickerDaysInMonth = Array.from({length: daysInMonth}, (_, i) => i + 1);
+                        },
+                        datePickerFormatDate(date) {
+                            let dd = ('0' + date.getDate()).slice(-2);
+                            let mm = ('0' + (date.getMonth() + 1)).slice(-2);
+                            let yyyy = date.getFullYear();
+                            return `${yyyy}-${mm}-${dd}`;
+                        },
                     }"
                     x-init="
                         let currentDate = new Date();
@@ -755,7 +784,7 @@
                     " x-cloak>
 
                     <label for="tanggal_mulai" class="block mb-2 text-xs font-display text-apple-600 font-semibold">
-                    Tanggal Mulai <span class="text-gray-400">*</span>
+                        Tanggal Mulai <span class="text-gray-400">*</span>
                     </label>
 
                     <div class="relative w-full">
@@ -764,10 +793,8 @@
                             class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-green-400"
                             placeholder="Pilih tanggal" />
 
-                        {{-- hidden input agar bisa di submit --}}
                         <input type="hidden" name="tanggal_mulai" x-model="datePickerValue" />
 
-                        {{-- datepicker icon --}}
                         <div 
                             @click="datePickerOpen = !datePickerOpen; $refs.datePickerInput.focus()" 
                             class="absolute top-0 right-0 h-full flex items-center pr-3 text-neutral-400 cursor-pointer hover:text-apple-600 transition">
@@ -776,13 +803,24 @@
                             </svg>
                         </div>
 
-                        <div x-show="datePickerOpen" @click.away="datePickerOpen = false" 
+                        <div x-show="datePickerOpen" x-transition @click.away="datePickerOpen = false; datePickerView = 'date';" 
                             class="absolute z-20 top-12 left-0 p-4 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
-                            <div class="flex justify-between items-center mb-2">
+
+
+                            <!-- 🔵 CHANGE START — HEADER DATE MODE ONLY -->
+                            <div class="flex justify-between items-center mb-2" 
+                                x-show="datePickerView === 'date'">
+
                                 <div>
-                                    <span x-text="datePickerMonthNames[datePickerMonth]" class=" font-display font-extrabold text-gray-800"></span>
-                                    <span x-text="datePickerYear" class="ml-1 text-sm text-gray-600"></span>
+                                    <span x-text="datePickerMonthNames[datePickerMonth]" 
+                                        class="font-display font-extrabold text-gray-800"></span>
+
+                                    <span 
+                                        x-text="datePickerYear" 
+                                        class="ml-1 font-display text-sm text-gray-600 cursor-pointer hover:text-apple-600"
+                                        @click.stop="openYearPicker()"></span>
                                 </div>
+
                                 <div>
                                     <button @click="datePickerPreviousMonth()" type="button" class="p-1 rounded-full hover:bg-gray-100">
                                         <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -796,91 +834,162 @@
                                     </button>
                                 </div>
                             </div>
+                            <!-- 🔵 CHANGE END -->
 
-                            <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-gray-500 mb-1">
-                                <template x-for="(day, index) in datePickerDays" :key="index">
-                                    <div x-text="day"></div>
-                                </template>
-                            </div>
 
-                            <div class="grid grid-cols-7 text-xs">
-                                <template x-for="blankDay in datePickerBlankDaysInMonth">
-                                    <div class="p-1"></div>
-                                </template>
-                                <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
-                                    <div class="p-1">
-                                        <div 
-                                            x-text="day"
-                                            @click="datePickerDayClicked(day)" 
-                                            :class="{
-                                                'bg-apple-600 text-white': datePickerIsSelectedDate(day),
-                                                'hover:bg-gray-100 text-gray-600': !datePickerIsSelectedDate(day)
-                                            }"
-                                            class="cursor-pointer rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                            <!-- DATE VIEW -->
+                            <div x-show="datePickerView === 'date'">
+                                <div class="grid grid-cols-7 text-center text-[10px] font-display font-semibold text-gray-500 mb-1">
+                                    <template x-for="(day, index) in datePickerDays" :key="index">
+                                        <div x-text="day"></div>
+                                    </template>
+                                </div>
+
+                                <div class="grid grid-cols-7 text-xs">
+                                    <template x-for="blankDay in datePickerBlankDaysInMonth">
+                                        <div class="p-1"></div>
+                                    </template>
+                                    <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
+                                        <div class="p-1">
+                                            <div 
+                                                x-text="day"
+                                                @click="datePickerDayClicked(day)" 
+                                                :class="{
+                                                    'bg-apple-600 text-white': datePickerIsSelectedDate(day),
+                                                    'hover:bg-gray-100 text-gray-600': !datePickerIsSelectedDate(day)
+                                                }"
+                                                class="cursor-pointer font-display rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                                            </div>
                                         </div>
-                                    </div>
-                                </template>
+                                    </template>
+                                </div>
                             </div>
+
+
+                            <!-- 🔵 CHANGE START — YEAR PICKER ONLY VIEW -->
+                            <div x-show="datePickerView === 'year'" class="pt-2">
+
+                                <div class="flex justify-between items-center mb-2">
+
+                                    <button @click="prevYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                        </svg>
+                                    </button>
+
+                                    <span class="font-semibold font-display text-gray-700">
+                                        <span x-text="yearPickerStart"></span> - <span x-text="yearPickerStart + 11"></span>
+                                    </span>
+
+                                    <button @click="nextYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2 text-sm">
+                                    <template x-for="i in 12" :key="i">
+                                        <div class="cursor-pointer px-2 py-1 rounded hover:bg-gray-100 text-center"
+                                            @click="selectYear(yearPickerStart + i - 1)">
+                                            <span class="font-display text-gray-500" x-text="yearPickerStart + i - 1"></span>
+                                        </div>
+                                    </template>
+                                </div>
+
+                            </div>
+                            <!-- 🔵 CHANGE END -->
+
                         </div>
                     </div>
                 </div>
 
                 <div class="col-span-2" 
                     x-data="{
-                    datePickerOpen: false,
-                    datePickerValue: '',
-                    datePickerFormat: 'YYYY-MM-DD',
-                    datePickerMonth: '',
-                    datePickerYear: '',
-                    datePickerDay: '',
-                    datePickerDaysInMonth: [],
-                    datePickerBlankDaysInMonth: [],
-                    datePickerMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-                    datePickerDays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-                    datePickerDayClicked(day) {
-                        let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        this.datePickerDay = day;
-                        this.datePickerValue = this.datePickerFormatDate(selectedDate);
-                        this.datePickerOpen = false;
-                    },
-                    datePickerPreviousMonth(){
-                        if (this.datePickerMonth == 0) { 
-                        this.datePickerYear--; 
-                        this.datePickerMonth = 12; 
-                        } 
-                        this.datePickerMonth--;
-                        this.datePickerCalculateDays();
-                    },
-                    datePickerNextMonth(){
-                        if (this.datePickerMonth == 11) { 
-                        this.datePickerMonth = 0; 
-                        this.datePickerYear++; 
-                        } else { 
-                        this.datePickerMonth++; 
-                        }
-                        this.datePickerCalculateDays();
-                    },
-                    datePickerIsSelectedDate(day) {
-                        const d = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        return this.datePickerValue === this.datePickerFormatDate(d);
-                    },
-                    datePickerIsToday(day) {
-                        const today = new Date();
-                        const d = new Date(this.datePickerYear, this.datePickerMonth, day);
-                        return today.toDateString() === d.toDateString();
-                    },
-                    datePickerCalculateDays() {
-                        let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
-                        let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
-                        this.datePickerBlankDaysInMonth = Array.from({length: dayOfWeek}, (_, i) => i + 1);
-                        this.datePickerDaysInMonth = Array.from({length: daysInMonth}, (_, i) => i + 1);
-                    },
-                    datePickerFormatDate(date) {
-                        let dd = ('0' + date.getDate()).slice(-2);
-                        let mm = ('0' + (date.getMonth() + 1)).slice(-2);
-                        let yyyy = date.getFullYear();
-                        return `${yyyy}-${mm}-${dd}`;
-                    },
+                        datePickerOpen: false,
+                        datePickerValue: '',
+                        datePickerFormat: 'YYYY-MM-DD',
+                        datePickerMonth: '',
+                        datePickerYear: '',
+                        datePickerDay: '',
+                        datePickerDaysInMonth: [],
+                        datePickerBlankDaysInMonth: [],
+                        datePickerMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                        datePickerDays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+
+                        // view: date / year
+                        datePickerView: 'date',
+
+                        // year picker
+                        yearPickerStart: 0,
+
+                        openYearPicker() {
+                            this.datePickerView = 'year';
+                            this.yearPickerStart = Math.floor(this.datePickerYear / 12) * 12;
+                        },
+                        selectYear(year) {
+                            this.datePickerYear = year;
+                            this.datePickerCalculateDays();
+                            this.datePickerView = 'date';
+                        },
+                        prevYearRange() {
+                            this.yearPickerStart -= 12;
+                        },
+                        nextYearRange() {
+                            this.yearPickerStart += 12;
+                        },
+
+                        // day click
+                        datePickerDayClicked(day) {
+                            let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            this.datePickerDay = day;
+                            this.datePickerValue = this.datePickerFormatDate(selectedDate);
+                            this.datePickerOpen = false;
+                        },
+
+                        // month nav
+                        datePickerPreviousMonth(){
+                            if (this.datePickerMonth == 0) {
+                                this.datePickerYear--;
+                                this.datePickerMonth = 11;
+                            } else {
+                                this.datePickerMonth--;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+                        datePickerNextMonth(){
+                            if (this.datePickerMonth == 11) {
+                                this.datePickerMonth = 0;
+                                this.datePickerYear++;
+                            } else {
+                                this.datePickerMonth++;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+
+                        datePickerIsSelectedDate(day) {
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return this.datePickerValue === this.datePickerFormatDate(d);
+                        },
+                        datePickerIsToday(day) {
+                            const today = new Date();
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return today.toDateString() === d.toDateString();
+                        },
+
+                        datePickerCalculateDays() {
+                            let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
+                            let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
+                            this.datePickerBlankDaysInMonth = Array.from({length: dayOfWeek}, (_, i) => i + 1);
+                            this.datePickerDaysInMonth = Array.from({length: daysInMonth}, (_, i) => i + 1);
+                        },
+                        datePickerFormatDate(date) {
+                            let dd = ('0' + date.getDate()).slice(-2);
+                            let mm = ('0' + (date.getMonth() + 1)).slice(-2);
+                            let yyyy = date.getFullYear();
+                            return `${yyyy}-${mm}-${dd}`;
+                        },
                     }"
                     x-init="
                         let currentDate = new Date();
@@ -891,7 +1000,7 @@
                     " x-cloak>
 
                     <label for="tanggal_selesai" class="block mb-2 text-xs font-display text-apple-600 font-semibold">
-                    Tanggal Selesai <span class="text-gray-400">*</span>
+                        Tanggal Mulai <span class="text-gray-400">*</span>
                     </label>
 
                     <div class="relative w-full">
@@ -900,10 +1009,8 @@
                             class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-green-400"
                             placeholder="Pilih tanggal" />
 
-                        {{-- hidden input agar bisa di submit --}}
                         <input type="hidden" name="tanggal_selesai" x-model="datePickerValue" />
 
-                        {{-- datepicker icon --}}
                         <div 
                             @click="datePickerOpen = !datePickerOpen; $refs.datePickerInput.focus()" 
                             class="absolute top-0 right-0 h-full flex items-center pr-3 text-neutral-400 cursor-pointer hover:text-apple-600 transition">
@@ -912,13 +1019,24 @@
                             </svg>
                         </div>
 
-                        <div x-show="datePickerOpen" @click.away="datePickerOpen = false" 
+                        <div x-show="datePickerOpen" x-transition @click.away="datePickerOpen = false; datePickerView = 'date';" 
                             class="absolute z-20 top-12 left-0 p-4 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
-                            <div class="flex justify-between items-center mb-2">
+
+
+                            <!-- 🔵 CHANGE START — HEADER DATE MODE ONLY -->
+                            <div class="flex justify-between items-center mb-2" 
+                                x-show="datePickerView === 'date'">
+
                                 <div>
-                                    <span x-text="datePickerMonthNames[datePickerMonth]" class=" font-display font-extrabold text-gray-800"></span>
-                                    <span x-text="datePickerYear" class="ml-1 text-sm text-gray-600"></span>
+                                    <span x-text="datePickerMonthNames[datePickerMonth]" 
+                                        class="font-display font-extrabold text-gray-800"></span>
+
+                                    <span 
+                                        x-text="datePickerYear" 
+                                        class="ml-1 font-display text-sm text-gray-600 cursor-pointer hover:text-apple-600"
+                                        @click.stop="openYearPicker()"></span>
                                 </div>
+
                                 <div>
                                     <button @click="datePickerPreviousMonth()" type="button" class="p-1 rounded-full hover:bg-gray-100">
                                         <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -932,34 +1050,76 @@
                                     </button>
                                 </div>
                             </div>
+                            <!-- 🔵 CHANGE END -->
 
-                            <div class="grid grid-cols-7 text-center text-[10px] font-semibold text-gray-500 mb-1">
-                                <template x-for="(day, index) in datePickerDays" :key="index">
-                                    <div x-text="day"></div>
-                                </template>
-                            </div>
 
-                            <div class="grid grid-cols-7 text-xs">
-                                <template x-for="blankDay in datePickerBlankDaysInMonth">
-                                    <div class="p-1"></div>
-                                </template>
-                                <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
-                                    <div class="p-1">
-                                        <div 
-                                            x-text="day"
-                                            @click="datePickerDayClicked(day)" 
-                                            :class="{
-                                                'bg-apple-600 text-white': datePickerIsSelectedDate(day),
-                                                'hover:bg-gray-100 text-gray-600': !datePickerIsSelectedDate(day)
-                                            }"
-                                            class="cursor-pointer rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                            <!-- DATE VIEW -->
+                            <div x-show="datePickerView === 'date'">
+                                <div class="grid grid-cols-7 text-center text-[10px] font-display font-semibold text-gray-500 mb-1">
+                                    <template x-for="(day, index) in datePickerDays" :key="index">
+                                        <div x-text="day"></div>
+                                    </template>
+                                </div>
+
+                                <div class="grid grid-cols-7 text-xs">
+                                    <template x-for="blankDay in datePickerBlankDaysInMonth">
+                                        <div class="p-1"></div>
+                                    </template>
+                                    <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
+                                        <div class="p-1">
+                                            <div 
+                                                x-text="day"
+                                                @click="datePickerDayClicked(day)" 
+                                                :class="{
+                                                    'bg-apple-600 text-white': datePickerIsSelectedDate(day),
+                                                    'hover:bg-gray-100 text-gray-600': !datePickerIsSelectedDate(day)
+                                                }"
+                                                class="cursor-pointer font-display rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                                            </div>
                                         </div>
-                                    </div>
-                                </template>
+                                    </template>
+                                </div>
                             </div>
+
+
+                            <!-- 🔵 CHANGE START — YEAR PICKER ONLY VIEW -->
+                            <div x-show="datePickerView === 'year'" class="pt-2">
+
+                                <div class="flex justify-between items-center mb-2">
+
+                                    <button @click="prevYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                        </svg>
+                                    </button>
+
+                                    <span class="font-semibold font-display text-gray-700">
+                                        <span x-text="yearPickerStart"></span> - <span x-text="yearPickerStart + 11"></span>
+                                    </span>
+
+                                    <button @click="nextYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2 text-sm">
+                                    <template x-for="i in 12" :key="i">
+                                        <div class="cursor-pointer px-2 py-1 rounded hover:bg-gray-100 text-center"
+                                            @click="selectYear(yearPickerStart + i - 1)">
+                                            <span class="font-display text-gray-500" x-text="yearPickerStart + i - 1"></span>
+                                        </div>
+                                    </template>
+                                </div>
+
+                            </div>
+                            <!-- 🔵 CHANGE END -->
+
                         </div>
                     </div>
-                </div>
+                </div>                
 
                 <div class="col-span-2">
                     <label for="dospem_id" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Dosen Pembimbing <span class="text-gray-400">*</span></label>            
