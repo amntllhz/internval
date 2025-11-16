@@ -37,15 +37,30 @@ class SubmissionMail extends Mailable
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         markdown: 'emails.submission-notify',
+    //         with: [ // data yang dikirim ke view
+    //             'nama' => $this->submission->nama_mahasiswa,
+    //             'kode' => $this->submission->id,
+    //         ],
+    //     );
+    // }
+
+    public function build()
     {
-        return new Content(
-            markdown: 'emails.submission-notify',
-            with: [ // data yang dikirim ke view
+        // Embed logo ke email dan beri nama cid:logo-email
+        $this->withSymfonyMessage(function ($message) {
+            $message->embedFromPath(public_path('img/logo-email.png'), 'logo-email');
+        });
+
+        return $this->subject('Pengajuan PKL - Internval')
+            ->markdown('emails.submission-notify')
+            ->with([
                 'nama' => $this->submission->nama_mahasiswa,
                 'kode' => $this->submission->id,
-            ],
-        );
+            ]);
     }
 
     /**

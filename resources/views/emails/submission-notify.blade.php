@@ -1,9 +1,9 @@
 <x-mail::message>
-# Pengajuan PKL Anda Berhasil Diterima 🎉
+# Pengajuan Magang Berhasil Terkirim !
 
 Halo **{{ $nama }}**,  
   
-Pengajuan Anda telah berhasil terkirimdan saat ini berstatus **_pending_** untuk diverifikasi oleh dosen pembimbing.
+Pengajuan Anda telah berhasil terkirim dan saat ini berstatus **Pending** untuk diverifikasi lebih lanjut oleh Kaprodi.
 
 Berikut detail penting untuk Anda simpan:
 
@@ -14,18 +14,17 @@ Berikut detail penting untuk Anda simpan:
 <strong>{{ $kode }}</strong>
 </x-mail::panel>
 
-Gunakan kode ini untuk melakukan **cek status pengajuan** di halaman tracking kami.
+Gunakan kode ini untuk melakukan **Cek Status Pengajuan** di halaman tracking Internval.
 
-<x-mail::button :url="url('/tracking')">
+<x-mail::button :url="config('app.url').'/tracking'">
 Cek Status Pengajuan
 </x-mail::button>
 
 ---
 
-Terima kasih atas partisipasi Anda.  
-Harap menunggu konfirmasi selanjutnya dari dosen pembimbing.
+Terima kasih atas pengajuan anda.  
+Harap hubungi Kaprodi untuk melakukan verifikasi lebih lanjut.
 
 Salam hangat,  
-**Tim Internval**  
-{{ config('app.name') }}
+**Tim Internval**
 </x-mail::message>
