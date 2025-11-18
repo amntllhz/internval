@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Internval - Success Delete Submission</title>
-    <link rel="icon" href={{ asset('img/icon.svg') }}>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,200..800&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/copy.js'])
-</head>
-<body>
+@extends('layout.layout')
+
+@section('title', 'Success Delete Submission')
+@section('content')
     <x-navbar></x-navbar>
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
         <div class="items-center justify-center min-h-screen w-full flex">
@@ -35,5 +27,4 @@
         </div>
     </section>
     <x-footer></x-footer>
-</body>
-</html>
+@endsection

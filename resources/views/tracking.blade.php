@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Internval - Submission Tracking</title>
-    <link rel="icon" href={{ asset('img/icon.svg') }}>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,200..800&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body>
+@extends('layout.layout')
+
+@section('title', 'Submission Tracking')
+@section('content')
     <x-navbar></x-navbar>
     <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 mb-20">
 
@@ -86,5 +78,4 @@
 
     </section>
     <x-footer></x-footer>
-</body>
-</html>
+@endsection
