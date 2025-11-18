@@ -1000,7 +1000,7 @@
                     " x-cloak>
 
                     <label for="tanggal_selesai" class="block mb-2 text-xs font-display text-apple-600 font-semibold">
-                        Tanggal Mulai <span class="text-gray-400">*</span>
+                        Tanggal Selesai <span class="text-gray-400">*</span>
                     </label>
 
                     <div class="relative w-full">
