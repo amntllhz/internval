@@ -26,7 +26,7 @@ class SubmissionInformatikaResource extends Resource
     protected static ?string $model = Submission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-command-line';
-    protected static ?string $navigationGroup = 'Pengajuan';
+    protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'S1 Informatika';
     protected static ?string $pluralModelLabel = 'S1 Informatika';
     protected static ?string $slug = 'submission-informatika';

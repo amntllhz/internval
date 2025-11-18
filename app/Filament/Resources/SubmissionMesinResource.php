@@ -25,7 +25,7 @@ class SubmissionMesinResource extends Resource
     protected static ?string $model = Submission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-cog-6-tooth';
-    protected static ?string $navigationGroup = 'Pengajuan';
+    protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'S1 Teknik Mesin';
     protected static ?string $pluralModelLabel = 'S1 Teknik Mesin';
     protected static ?string $slug = 'submission-mesin';    

@@ -22,7 +22,7 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationGroup = 'Kelola Data';
+    protected static ?string $navigationGroup = 'Data Internal';
     protected static ?string $navigationLabel = 'Akses Pengguna';
     protected static ?string $pluralModelLabel = 'Akses Pengguna';
     protected static ?string $slug = 'akses-pengguna';

@@ -20,7 +20,7 @@ class DospemResource extends Resource
 {
     protected static ?string $model = Dospem::class;
 
-    protected static ?string $navigationGroup = 'Kelola Data';
+    protected static ?string $navigationGroup = 'Data Internal';
     protected static ?string $navigationLabel = 'Dosen Pembimbing';
     protected static ?string $pluralModelLabel = 'Dosen Pembimbing';
     protected static ?string $slug = 'dosen-pembimbing';
