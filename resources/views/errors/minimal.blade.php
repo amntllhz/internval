@@ -9,20 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,200..800&display=swap" rel="stylesheet" />
         @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/copy.js'])
     </head>
-    <body class="antialiased">
-        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            <div class="max-w-xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex items-center pt-8 sm:justify-start sm:pt-0">
-                    <div class="px-4 text-lg font-display text-gray-500 border-r border-gray-400 tracking-wider">
-                        @yield('code')
-                    </div>
-
-                    <div class="ml-4 text-lg font-display text-gray-500 uppercase tracking-wider">
-                        @yield('message')
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+    <body class="antialiased">        
         <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
             <div class="items-center justify-center min-h-screen w-full flex">
                 <div class="flex flex-col gap-2 mt-10 bg-white p-4 lg:max-w-sm xs:max-w-9/10 w-full rounded-xl text-center">
