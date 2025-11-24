@@ -3,12 +3,11 @@
 @section('title', 'Get Started')
 @section('content')
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
-        <div class="relative flex p-2 lg:flex-row xs:flex-col max-w-5xl justify-center gap-4 items-center bg-white rounded-2xl mx-auto ring ring-apple-600">
+        <div class="relative flex p-2 lg:flex-row xs:flex-col max-w-5xl justify-center gap-4 items-center bg-white rounded-2xl mx-auto">
 
             {{-- Masuk sebagai --}}
-            <div class="flex relative overflow-hidden flex-col bg-linear-to-b/hsl from-apple-600 to-apple-900 h-full lg:p-16 xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">
-                <h1 class="text-4xl text-white font-head font-semibold w-fit z-10">Masuk Sebagai</h1>                                
-                <img id="circle-fx" class=" absolute h-full opacity-30 w-full z-0" src="{{ asset('img/grid.png') }}" alt="">
+            <div class="flex relative overflow-hidden flex-col h-full xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">                
+                <img id="getstarted" src="{{ asset('img/getstarted.svg') }}" alt="getstarted" class="w-96">
             </div>
 
             {{-- Opsi Role --}}
