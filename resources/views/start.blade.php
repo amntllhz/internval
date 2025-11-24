@@ -3,10 +3,10 @@
 @section('title', 'Get Started')
 @section('content')
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
-        <div class="relative flex p-2 lg:flex-row xs:flex-col max-w-5xl justify-center gap-4 items-center bg-white rounded-2xl mx-auto">
+        <div class="relative flex p-2 lg:flex-row xs:flex-col max-w-5xl justify-center lg:gap-6 xs:gap-4 items-center bg-white rounded-2xl mx-auto">
 
             {{-- Masuk sebagai --}}
-            <div class="flex relative overflow-hidden flex-col h-full xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">                
+            <div class="flex relative overflow-hidden flex-col h-full lg:p-0 xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">                
                 <img id="getstarted" src="{{ asset('img/getstartedicon.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0">
             </div>
 
