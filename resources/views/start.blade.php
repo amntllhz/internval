@@ -7,11 +7,11 @@
 
             {{-- Masuk sebagai --}}
             <div class="flex relative overflow-hidden flex-col h-full xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">                
-                <img id="getstarted" src="{{ asset('img/getstarted.svg') }}" alt="getstarted" class="w-96">
+                <img id="getstarted" src="{{ asset('img/getstartedicon.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0">
             </div>
 
             {{-- Opsi Role --}}
-            <div class="relative flex flex-col space-y-1 p-6 items-center justify-center">
+            <div class="relative flex flex-col space-y-1 lg:p-6 xs:p-2 items-center justify-center">
                 
                 <a href={{ route('mahasiswa.redirect') }} class="text-white flex justify-center items-center gap-2 font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md lg:w-56 xs:w-56 text-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
