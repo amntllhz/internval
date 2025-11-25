@@ -7,7 +7,7 @@
 
             {{-- Masuk sebagai --}}
             <div class="flex relative overflow-hidden flex-col h-full lg:p-0 xs:p-8 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none justify-center items-center">                
-                <img id="getstarted" src="{{ asset('img/getstartedicon.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0">
+                <img id="getstarted" src="{{ asset('img/startimg.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0">
             </div>
 
             {{-- Opsi Role --}}
