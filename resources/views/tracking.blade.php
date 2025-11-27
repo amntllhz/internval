@@ -8,7 +8,7 @@
         {{-- Judul --}}
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Cek Status Pengajuan</h1>
-            <p class="text-gray-400 text-sm font-display">Lakukan pengecekan status pengajuan secara berkala</p>           
+            <p class="text-gray-400 text-sm text-center font-display">Lakukan pengecekan status pengajuan secara berkala</p>           
         </div>
 
         {{-- Wrong ID --}}
