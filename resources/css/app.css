@@ -21,7 +21,7 @@
     
     /* Colors */
     
-    --color-apple-50: #eeffef;
+    /* --color-apple-50: #eeffef;
     --color-apple-100: #d7ffdb;
     --color-apple-200: #b2ffb9;
     --color-apple-300: #76ff84;
@@ -31,7 +31,19 @@
     --color-apple-700: #049115;
     --color-apple-800: #0a7117;
     --color-apple-900: #0a5d16;
-    --color-apple-950: #003408;
+    --color-apple-950: #003408; */
+
+    --color-apple-50:  #f4ffe8;
+    --color-apple-100: #e7ffca;
+    --color-apple-200: #d9ffab;
+    --color-apple-300: #ceff8a;
+    --color-apple-400: #a6ff47;
+    --color-apple-500: #7fea16;
+    --color-apple-600: #58cc02;   /* PRIMARY */
+    --color-apple-700: #439f03;
+    --color-apple-800: #337804;
+    --color-apple-900: #245906;
+    --color-apple-950: #102d03;
     
     /* Font */
     --font-display: "Manrope", sans-serif; 
