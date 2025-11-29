@@ -33,7 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->profile(EditProfile::class)
             ->colors([
-                'primary' => '#00aa13',
+                'primary' => '#58CC02',
             ])
             ->font('Manrope')
             ->brandLogo(asset('img/logo.svg'))
