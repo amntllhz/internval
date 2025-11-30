@@ -169,12 +169,12 @@
     
                 <div class="col-span-3">
                     <label for="nama_mahasiswa" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Nama <span class="text-gray-400">*</span></label>            
-                    <input name="nama_mahasiswa" id="nama_mahasiswa" type="text" pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nama Lengkap" required autocomplete="off"/>
+                    <input name="nama_mahasiswa" id="nama_mahasiswa" type="text" pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Nama Lengkap" required autocomplete="off"/>
                 </div>           
                 
                 <div class="col-span-3">
                     <label for="nim" class="block mb-2 text-xs font-display text-apple-600 font-semibold">NIM <span class="text-gray-400">*</span></label>            
-                    <input name="nim" id="nim" type="text" pattern="[0-9]{12}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="12" maxlength="12" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nomor Induk Mahasiswa" required autocomplete="off"/>
+                    <input name="nim" id="nim" type="text" pattern="[0-9]{12}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="12" maxlength="12" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Nomor Induk Mahasiswa" required autocomplete="off"/>
                 </div>
     
                 <div class="col-span-3">
@@ -238,7 +238,7 @@
                             x-ref="selectButton" 
                             @click="selectOpen = !selectOpen"
                             type="button"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:outline-1 focus:ring-1 focus:ring-apple-600 focus:outline-apple-600 focus:border-green-400 w-full p-2.5"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:outline-1 focus:ring-1 focus:ring-apple-600 focus:outline-apple-600 focus:border-apple-400 w-full p-2.5"
                         >
                             <span x-text="selectedItem ? selectedItem.title : 'Pilih Program Studi'" class="truncate"></span>
                             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -357,7 +357,7 @@
                             x-ref="selectButton" 
                             @click="selectOpen = !selectOpen"
                             type="button"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:outline-1 focus:ring-1 focus:ring-apple-600 focus:outline-apple-600 focus:border-green-400 w-full p-2.5"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:outline-1 focus:ring-1 focus:ring-apple-600 focus:outline-apple-600 focus:border-apple-400 w-full p-2.5"
                         >
                             <span x-text="selectedItem ? selectedItem.title : 'Jenis Kelamin'" class="truncate"></span>
                             <span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -417,12 +417,12 @@
 
                 <div class="col-span-3">
                     <label for="telepon" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Telepon <span class="text-gray-400">*</span></label>            
-                    <input name="telepon" id="telepon" type="text" pattern="[0-9]{15}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10" maxlength="15" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="xxxx-xxxx-xxxx" required autocomplete="off"/>
+                    <input name="telepon" id="telepon" type="text" pattern="[0-9]{15}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10" maxlength="15" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="xxxx-xxxx-xxxx" required autocomplete="off"/>
                 </div>
 
                 <div class="col-span-3">
                     <label for="email" class="block mb-2 text-xs font-display text-apple-600 font-semibold">E-mail <span class="text-gray-400">*</span></label>            
-                    <input name="email" id="email" type="email" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Example@gmail.com" required autocomplete="off"/>
+                    <input name="email" id="email" type="email" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Example@gmail.com" required autocomplete="off"/>
                 </div>
 
 
@@ -437,7 +437,7 @@
     
                 <div class="col-span-3">
                     <label for="instansi_tujuan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Instansi Tujuan <span class="text-gray-400">*</span></label>            
-                    <input name="instansi_tujuan" id="instansi_tujuan" type="text" pattern="[A-Za-z\s.]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Nama Instansi / Perusahaan / Lembaga" required autocomplete="off"/>
+                    <input name="instansi_tujuan" id="instansi_tujuan" type="text" pattern="[A-Za-z\s.]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s.]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Nama Instansi / Perusahaan / Lembaga" required autocomplete="off"/>
                 </div>
 
                 <div class="col-span-3">
@@ -460,7 +460,7 @@
                         <button 
                             type="button"
                             @click="selectOpen = !selectOpen"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-apple-400"
                         >
                             <span x-text="selectedItem ? selectedItem.title : '-- Pilih Provinsi --'" class="truncate"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -534,7 +534,7 @@
 
                         <button type="button"
                             @click="selectOpen = !selectOpen"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-apple-400"
                         >
                             <span x-text="selectedItem ? selectedItem.title : '-- Pilih Kabupaten/Kota --'" class="truncate"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -591,7 +591,7 @@
 
                         <button type="button"
                             @click="selectOpen = !selectOpen"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-apple-400"
                         >
                             <span x-text="selectedItem ? selectedItem.title : '-- Pilih Kecamatan --'" class="truncate"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -648,7 +648,7 @@
 
                         <button type="button"
                             @click="selectOpen = !selectOpen"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-apple-400"
                         >
                             <span x-text="selectedItem ? selectedItem.title : '-- Pilih Desa/Kelurahan --'" class="truncate"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -673,7 +673,7 @@
 
                 <div class="col-span-3">
                     <label for="jalan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Jalan / No <span class="text-gray-400">*</span></label>            
-                    <input name="jalan" id="jalan" type="text" pattern="[A-Za-z0-9\s.,]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s.,]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-green-400 block w-full p-2.5 " placeholder="Jl. Kemerdekaan No. 1" required autocomplete="off"/>
+                    <input name="jalan" id="jalan" type="text" pattern="[A-Za-z0-9\s.,]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s.,]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Jl. Kemerdekaan No. 1" required autocomplete="off"/>
                 </div>                                
                     
             </div>
@@ -786,7 +786,7 @@
                     <div class="relative w-full">
                         <input x-ref="datePickerInput" type="text" @click="datePickerOpen = !datePickerOpen" 
                             x-model="datePickerValue" readonly
-                            class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-green-400"
+                            class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-apple-400"
                             placeholder="Pilih tanggal" />
 
                         <input type="hidden" name="tanggal_mulai" x-model="datePickerValue" />
@@ -1002,7 +1002,7 @@
                     <div class="relative w-full">
                         <input x-ref="datePickerInput" type="text" @click="datePickerOpen = !datePickerOpen" 
                             x-model="datePickerValue" readonly
-                            class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-green-400"
+                            class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-apple-400"
                             placeholder="Pilih tanggal" />
 
                         <input type="hidden" name="tanggal_selesai" x-model="datePickerValue" />
@@ -1140,7 +1140,7 @@
                         <button 
                             type="button"
                             @click="selectOpen = !selectOpen"
-                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-green-400"
+                            class="relative flex justify-between bg-gray-50 border border-gray-300 font-display text-xs rounded-lg w-full p-2.5 focus:outline focus:outline-apple-600 focus:ring focus:ring-apple-600 focus:border-apple-400"
                         >
                             <span x-text="selectedItem ? selectedItem.title : '-- Pilih Dosen Pembimbing --'" class="truncate"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
