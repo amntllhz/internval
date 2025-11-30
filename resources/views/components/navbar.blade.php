@@ -6,7 +6,7 @@
 <div 
     x-data="{ open: false }" 
     class="lg:max-w-5xl xs:max-w-9/10 w-full fixed left-1/2 -translate-x-1/2 top-4 z-50 
-           bg-apple-200/30 backdrop-blur-lg px-6 py-4 rounded-2xl transition-all duration-300"
+           bg-apple-600/10 backdrop-blur-lg px-6 py-4 rounded-2xl transition-all duration-300"
 >
 
     {{-- Navbar --}}

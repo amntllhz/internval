@@ -12,7 +12,7 @@
 
             {{-- Kirim Pengajuan --}}
             <div class="flex flex-col gap-3 justify-center w-full ring ring-apple-600 p-3 rounded-3xl">
-                <div class="bg-gradient-to-b from-white to-apple-200/50 justify-center items-center flex flex-col rounded-xl p-6">
+                <div class="bg-gradient-to-b from-white to-apple-500/20 justify-center items-center flex flex-col rounded-xl p-6">
                     <img class="h-32" src="{{ asset('img/feature/sendsub2.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 w-full mx-auto">
@@ -27,7 +27,7 @@
 
             {{-- Cek Status Pengajuan --}}
             <div class="flex flex-col gap-3 justify-center w-full ring ring-apple-600 p-3 rounded-3xl">
-                <div class="bg-gradient-to-b from-white to-apple-200/50 justify-center items-center flex flex-col rounded-xl p-6">
+                <div class="bg-gradient-to-b from-white to-apple-500/20 justify-center items-center flex flex-col rounded-xl p-6">
                     <img class="h-32" src="{{ asset('img/feature/tracking.svg') }}" alt="">
                 </div>
                 <div class="flex flex-col lg:gap-2 xs:gap-1 w-full mx-auto">

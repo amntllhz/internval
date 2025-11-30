@@ -7,7 +7,7 @@
     </div>
 
     {{-- CTA --}}
-    <div class="mt-6 bg-apple-100 rounded-full flex justify-center items-center p-2 gap-2">
+    <div class="mt-6 bg-apple-500/20 rounded-full flex justify-center items-center p-2 gap-2">
         <a href="#feature" class="text-white font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-full">Get Started</a>
         <a href="#flow" class="text-gray-700 font-display font-bold bg-apple-50 hover:bg-apple-200 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-full">Read Flow</a>
     </div>
