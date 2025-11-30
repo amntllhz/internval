@@ -238,4 +238,9 @@ class SubmissionAcceptedResource extends Resource
         $user = Filament::auth()->user();
         return in_array($user->role, ['dosen_informatika', 'dosen_mesin']);
     }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getEloquentQuery()->count();
+    }
 }
