@@ -133,7 +133,8 @@ class SubmissionMesinResource extends Resource
                 Tables\Columns\TextColumn::make('nama_mahasiswa')
                     ->label('Nama Mahasiswa'),
                 Tables\Columns\TextColumn::make('nim')
-                    ->label('NIM'),
+                    ->label('NIM')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('instansi_tujuan')
                     ->label('Instansi Tujuan'),
                 Tables\Columns\TextColumn::make('status_pengajuan')
@@ -206,5 +207,10 @@ class SubmissionMesinResource extends Resource
     {
         $user = Filament::auth()->user();
         return in_array($user->role, ['baak']);
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getEloquentQuery()->count();
     }
 }
