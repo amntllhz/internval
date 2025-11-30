@@ -164,7 +164,8 @@ class SubmissionPendingResource extends Resource
                 Tables\Columns\TextColumn::make('nama_mahasiswa')
                     ->label('Nama Mahasiswa'),
                 Tables\Columns\TextColumn::make('nim')
-                    ->label('NIM'),
+                    ->label('NIM')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('instansi_tujuan')
                     ->label('Instansi Tujuan'),
                 Tables\Columns\TextColumn::make('status_pengajuan')
@@ -185,20 +186,7 @@ class SubmissionPendingResource extends Resource
                     }),                
             ])
             ->filters([
-                //
-                Tables\Filters\SelectFilter::make('status_pengajuan')
-                    ->options([
-                        'pending' => 'Pending',
-                        'accepted' => 'Accepted',
-                        'rejected' => 'Rejected',
-                    ]),
-
-                Tables\Filters\SelectFilter::make('status_surat')
-                    ->options([
-                        'none' => 'Belum dibuat',
-                        'made' => 'Sudah dibuat',
-                        'ready' => 'Siap diambil',
-                    ]),
+                //                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),                
