@@ -3,7 +3,7 @@
 @section('title', 'Get Started')
 @section('content')
     <section class="lg:max-w-5xl lg:bg-gradient-to-b lg:from-white lg:to-white xs:bg-gradient-to-b xs:from-apple-400 xs:to-apple-700 xs:w-full mx-auto flex flex-col lg:justify-center lg:items-center xs:justify-between xs:items-end min-h-screen">
-        <div class="relative flex lg:p-2 xs:p-0 lg:flex-row xs:flex-col lg:max-w-5xl xs:w-full lg:justify-center xs:justify-between lg:gap-6 xs:gap-4 items-center rounded-2xl mx-auto xs:h-screen">
+        <div class="relative flex lg:p-2 xs:p-0 lg:flex-row xs:flex-col lg:w-fit xs:w-full lg:justify-center xs:justify-between lg:gap-6 xs:gap-4 items-center rounded-2xl mx-auto lg:h-fit xs:h-screen">
 
             {{-- Masuk sebagai --}}
             <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-full lg:p-0 xs:p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start">                
