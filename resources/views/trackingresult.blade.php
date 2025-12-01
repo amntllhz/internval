@@ -13,7 +13,7 @@
 
         {{-- Status Pengajuan --}}
         <div class="flex lg:w-2/3 xs:max-w-9/10 lg:flex-row xs:flex-col w-full ring-1 ring-apple-200 gap-4 p-4 rounded-xl">
-            <div class="bg-apple-50 p-4 rounded-md flex justify-center items-center">
+            <div class="bg-apple-500/10 p-4 rounded-md flex justify-center items-center">
                 <img src="{{ asset('img/flow/sendsub.svg') }}" class="w-36" alt="">
             </div>
             <div class="flex flex-col gap-1 justify-start items-start w-full">
