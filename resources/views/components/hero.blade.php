@@ -2,7 +2,10 @@
 
     {{-- Judul --}}
     <div class="lg:max-w-3xl xs:max-w-9/10 w-full flex flex-col justify-center items-center gap-2 z-0">
-        <h1 class="lg:text-5xl xs:text-2xl text-apple-600 text-center font-display font-bold w-full lg:leading-14 xs:leading-8">Internship Validation <br> Fast - Efficient - Helpful</h1>        
+        <h1 class="relative lg:text-5xl xs:text-2xl text-apple-600 text-center font-display font-bold w-full lg:leading-14 xs:leading-8">Internship Validation <br> 
+            Fa<span class="inline-flex items-center align-middle justify-center lg:mx-1 xs:mx-0.5">
+                <img class="lg:h-13 xs:h-8" src="{{ asset('img/fast.svg') }}" alt="">
+            </span>t - Efficient - Helpful</h1>        
         <p class="text-sm max-w-lg text-gray-400 text-center font-display font-semibold w-fit">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dibuat untuk mempermudah, mempercepat, dan meningkatkan efisiensi</p>
     </div>
 
