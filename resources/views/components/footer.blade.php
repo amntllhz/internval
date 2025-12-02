@@ -6,7 +6,7 @@
           {{-- Logo --}}
           <img class="w-36 bg-white backdrop-blur-xs px-3 py-1.5 rounded-lg" src="{{ asset('img/logo.svg') }}" alt="logo">                      
           <div class="flex flex-col gap-y-2">              
-              <p class="text-sm w-full text-center leading-loose text-apple-50 font-display">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dibuat untuk menyederhanakan, mempermudah, dan meningkatkan efisiensi, dikembangkan berdasarkan experience mahasiswa dalam mengajukan Praktik Kerja Lapangan</p>
+              <p class="text-sm w-full text-center leading-loose text-apple-50 font-display">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dikembangkan berdasarkan experience mahasiswa dalam mengajukan Praktik Kerja Lapangan</p>
           </div>
 
           {{-- Contact --}}
@@ -49,7 +49,7 @@
 
       {{-- Copyright --}}
       <div class="mt-2 flex items-center justify-center gap-x-6">                  
-        <h3 class="text-xs text-center text-white/50 font-display"><span>&#169</span> 2024 Internval - All Rights Reserved</h3>
+        <h3 class="text-xs text-center text-white/50 font-display"><span>&#169</span> 2024 Internval 1.0 - All Rights Reserved</h3>
       </div>
 
 </section>
