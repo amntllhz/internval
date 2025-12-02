@@ -8,11 +8,11 @@
         {{-- Judul --}}
         <div class="flex flex-col justify-center items-center gap-1">
             <h1 class="text-apple-600 lg:text-3xl xs:text-2xl font-bold font-display text-center w-full">Status Pengajuan</h1>
-            <p class="text-gray-400 text-sm font-display text-center w-full">Baca peraturan mengenai Praktik Kerja Lapangan sebelum melakukan pengajuan</p>        
+            <p class="text-gray-400 text-sm font-display text-center w-full">Hubungi Ketua Program Studi untuk mendapat persetujuan</p>        
         </div>
 
         {{-- Status Pengajuan --}}
-        <div class="flex lg:w-2/3 xs:max-w-9/10 lg:flex-row xs:flex-col w-full ring-1 ring-apple-200 gap-4 p-4 rounded-xl">
+        <div class="flex lg:w-2/3 xs:w-full lg:flex-row xs:flex-col w-full ring-1 ring-apple-200 gap-4 p-4 rounded-xl">
             <div class="bg-apple-500/10 p-4 rounded-md flex justify-center items-center">
                 <img src="{{ asset('img/flow/sendsub.svg') }}" class="w-36" alt="">
             </div>
