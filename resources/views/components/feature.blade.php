@@ -2,7 +2,7 @@
 
     {{-- Judul --}}
     <div class="lg:w-1/3 md:w-1/4 xs:w-full flex flex-col justify-center items-center gap-1 ">
-        <h1 class="text-apple-600 text-3xl w-full font-bold font-display lg:text-left xs:text-center">What You Can Do</h1>
+        <h1 class="text-apple-600 text-3xl w-full font-bold font-display lg:text-left xs:text-center">Simply New Ways</h1>
         <p class="text-sm lg:max-w-lg xs:max-w-8/10 text-gray-400 lg:text-left xs:text-center font-display font-semibold w-fit">Kemudahan, Kecepatan, Waktu dan Efisiensi dalam satu genggaman</p>
     </div>
 
