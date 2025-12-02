@@ -48,7 +48,7 @@
         @endif    
 
         {{-- Form Tracking --}}
-        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:max-w-9/10 flex flex-col gap-4 justify-center w-full ring ring-apple-400 p-4 rounded-2xl mt-6">
+        <form x-data="{ loading: false }" x-on:submit="loading = true" action="{{ route('tracking.result') }}" method="POST" class="lg:max-w-3xl xs:w-full flex flex-col gap-4 justify-center w-full ring ring-apple-400 p-4 rounded-2xl mt-6">
             @csrf
 
             <div class="flex flex-col gap-2">
