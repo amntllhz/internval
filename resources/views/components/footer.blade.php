@@ -5,7 +5,7 @@
 
           {{-- Logo --}}
           <img class="w-36 bg-white backdrop-blur-xs px-3 py-1.5 rounded-lg" src="{{ asset('img/logo.svg') }}" alt="logo">                      
-          <div class="flex flex-col lg:max-w-xs xs:w-full gap-y-2">              
+          <div class="flex flex-col lg:max-w-sm xs:w-full gap-y-2">              
               <p class="text-sm text-center leading-loose text-apple-50 font-display">Sistem Validasi Pengajuan Praktik Kerja Lapangan yang dikembangkan berdasarkan experience mahasiswa dalam mengajukan Praktik Kerja Lapangan</p>
           </div>
 
