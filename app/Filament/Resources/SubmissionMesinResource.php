@@ -12,13 +12,14 @@ use App\Models\SubmissionMesin;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionMesinResource\Pages;
 use App\Filament\Resources\SubmissionMesinResource\RelationManagers;
-use Filament\Forms\Components\Tabs\Tab;
 
 class SubmissionMesinResource extends Resource
 {
@@ -33,92 +34,33 @@ class SubmissionMesinResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-
-                Section::make('Data Mahasiswa')                                   
-                ->schema([
-                    TextInput::make('nama_mahasiswa')
-                        ->disabled()                        
-                        ->label('Nama Mahasiswa'),
-                    TextInput::make('nim')
-                        ->disabled()
-                        ->label('Nomor Induk Mahasiswa'),
-                    TextInput::make('prodi')
-                        ->disabled()
-                        ->label('Progam Studi'),
-                    TextInput::make('jenis_kelamin')
-                        ->disabled()
-                        ->label('Jenis Kelamin'),
-                    TextInput::make('telepon')
-                        ->disabled()
-                        ->label('Nomor Telepon'),
-                    TextInput::make('email')
-                        ->disabled()
-                        ->label('E-mail'),    
-                ])->columns(2),
-                //
-                
-                Section::make('Data Instansi / Perusahaan / Lembaga')                
-                ->schema([
-                    TextInput::make('instansi_tujuan')
-                        ->disabled()
-                        ->label('Instansi Tujuan')
-                        ->columnSpan(1),                
-                    TextInput::make('provinsi')
-                        ->label('Provinsi')
-                        ->disabled(),
-                    TextInput::make('kabupaten_kota')
-                        ->label('Kabupaten / Kota')
-                        ->disabled(),
-                    TextInput::make('kecamatan')
-                        ->label('Kecamatan')
-                        ->disabled(),
-                    TextInput::make('desa_kelurahan')
-                        ->label('Desa / Kelurahan')
-                        ->disabled(),
-                    TextInput::make('jalan')
-                        ->label('Jalan')
-                        ->disabled(),                    
-                ])->columns([
-                    'default' => 1,
-                    'xs' => 1,
-                    'md' => 2,
-                    'lg' => 3
-                ]),
-
-                Section::make('Periode Magang')                
-                ->schema([                    
-                    DatePicker::make('tanggal_mulai')
-                        ->label('Tanggal Mulai')
-                        ->disabled(),
-                    DatePicker::make('tanggal_selesai')
-                        ->label('Tanggal Selesai')
-                        ->disabled(),
-                    TextInput::make('dospem_id')
-                        ->label('Dosen Pembimbing')
-                        ->formatStateUsing(fn ($state, $record) => $record?->dospem?->nama_dosen ?? '-')
-                        ->disabled(),
-                ])->columns([
-                    'default' => 1,
-                    'xs' => 1,
-                    'md' => 2,
-                    'lg' => 3
-                ]),
+            ->schema([                
 
                 Section::make('Verifikasi Pengajuan')
+                ->icon('heroicon-o-pencil-square')
+                ->iconColor('primary')
+                ->description('Lakukan pembaruan status pengajuan')
                 ->schema([                                        
 
                     // BAAK hanya bisa melihat dan ubah status surat
-                    Select::make('status_surat')
+                    ToggleButtons::make('status_surat')
+                        ->inline()
                         ->options([
                             'none' => 'Belum dibuat',
                             'made' => 'Sedang dibuat',
                             'ready' => 'Siap diambil',
                         ])
-                        ->extraAttributes([
-                            'class' => 'cursor-pointer'
+                        ->colors([
+                            'none' => 'info',
+                            'made' => 'warning',
+                            'ready' => 'primary',                          
                         ])
-                        ->native(false)
+                        ->icons([
+                            'none' => 'heroicon-o-clock',
+                            'made' => 'heroicon-o-cloud-arrow-up',
+                            'ready' => 'heroicon-o-bell-alert',
+                        ])
+                        ->reactive()
                         ->required()                                        
                 ]),
                                 
@@ -144,6 +86,11 @@ class SubmissionMesinResource extends Resource
                         'pending' => 'gray',
                         'accepted' => 'success',
                         'rejected' => 'danger',
+                    })
+                    ->icon(fn (string $state): string => match ($state) {
+                        'pending' => 'heroicon-o-clock',
+                        'accepted' => 'heroicon-o-check-circle',
+                        'rejected' => 'heroicon-o-x-circle',
                     }),
                 Tables\Columns\TextColumn::make('status_surat')
                     ->label('Status Surat')
@@ -152,6 +99,11 @@ class SubmissionMesinResource extends Resource
                         'none' => 'gray',
                         'made' => 'warning',
                         'ready' => 'success',
+                    })
+                    ->icon(fn (string $state): string => match ($state) {
+                        'none' => 'heroicon-o-clock',
+                        'made' => 'heroicon-o-cloud-arrow-up',
+                        'ready' => 'heroicon-o-bell-alert',
                     }),
             ])
             ->filters([
