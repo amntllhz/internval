@@ -118,6 +118,11 @@ class SubmissionRejectedResource extends Resource
                         'pending' => 'gray',
                         'accepted' => 'success',
                         'rejected' => 'danger',
+                    })
+                    ->icon(fn (string $state): string => match ($state) {
+                        'pending' => 'heroicon-o-clock',
+                        'accepted' => 'heroicon-o-check-circle',
+                        'rejected' => 'heroicon-o-x-circle',
                     }),
                 Tables\Columns\TextColumn::make('status_surat')
                     ->label('Status Surat')
@@ -126,7 +131,12 @@ class SubmissionRejectedResource extends Resource
                         'none' => 'gray',
                         'made' => 'warning',
                         'ready' => 'success',
-                    }),                
+                    })
+                    ->icon(fn (string $state): string => match ($state) {
+                        'none' => 'heroicon-o-clock',
+                        'made' => 'heroicon-o-cloud-arrow-up',
+                        'ready' => 'heroicon-o-bell-alert',
+                    }),
             ])
             ->filters([
                 //                
