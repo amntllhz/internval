@@ -16,6 +16,7 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionRejectedResource\Pages;
 use App\Filament\Resources\SubmissionRejectedResource\RelationManagers;
@@ -58,92 +59,33 @@ class SubmissionRejectedResource extends Resource
         $user = Filament::auth()->user();
 
         return $form
-            ->schema([
-
-                Section::make('Data Mahasiswa')                                                
-                ->schema([
-                    TextInput::make('nama_mahasiswa')
-                        ->disabled()                        
-                        ->label('Nama Mahasiswa'),
-                    TextInput::make('nim')
-                        ->disabled()
-                        ->label('Nomor Induk Mahasiswa'),
-                    TextInput::make('prodi')
-                        ->disabled()
-                        ->label('Progam Studi'),
-                    TextInput::make('jenis_kelamin')
-                        ->disabled()
-                        ->label('Jenis Kelamin'),
-                    TextInput::make('telepon')
-                        ->disabled()
-                        ->label('Nomor Telepon'),
-                    TextInput::make('email')
-                        ->disabled()
-                        ->label('E-mail'),    
-                ])->columns(2),
-                //
-                
-                Section::make('Data Instansi / Perusahaan / Lembaga')                
-                ->schema([
-                    TextInput::make('instansi_tujuan')
-                        ->disabled()
-                        ->label('Instansi Tujuan')
-                        ->columnSpan(1),                
-                    TextInput::make('provinsi')
-                        ->label('Provinsi')
-                        ->disabled(),
-                    TextInput::make('kabupaten_kota')
-                        ->label('Kabupaten / Kota')
-                        ->disabled(),
-                    TextInput::make('kecamatan')
-                        ->label('Kecamatan')
-                        ->disabled(),
-                    TextInput::make('desa_kelurahan')
-                        ->label('Desa / Kelurahan')
-                        ->disabled(),
-                    TextInput::make('jalan')
-                        ->label('Jalan')
-                        ->disabled(),                    
-                ])->columns([
-                    'default' => 1,
-                    'xs' => 1,
-                    'md' => 2,
-                ]),
-
-                Section::make('Periode Magang')                
-                ->schema([                    
-                    DatePicker::make('tanggal_mulai')
-                        ->label('Tanggal Mulai')
-                        ->disabled(),
-                    DatePicker::make('tanggal_selesai')
-                        ->label('Tanggal Selesai')
-                        ->disabled(),
-                    TextInput::make('dospem_id')
-                        ->label('Dosen Pembimbing')
-                        ->formatStateUsing(fn ($state, $record) => $record?->dospem?->nama_dosen ?? '-')
-                        ->disabled(),
-                ])->columns([
-                    'default' => 1,
-                    'xs' => 1,
-                    'md' => 2,
-                    'lg' => 3
-                ]),
+            ->schema([                                
 
                 Section::make('Verifikasi Pengajuan')
+                ->icon('heroicon-o-pencil-square')
+                ->iconColor('primary')
+                ->description('Lakukan pembaruan status pengajuan')
                 ->schema([
                     // dosen hanya bisa melihat dan ubah status pengajuan
-                    Select::make('status_pengajuan')
+                    ToggleButtons::make('status_pengajuan')
+                    ->inline()
                         ->options([
                             'pending' => 'Pending',
                             'accepted' => 'Accepted',
                             'rejected' => 'Rejected',
                         ])
-                        ->native(false)                                                    
-                        ->live()
-                        ->extraAttributes([
-                            'class' => 'cursor-pointer',
+                        ->colors([
+                            'pending' => 'info',
+                            'accepted' => 'primary',
+                            'rejected' => 'danger',                          
                         ])
-                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                        ->icons([
+                            'pending' => 'heroicon-o-clock',
+                            'accepted' => 'heroicon-o-check-circle',
+                            'rejected' => 'heroicon-o-x-circle',
+                        ])
+                        ->reactive()
+                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),                       
 
                     Textarea::make('alasan_penolakan')
                         ->label('Alasan Penolakan')
@@ -152,9 +94,9 @@ class SubmissionRejectedResource extends Resource
                         ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
                                         
-                ]),
+                ])->columnSpan(2)->columns(1),
                                 
-            ])->columns(3);
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table
