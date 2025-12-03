@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\CustomLogin;
 use App\Filament\Resources\SubmissionResource\Widgets\StatsOverview;
 use Filament\Pages;
 use Filament\Panel;
@@ -30,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(CustomLogin::class)
             ->profile(EditProfile::class)
             ->colors([
                 'primary' => '#58CC02',
