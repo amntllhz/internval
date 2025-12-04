@@ -9,7 +9,9 @@ use App\Models\Submission;
 use Filament\Tables\Table;
 use Filament\Facades\Filament;
 use App\Models\SubmissionMesin;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs\Tab;
@@ -115,6 +117,19 @@ class SubmissionMesinResource extends Resource
                 Tables\Actions\EditAction::make()
                 ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                 Tables\Actions\DeleteAction::make(),
+                Action::make('download')
+                ->label('Download')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->action(function ($record) {
+                    // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
+                    $pdf = Pdf::loadView('pdf.download', [
+                        'submission' => $record,
+                    ]);
+
+                    return response()->streamDownload(function() use ($pdf){
+                        echo $pdf->output();
+                    }, 'submission-'. $record->nim .'.pdf');
+                }) 
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

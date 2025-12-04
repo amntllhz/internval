@@ -9,6 +9,7 @@ use App\Models\Submission;
 use Filament\Tables\Table;
 use Filament\Facades\Filament;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use App\Models\SubmissionInformatika;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -17,10 +18,12 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionInformatikaResource\Pages;
 use App\Filament\Resources\SubmissionInformatikaResource\RelationManagers;
-use Filament\Forms\Components\ToggleButtons;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
 
 class SubmissionInformatikaResource extends Resource
 {
@@ -77,9 +80,7 @@ class SubmissionInformatikaResource extends Resource
                     ->label('Nama Mahasiswa'),
                 Tables\Columns\TextColumn::make('nim')
                     ->label('NIM')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('instansi_tujuan')
-                    ->label('Instansi Tujuan'),
+                    ->searchable(),                
                 Tables\Columns\TextColumn::make('status_pengajuan')
                     ->label('Status Pengajuan')
                     ->badge()
@@ -116,6 +117,19 @@ class SubmissionInformatikaResource extends Resource
                 Tables\Actions\EditAction::make()
                 ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                 Tables\Actions\DeleteAction::make(),
+                Action::make('download')
+                ->label('Download')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->action(function ($record) {
+                    // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
+                    $pdf = Pdf::loadView('pdf.download', [
+                        'submission' => $record,
+                    ]);
+
+                    return response()->streamDownload(function() use ($pdf){
+                        echo $pdf->output();
+                    }, 'submission-'. $record->nim .'.pdf');
+                })                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
