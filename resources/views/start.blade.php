@@ -8,7 +8,7 @@
             {{-- Masuk sebagai --}}
             <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-full lg:p-0 xs:p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start">                
                 {{-- <img id="getstarted" src="{{ asset('img/startimg.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0"> --}}
-                <img id="getstarted" src="{{ asset('img/startxs.svg') }}" alt="getstarted" class="relative lg:-top-16 xs:-top-0 lg:w-[360px] xs:w-[420px]">
+                <img id="getstarted" src="{{ asset('img/startxs.svg') }}" alt="getstarted" class="relative lg:-top-22 xs:-top-0 lg:w-[360px] xs:w-[420px]">
             </div>
 
             {{-- Opsi Role --}}
