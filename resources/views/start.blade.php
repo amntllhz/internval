@@ -12,7 +12,7 @@
             </div>
 
             {{-- Opsi Role --}}
-            <div class="relative lg:bg-white lg:ring-0 xs:rounded-t-4xl xs:bg-transparent lg:w-fit xs:w-full flex flex-col space-y-1 px-6 lg:py-6 xs:py-8 items-center justify-center">
+            <div class="lg:relative xs:absolute xs:bottom-0 lg:bg-white lg:ring-0 xs:rounded-t-4xl xs:bg-transparent lg:w-fit xs:w-full flex flex-col space-y-1 px-6 lg:py-6 xs:py-8 items-center justify-center">
                 <div class="flex flex-col mb-6 justify-center items-center">
                     <h1 class="lg:text-gray-800 xs:text-white lg:text-xl xs:text-2xl font-semibold font-head">Selamat Datang</h1>
                     <p class="lg:text-gray-400 xs:text-white text-center font-display text-[10px]">Pilih role untuk masuk ke aplikasi</p>
