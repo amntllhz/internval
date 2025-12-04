@@ -22,6 +22,7 @@ use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionInformatikaResource\Pages;
 use App\Filament\Resources\SubmissionInformatikaResource\RelationManagers;
+use App\Models\Kaprodi;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Dompdf\Dompdf;
 
@@ -121,9 +122,20 @@ class SubmissionInformatikaResource extends Resource
                 ->label('Download')
                 ->icon('heroicon-o-arrow-down-tray')
                 ->action(function ($record) {
+
+                    $kaprodi = Kaprodi::where('prodi', $record->prodi)->first();
+
+                    if (! $kaprodi) {
+                        $kaprodi = (object) [
+                            'nama_kaprodi' => '',
+                            'nidn' => '',
+                        ];
+                    }
+
                     // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                     $pdf = Pdf::loadView('pdf.download', [
                         'submission' => $record,
+                        'kaprodi' => $kaprodi
                     ]);
 
                     return response()->streamDownload(function() use ($pdf){

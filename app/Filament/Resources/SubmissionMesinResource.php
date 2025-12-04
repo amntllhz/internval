@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Kaprodi;
 use Filament\Forms\Form;
 use App\Models\Submission;
 use Filament\Tables\Table;
@@ -121,15 +122,26 @@ class SubmissionMesinResource extends Resource
                 ->label('Download')
                 ->icon('heroicon-o-arrow-down-tray')
                 ->action(function ($record) {
+
+                    $kaprodi = Kaprodi::where('prodi', $record->prodi)->first();
+
+                    if (! $kaprodi) {
+                        $kaprodi = (object) [
+                            'nama_kaprodi' => '',
+                            'nidn' => '',
+                        ];
+                    }
+
                     // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                     $pdf = Pdf::loadView('pdf.download', [
                         'submission' => $record,
+                        'kaprodi' => $kaprodi
                     ]);
 
                     return response()->streamDownload(function() use ($pdf){
                         echo $pdf->output();
                     }, 'submission-'. $record->nim .'.pdf');
-                }) 
+                })    
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

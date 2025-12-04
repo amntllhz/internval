@@ -117,7 +117,7 @@
         .signature-mahasiswa {            
             text-decoration: underline;            
             padding: 0;
-            margin-top: 50px;
+            margin-top: 48px;
             line-height: 1.2;
         }
 
@@ -127,7 +127,8 @@
         .note {
             font-size: 9pt;
             margin-left: 16px;
-            margin-top: 90px;
+            margin-top: 140px;
+            line-height: 0.8;
         }
     </style>
 </head>
@@ -185,7 +186,7 @@
         <div class="data-value">{{ e($submission->jalan) }}, {{ e($submission->desa_kelurahan) }}, {{ e($submission->kecamatan) }}, {{ e($submission->kabupaten_kota) }}, {{ e($submission->provinsi) }}</div>
     </div>    
 
-    <div class="section-title">3.  <span class="title-span">Periode Magang**</span></div>
+    <div class="section-title">3.  <span class="title-span">Periode Magang</span></div>
     <div class="table-container">
         <table class="table-period">
             <thead>
@@ -214,24 +215,23 @@
             <p>Fakultas Teknik dan Ilmu Komputer UMPP</p>
             <br><br><br><br>
             {{-- Asumsi data Ka. Prodi tersedia --}}
-            <p class="signature-kaprodi">Fenilinas Adi Artanto S.Si ., M.Si</p>
-            <p>NIDN. 0614078802</p>
+            <p class="signature-kaprodi">{{ e($kaprodi->nama_kaprodi) }}</p>
+            <p>NIDN. {{ e($kaprodi->nidn) }}</p>
         </div>
         <div class="signature-column signature-right">
             {{-- Tanggal pengajuan --}}
             <p>Pekalongan, {{ \Carbon\Carbon::parse($submission->created_at)->translatedFormat('d F Y') }}</p>
             <p>Yang bersangkutan,</p>
             <br><br><br><br>
-            <p class="signature-mahasiswa">({{ e($submission->nama_mahasiswa) }})</p>
+            <p class="signature-mahasiswa">{{ e($submission->nama_mahasiswa) }}</p>
             <p>NIM. {{ e($submission->nim) }}</p>
         </div>
         <div class="clear"></div>
     </div>
 
     <div class="note">
-        <p>*) Coret yang tidak perlu</p>
-        <p>** Diisi bila sudah ada kepastian waktu</p>
-        <p>***) Bagi mahasiswa manajemen informatika harap diisi</p>
+        <p>** Catatan :</p>
+        <p>** Pengajuan ini telah terverifikasi melalui Internval</p>        
     </div>
 </body>
 </html>
