@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>submission-{{ e($submission->nim) }}</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,200..800&display=swap" rel="stylesheet" />
     <style>
         /* CSS untuk Dompdf */
         body {
@@ -92,7 +94,7 @@
         }
         .signature-section {
             display: block;
-            margin: 90px auto 0 auto;
+            margin: 50px auto 0 auto;
             width: 90%;
         }
         .signature-column {
@@ -127,8 +129,18 @@
         .note {
             font-size: 9pt;
             margin-left: 16px;
-            margin-top: 140px;
+            margin-top: 100px;
             line-height: 0.8;
+        }
+
+        .badge-id {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f4ffe8;
+            padding: 2px 4px 2px 4px;
+            border-radius: 4px;
+            color: #58cc02;
+            border: #ceff8a solid 1px;
+            width: fit-content;
         }
     </style>
 </head>
@@ -176,15 +188,35 @@
 
     <div class="section-title">2.  <span class="title-span">Lembaga Tempat Praktek Kerja Lapangan (PKL) / Magang</span></div>
     <div class="data-row">
-        <div class="data-label">Instansi Tujuan</div>
+        <div class="data-label">Nama Lembaga / Instansi</div>
         <div class="data-separator">:</div>        
         <div class="data-value">{{ e($submission->instansi_tujuan) }}</div>
     </div>
     <div class="data-row">
-        <div class="data-label">Alamat Kantor</div>
+        <div class="data-label">Provinsi</div>
         <div class="data-separator">:</div>
-        <div class="data-value">{{ e($submission->jalan) }}, {{ e($submission->desa_kelurahan) }}, {{ e($submission->kecamatan) }}, {{ e($submission->kabupaten_kota) }}, {{ e($submission->provinsi) }}</div>
+        <div class="data-value">{{ e($submission->provinsi) }}</div>
+    </div>
+    <div class="data-row">
+        <div class="data-label">Kabupaten / Kota</div>
+        <div class="data-separator">:</div>
+        <div class="data-value">{{ e($submission->kabupaten_kota) }}</div>
     </div>    
+    <div class="data-row">
+        <div class="data-label">Kecamatan</div>
+        <div class="data-separator">:</div>
+        <div class="data-value">{{ e($submission->kecamatan) }}</div>
+    </div>
+    <div class="data-row">
+        <div class="data-label">Desa / Kelurahan</div>
+        <div class="data-separator">:</div>
+        <div class="data-value">{{ e($submission->desa_kelurahan) }}</div>
+    </div>
+    <div class="data-row">
+        <div class="data-label">Jalan</div>
+        <div class="data-separator">:</div>
+        <div class="data-value">{{ e($submission->jalan) }}</div>
+    </div>
 
     <div class="section-title">3.  <span class="title-span">Periode Magang</span></div>
     <div class="table-container">
@@ -230,8 +262,9 @@
     </div>
 
     <div class="note">
-        <p>** Catatan :</p>
-        <p>** Pengajuan ini telah terverifikasi melalui Internval</p>        
+        <p>** Catatan:</p>
+        <p>** Pengajuan ini telah terverifikasi melalui Internval</p>  
+        <p>** <span class="badge-id">{{ e($submission->id) }}</span></p>      
     </div>
 </body>
 </html>

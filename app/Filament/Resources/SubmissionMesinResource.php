@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Kaprodi;
@@ -17,6 +18,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Forms\Components\ToggleButtons;
@@ -113,35 +115,42 @@ class SubmissionMesinResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()
-                ->hidden(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
-                Tables\Actions\EditAction::make()
-                ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
-                Tables\Actions\DeleteAction::make(),
-                Action::make('download')
-                ->label('Download')
-                ->icon('heroicon-o-arrow-down-tray')
-                ->action(function ($record) {
+                ActionGroup::make([
+                   Tables\Actions\ViewAction::make()
+                    ->hidden(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
+                    Tables\Actions\EditAction::make()
+                    ->color('primary')
+                    ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),                    
+                    Action::make('download')
+                    ->label('Download')
+                    ->color('primary')
+                    ->icon('heroicon-o-arrow-down-tray')
+                    ->action(function ($record) {
 
-                    $kaprodi = Kaprodi::where('prodi', $record->prodi)->first();
+                        $kaprodi = Kaprodi::where('prodi', $record->prodi)->first();
 
-                    if (! $kaprodi) {
-                        $kaprodi = (object) [
-                            'nama_kaprodi' => '',
-                            'nidn' => '',
-                        ];
-                    }
+                        if (! $kaprodi) {
+                            $kaprodi = (object) [
+                                'nama_kaprodi' => '',
+                                'nidn' => '',
+                            ];
+                        }
 
-                    // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
-                    $pdf = Pdf::loadView('pdf.download', [
-                        'submission' => $record,
-                        'kaprodi' => $kaprodi
-                    ]);
+                        Carbon::setLocale('id');
 
-                    return response()->streamDownload(function() use ($pdf){
-                        echo $pdf->output();
-                    }, 'submission-'. $record->nim .'.pdf');
-                })    
+                        // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
+                        $pdf = Pdf::loadView('pdf.download', [
+                            'submission' => $record,
+                            'kaprodi' => $kaprodi
+                        ]);
+
+                        return response()->streamDownload(function() use ($pdf){
+                            echo $pdf->output();
+                        }, 'submission-'. $record->nim .'.pdf');
+                    })      
+                    ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
+                    Tables\Actions\DeleteAction::make(), 
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
