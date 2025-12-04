@@ -3,16 +3,16 @@
 @section('title', 'Get Started')
 @section('content')
     <section class="lg:max-w-5xl lg:bg-gradient-to-b lg:from-white lg:to-white xs:bg-gradient-to-b xs:from-apple-400 xs:to-apple-700 xs:w-full mx-auto flex flex-col lg:justify-center lg:items-center xs:justify-between xs:items-end min-h-screen">
-        <div class="relative flex lg:p-2 xs:p-0 lg:flex-row xs:flex-col lg:w-fit xs:w-full lg:justify-center xs:justify-between lg:gap-6 xs:gap-0 items-center rounded-2xl mx-auto lg:h-fit xs:h-screen">
+        <div class="relative flex lg:p-2 xs:p-0 lg:flex-row xs:flex-col lg:w-fit xs:w-full lg:justify-center xs:justify-between lg:gap-6 xs:gap-0 items-center rounded-2xl mx-auto lg:h-fit xs:min-h-screen">
 
             {{-- Masuk sebagai --}}
-            <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-full lg:p-0 xs:p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start">                
+            <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-full lg:p-0 xs:p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start xs:grow">                
                 {{-- <img id="getstarted" src="{{ asset('img/startimg.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0"> --}}
                 <img id="getstarted" src="{{ asset('img/startxs.svg') }}" alt="getstarted" class="relative lg:-top-22 xs:-top-0 lg:w-[360px] xs:w-[420px]">
             </div>
 
             {{-- Opsi Role --}}
-            <div class="lg:relative xs:absolute xs:bottom-0 lg:bg-white lg:ring-0 xs:rounded-t-4xl xs:bg-transparent lg:w-fit xs:w-full flex flex-col space-y-1 px-6 lg:py-6 xs:py-8 items-center justify-center">
+            <div class="lg:relative lg:bg-white lg:ring-0 xs:rounded-t-4xl xs:bg-transparent lg:w-fit xs:w-full flex flex-col space-y-1 px-6 lg:py-6 xs:py-8 items-center justify-center">
                 <div class="flex flex-col mb-6 justify-center items-center">
                     <h1 class="lg:text-gray-800 xs:text-white lg:text-xl xs:text-2xl font-semibold font-head">Selamat Datang</h1>
                     <p class="lg:text-gray-400 xs:text-white text-center font-display text-[10px]">Pilih role untuk masuk ke aplikasi</p>
