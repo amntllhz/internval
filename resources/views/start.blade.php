@@ -6,9 +6,9 @@
         <div class="relative flex lg:p-2 xs:p-0 lg:flex-row xs:flex-col lg:w-fit xs:w-full lg:justify-center xs:justify-between lg:gap-6 xs:gap-0 items-center rounded-2xl mx-auto lg:h-fit xs:h-dvh">
 
             {{-- Masuk sebagai --}}
-            <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-3/5 p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start">                
+            <div class="flex relative xs:bg-gradient-to-b xs:from-transparent xs:to-transparent lg:bg-gradient-to-b lg:from-apple-400 lg:to-apple-600 overflow-hidden flex-col lg:h-64 xs:h-auto p-0 lg:rounded-xl xs:rounded-t-2xl xs:rounded-b-none lg:justify-center lg:items-center xs:justify-start xs:items-start">                
                 {{-- <img id="getstarted" src="{{ asset('img/startimg.svg') }}" alt="getstarted" class="w-[480px] lg:pb-4 xs:pb-0"> --}}
-                <img id="getstarted" src="{{ asset('img/startxs.svg') }}" alt="getstarted" class="relative lg:-top-22 xs:-top-0 lg:w-[360px] lg:h-auto lg:object-cover xs:w-full xs:h-full xs:object-contain">
+                <img id="getstarted" src="{{ asset('img/startxs.svg') }}" alt="getstarted" class="relative lg:-top-22 xs:-top-0 lg:w-[360px] lg:h-auto lg:object-cover xs:w-full xs:h-full xs:object-cover">
             </div>
 
             {{-- Opsi Role --}}
