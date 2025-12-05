@@ -6,6 +6,7 @@
 
 @section('title', 'Submission Form')
 @section('content')
+
     <x-navbar></x-navbar>
     <section class="lg:max-w-4xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center mt-28 mb-20">
 
@@ -679,7 +680,7 @@
             </div>
             
             {{-- data periode magang --}}
-            <div class="border-b border-gray-900/10 pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10">
+            <div class=" pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10">
                 <div class="col-span-full">
                     <h2 class="text-gray-800 text-left w-full font-bold font-display">Periode Magang</h2>
                     <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
