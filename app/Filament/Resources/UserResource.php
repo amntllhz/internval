@@ -35,18 +35,51 @@ class UserResource extends Resource
                 //
                 TextInput::make('name')
                     ->label('Nama Pengguna')
+                    ->validationAttribute('Nama Pengguna')
+                    ->rules([
+                        'required',
+                        'min:3',
+                        'max:25',
+                        'regex:/^[A-Za-z\s_]+$/',
+                    ])                    
+                    ->validationMessages([
+                        'regex' => 'Nama Pengguna hanya boleh mengandung huruf, spasi, dan underscore',
+                        'min' => 'Nama Pengguna minimal 3 karakter',
+                        'max' => 'Nama Pengguna maksimal 25 karakter',
+                        'required' => 'Nama Pengguna wajib diisi',
+                    ])
                     ->required(),
                 TextInput::make('email')
                     ->label('E-mail')
-                    ->email()
-                    ->required(),
-                TextInput::make('password')
+                    ->validationAttribute('E-mail')
+                    ->rules([
+                        'required',
+                    ])
+                    ->validationMessages([
+                        'required' => 'E-mail wajib diisi',
+                    ])
+                    ->email(),                    
+                TextInput::make('password')                    
                     ->password()
-                    ->label('Password')
-                    ->required()
-                    ->maxLength(255),
+                    ->validationAttribute('Password')
+                    ->rules([
+                        'min:8',
+                        'max:12',
+                        'required'
+                    ])
+                    ->validationMessages([
+                        'min' => 'Password minimal 8 karakter',
+                        'max' => 'Password maksimal 12 karakter',
+                        'required' => 'Password wajib diisi',
+                    ])
+                    ->label('Password')                    
+                    ->revealable(),
                 Select::make('role')
                     ->label('Role')
+                    ->validationAttribute('Role')
+                    ->validationMessages([
+                        'required' => 'Role wajib diisi',
+                    ])
                     ->required()
                     ->options([
                         'baak' => 'BAAK',

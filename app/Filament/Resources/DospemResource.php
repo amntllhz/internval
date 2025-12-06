@@ -33,16 +33,53 @@ class DospemResource extends Resource
                 //
                 TextInput::make('nama_dosen')
                     ->label('Nama Dosen')
-                    ->required(),
+                    ->validationAttribute('Nama Dosen')
+                    ->rules([
+                        'required',
+                        'regex:/^[A-Za-z\s.,]+$/',
+                        'min:3',
+                        'max:255',
+                    ])
+                    ->validationMessages([
+                        'regex' => 'Nama Dosen hanya boleh mengandung huruf, spasi, dan koma',
+                        'min' => 'Nama Dosen minimal 3 karakter',
+                        'max' => 'Nama Dosen maksimal 255 karakter',
+                        'required' => 'Nama Dosen wajib diisi',
+                    ]),
                 TextInput::make('nidn')
                     ->label('NIDN')
-                    ->required(),
+                    ->validationAttribute('NIDN')
+                    ->rules([
+                        'required',
+                        'regex:/^[0-9\s]+$/',
+                        'min:10',
+                        'max:15',
+                    ])
+                    ->validationMessages([
+                        'regex' => 'NIDN hanya boleh mengandung angka dan spasi',
+                        'min' => 'NIDN minimal 10 karakter',
+                        'max' => 'NIDN maksimal 15 karakter',
+                        'required' => 'NIDN wajib diisi', 
+                    ]),
                 TextInput::make('email')
                     ->label('E-mail')
                     ->email()
-                    ->required(),
+                    ->validationAttribute('E-mail')
+                    ->rules([
+                        'required',
+                    ])             
+                    ->validationMessages([
+                        'required' => 'E-mail wajib diisi',
+                    ]),
                 Select::make('prodi')
                     ->label('Program Studi')
+                    ->validationAttribute('Program Studi')
+                    ->rules([
+                        'required',
+                    ])
+                    ->validationMessages([
+                        'required' => 'Program Studi wajib diisi',
+                    ])
                     ->options([
                         'S1 Informatika' => 'S1 Informatika',
                         'S1 Teknik Mesin' => 'S1 Teknik Mesin',
