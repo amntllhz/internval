@@ -11,15 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tracking_logs', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('submission_id');
-            $table->string('perubahan');
-            $table->string('dibuat_oleh');
-            $table->timestamps();
-
-            $table->foreign('submission_id')->references('id')->on('submissions')->onDelete('cascade');
-        });
+        
     }
 
     /**
