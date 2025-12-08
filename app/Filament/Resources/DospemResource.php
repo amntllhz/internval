@@ -134,6 +134,6 @@ class DospemResource extends Resource
     public static function canAccess(): bool
     {
         $user = Filament::auth()->user();
-        return in_array($user->role, ['baak']);
+        return in_array($user->role, ['baak','dosen_informatika', 'dosen_mesin']);
     }
 }
