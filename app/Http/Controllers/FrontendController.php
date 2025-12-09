@@ -55,6 +55,7 @@ class FrontendController extends Controller
         $data['nama_mahasiswa'] = Str::title(Str::lower($data['nama_mahasiswa']));
         $data['instansi_tujuan'] = Str::title(Str::lower($data['instansi_tujuan']));
         $data['jalan'] = Str::title(Str::lower($data['jalan']));
+        
 
 
         $data['id'] = strtoupper(Str::random(8)); // kode unik

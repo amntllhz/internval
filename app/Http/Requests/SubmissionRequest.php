@@ -28,6 +28,10 @@ class SubmissionRequest extends FormRequest
             'prodi' => 'required|string',
             'jenis_kelamin' => 'required|string',
             'telepon' => ['required','string','regex:/^[0-9]{10,15}$/'],
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
+            'judul_laporan' => 'required|string',
             'instansi_tujuan' => 'required|string',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date',
@@ -36,6 +40,7 @@ class SubmissionRequest extends FormRequest
             'kecamatan' => 'required|string',
             'desa_kelurahan' => 'required|string',
             'jalan' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
+            'telepon_instansi' => ['required','string','regex:/^[0-9]{10,15}$/'],
             'dospem_id' => 'required|exists:dospems,id',
         ];
     }

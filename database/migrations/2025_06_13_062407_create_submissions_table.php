@@ -16,12 +16,17 @@ return new class extends Migration
             $table->string('nama_mahasiswa');
             $table->string('email');
             $table->string('nim')->index();
-            $table->string('prodi');            
+            $table->string('prodi');    
+            $table->string('tempat_lahir');    
+            $table->date('tanggal_lahir');    
             $table->string('jenis_kelamin');
             $table->string('telepon');
+            $table->string('alamat');
+            $table->string('judul_laporan')->nullable();
             $table->string('instansi_tujuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->string('telepon_instansi');
             $table->enum('status_pengajuan', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->enum('status_surat', ['none', 'made', 'ready'])->default('none');
             $table->text('alasan_penolakan')->nullable(); // untuk dosen jika menolak
