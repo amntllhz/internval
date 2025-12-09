@@ -2,12 +2,16 @@
 
 namespace App\Filament\Resources;
 
+use Carbon\Carbon;
+use Dompdf\Dompdf;
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Kaprodi;
 use Filament\Forms\Form;
 use App\Models\Submission;
 use Filament\Tables\Table;
 use Filament\Facades\Filament;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use App\Models\SubmissionInformatika;
@@ -16,17 +20,16 @@ use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionInformatikaResource\Pages;
 use App\Filament\Resources\SubmissionInformatikaResource\RelationManagers;
-use App\Models\Kaprodi;
-use Barryvdh\DomPDF\Facade\Pdf;
-use Carbon\Carbon;
-use Dompdf\Dompdf;
-use Filament\Tables\Actions\ActionGroup;
+use Filament\Actions\Exports\Enums\ExportFormat;
 
 class SubmissionInformatikaResource extends Resource
 {
@@ -118,12 +121,10 @@ class SubmissionInformatikaResource extends Resource
                 ActionGroup::make([
                    Tables\Actions\ViewAction::make()
                     ->hidden(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
-                    Tables\Actions\EditAction::make()
-                    ->color('primary')
+                    Tables\Actions\EditAction::make()                    
                     ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),                    
                     Action::make('download')
-                    ->label('Download')
-                    ->color('primary')
+                    ->label('Download')                    
                     ->icon('heroicon-o-arrow-down-tray')
                     ->action(function ($record) {
 
@@ -152,6 +153,16 @@ class SubmissionInformatikaResource extends Resource
                     Tables\Actions\DeleteAction::make(),
                 ])
                 ->color('gray'),                   
+            ])
+            ->headerActions([
+                ExportAction::make()
+                ->label('Export to Excel')
+                ->icon('heroicon-o-bookmark-square')
+                ->color('primary')
+                ->exporter(SubmissionExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx,
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

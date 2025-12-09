@@ -20,8 +20,11 @@ use Filament\Forms\Components\Tabs\Tab;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
+use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionMesinResource\Pages;
 use App\Filament\Resources\SubmissionMesinResource\RelationManagers;
@@ -118,12 +121,10 @@ class SubmissionMesinResource extends Resource
                 ActionGroup::make([
                    Tables\Actions\ViewAction::make()
                     ->hidden(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
-                    Tables\Actions\EditAction::make()
-                    ->color('primary')
+                    Tables\Actions\EditAction::make()                    
                     ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),                    
                     Action::make('download')
-                    ->label('Download')
-                    ->color('primary')
+                    ->label('Download')                    
                     ->icon('heroicon-o-arrow-down-tray')
                     ->action(function ($record) {
 
@@ -153,6 +154,16 @@ class SubmissionMesinResource extends Resource
                 ])
                 ->color('gray'),
             ])
+            ->headerActions([
+                ExportAction::make()
+                ->label('Export to Excel')
+                ->icon('heroicon-o-bookmark-square')
+                ->color('primary')
+                ->exporter(SubmissionExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx,
+                ])
+            ])                     
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

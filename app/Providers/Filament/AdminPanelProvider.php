@@ -36,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#58CC02',
             ])
+            ->databaseNotifications()
             ->font('Manrope')
             ->brandLogo(asset('img/logo.svg'))
             ->favicon(asset('img/icon.svg'))
