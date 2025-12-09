@@ -150,7 +150,8 @@ class SubmissionMesinResource extends Resource
                     })      
                     ->visible(fn (Submission $record): bool => $record->status_pengajuan == 'accepted'),
                     Tables\Actions\DeleteAction::make(), 
-                ]),
+                ])
+                ->color('gray'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

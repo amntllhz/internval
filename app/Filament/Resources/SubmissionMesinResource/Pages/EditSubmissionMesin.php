@@ -66,6 +66,16 @@ class EditSubmissionMesin extends EditRecord implements HasInfolists
                             TextEntry::make('email')
                             ->color('gray')
                             ->label('E-mail'),
+                            TextEntry::make('alamat')
+                            ->color('gray')
+                            ->label('Alamat'),
+                            TextEntry::make('tempat_lahir')
+                            ->color('gray')
+                            ->label('Tempat Lahir'),
+                            TextEntry::make('tanggal_lahir')
+                            ->badge('primary')
+                            ->dateTime('d/m/Y')
+                            ->label('Tanggal Lahir'),                            
                     ])->columnSpan(2)->columns(3), 
                             
                     Section::make('Instansi / Perusahaan / Lembaga')
@@ -91,6 +101,9 @@ class EditSubmissionMesin extends EditRecord implements HasInfolists
                             TextEntry::make('jalan')
                             ->color('gray')
                             ->label('Jalan'),
+                            TextEntry::make('telepon_instansi')
+                            ->color('gray')
+                            ->label('Nomor Telepon Instansi'),
                     ])->columnSpan(2)->columns([
                         'default' => 1,
                         'xs' => 1,
@@ -105,10 +118,12 @@ class EditSubmissionMesin extends EditRecord implements HasInfolists
                 Section::make('Periode Magang')
                     ->iconColor('primary')
                     ->icon('heroicon-o-calendar-days')
-                    ->description('Periode magang yang diinginkan')
+                    ->description('Detail rancangan dan jadwal yang diajukan')
                     ->schema([
+                        TextEntry::make('judul_laporan')
+                        ->color('gray')
+                        ->label('Judul Laporan'),
                         TextEntry::make('tanggal_mulai')
-
                         ->badge('primary')
                         ->dateTime('d/m/Y')
                         ->label('Tanggal Mulai'),
@@ -123,9 +138,7 @@ class EditSubmissionMesin extends EditRecord implements HasInfolists
                     ])->columnSpan([
                         'default' => 3,
                         'md' => 1,
-                    ])->columns(1),
-
-                               
+                    ])->columns(1),                                               
 
             ])->columns(3);
     }
