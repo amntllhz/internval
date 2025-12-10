@@ -653,8 +653,8 @@
                 </div>
 
                 <div class="col-span-3">
-                    <label for="judul_laporan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Judul Laporan <span class="text-gray-400">( Opsional )</span></label>            
-                    <input name="judul_laporan" id="judul_laporan" type="text" pattern="[A-Za-z\s]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Judul Laporan" autocomplete="off"/>
+                    <label for="judul_laporan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Judul Laporan <span class="text-gray-400">*</span></label>            
+                    <input name="judul_laporan" id="judul_laporan" type="text" pattern="[A-Za-z\s-]+" oninput="this.value = this.value.replace(/[^a-zA-Z\s-]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Isi dengan simbol ( - ) jika belum memiliki judul" required autocomplete="off"/>
                 </div>
 
 
@@ -1520,7 +1520,7 @@
                 });
 
                 // === 2️⃣ Validasi INPUT TEXT (nama, nim, email, instansi_tujuan, jalan)
-                const textFields = ['nama_mahasiswa', 'nim', 'email', 'telepon','tempat_lahir', 'alamat', 'instansi_tujuan', 'jalan', 'telepon_instansi'];
+                const textFields = ['nama_mahasiswa', 'nim', 'email', 'telepon','tempat_lahir','judul_laporan', 'alamat', 'instansi_tujuan', 'jalan', 'telepon_instansi'];
                 textFields.forEach(name => {
                     const input = document.querySelector(`input[name="${name}"]`);
                     if (input) {
