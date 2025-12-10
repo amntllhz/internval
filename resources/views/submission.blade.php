@@ -846,7 +846,7 @@
                     </div>                    
                 </div>
 
-                <div class="col-span-2">
+                <div class="lg:col-span-2 xs:col-span-3">
                     <label for="desa_kelurahan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Desa / Kelurahan <span class="text-gray-400">*</span></label>            
                     <div 
                         x-data="{
@@ -903,12 +903,12 @@
                     </div>                                        
                 </div>
 
-                <div class="col-span-2">
+                <div class="lg:col-span-2 xs:col-span-3">
                     <label for="jalan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Jalan / No <span class="text-gray-400">*</span></label>            
                     <input name="jalan" id="jalan" type="text" pattern="[A-Za-z0-9\s.,]+" oninput="this.value = this.value.replace(/[^a-zA-Z0-9\s.,]/g, '').toUpperCase()" class=" bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="Jl. Kemerdekaan No. 1" required autocomplete="off"/>
                 </div>  
                 
-                <div class="col-span-2">
+                <div class="lg:col-span-2 xs:col-span-3">
                     <label for="telepon_instansi" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Telepon Instansi <span class="text-gray-400">*</span></label>            
                     <input name="telepon_instansi" id="telepon_instansi" type="text" pattern="[0-9]{15}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10" maxlength="15" class="decoration-none bg-gray-50 border border-gray-300 font-display text-xs rounded-lg placeholder:text-gray-400 placeholder:text-xs focus:ring-apple-600 focus:border-apple-400 block w-full p-2.5 " placeholder="xxxx-xxxx-xxxx" required autocomplete="off"/>
                 </div>
