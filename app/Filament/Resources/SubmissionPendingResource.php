@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionPendingResource\Pages;
 use App\Filament\Resources\SubmissionPendingResource\RelationManagers;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\ToggleButtons;
 
 class SubmissionPendingResource extends Resource
@@ -65,7 +66,7 @@ class SubmissionPendingResource extends Resource
                 ->iconColor('primary')
                 ->description('Lakukan pembaruan status pengajuan')
                 ->schema([
-                    // dosen hanya bisa melihat dan ubah status pengajuan
+                    // dosen hanya bisa melihat dan ubah status pengajuan                                   
                     ToggleButtons::make('status_pengajuan')
                     ->inline()
                         ->options([
@@ -92,6 +93,10 @@ class SubmissionPendingResource extends Resource
                         ->required(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                    Toggle::make('resubmit')
+                        ->label('Izinkan pengajuan kedua')
+                        ->default(false)                    
+                        ->inline(),     
                                         
                 ])->columnSpan(2)->columns(1),
                                 

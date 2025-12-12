@@ -25,10 +25,39 @@ class Submission extends Model
         return $this->belongsTo(Dospem::class, 'dospem_id');
     }
 
+    public function submissionsForSameStudent()
+    {
+        return $this->hasMany(Submission::class, 'nim', 'nim')
+            ->orderBy('created_at');
+    }
+
+    protected $casts = [
+        'resubmit' => 'boolean'
+    ];
+
+    public static function isLimitReached(string $nim): bool
+    {
+        return self::where('nim', $nim)->count() >= 2;
+    }
+
+    public static function canSubmitAgain(string $nim): bool
+    {
+        $submissions = self::where('nim', $nim)->orderBy('id')->get();
+        $count = $submissions->count();            
+
+        if ($count === 0) {
+            return true;
+        }
+        
+        $first = $submissions->first(); // ini pasti pengajuan pertama (id paling kecil)
+
+        return $first->resubmit === true;
+    }
+
     protected $fillable = [
         'nama_mahasiswa','email', 'nim', 'prodi', 'jenis_kelamin', 'telepon',
         'tempat_lahir', 'tanggal_lahir', 'alamat', 'judul_laporan',
-        'instansi_tujuan', 'tanggal_mulai', 'tanggal_selesai',
+        'instansi_tujuan', 'tanggal_mulai', 'tanggal_selesai','resubmit',
         'status_pengajuan', 'status_surat', 'alasan_penolakan',
         'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan','telepon_instansi', 'dospem_id',
     ];

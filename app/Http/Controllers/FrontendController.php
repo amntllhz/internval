@@ -27,17 +27,13 @@ class FrontendController extends Controller
     {           
 
         $data = $request->validated();
+        
+        if (Submission::isLimitReached($data['nim'])) {
+            return back()->with('nim_limit', true);
+        }
 
-        // 🔍 Cek apakah NIM sudah pernah digunakan untuk submission
-        $existing = Submission::where('nim', $data['nim'])->first();
-
-        if ($existing) {
-            // Kirim pesan error ke session agar bisa tampil sebagai modal
-            return redirect()
-                ->back()
-                ->withInput()
-                ->with('nim_exists', true)
-                ->with('nim_value', $data['nim']);
+        if (! Submission::canSubmitAgain($data['nim'])) {
+            return back()->with('need_kaprodi', true);
         }
 
         // Konversi kode ke nama wilayah

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('telepon');
             $table->string('alamat');
             $table->string('judul_laporan')->nullable();
+            $table->boolean('resubmit')->default(false);
             $table->string('instansi_tujuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
