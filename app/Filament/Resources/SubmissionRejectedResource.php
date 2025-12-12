@@ -11,6 +11,7 @@ use Filament\Facades\Filament;
 use Filament\Resources\Resource;
 use App\Models\SubmissionRejected;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -93,6 +94,10 @@ class SubmissionRejectedResource extends Resource
                         ->required(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                    Toggle::make('resubmit')
+                        ->label('Izinkan pengajuan kedua')
+                        ->default(false)                    
+                        ->inline(), 
                                         
                 ])->columnSpan(2)->columns(1),
                                 
