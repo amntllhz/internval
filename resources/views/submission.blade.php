@@ -142,7 +142,7 @@
 
                     {{-- Pesan --}}
                     <div class="mt-4">
-                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Dua Pengajuan sudah dilakukan!</h2>
+                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Batas Pengajuan Terpenuhi!</h2>
                         <p class="font-display text-xs text-gray-400 mb-1">Anda sudah melakukan pengajuan sebanyak 2 kali, lakukan pengajuan manual</p>                                           
 
                         <!-- Tombol Tutup -->
@@ -178,7 +178,7 @@
                     {{-- Pesan --}}
                     <div class="mt-4">
                         <h2 class="text-base font-display font-bold text-gray-800 mb-1">Satu Pengajuan sudah dilakukan!</h2>
-                        <p class="font-display text-xs text-gray-400 mb-1">Hubungi Kaprodi untuk membuka akses pengajuan baru</p>                                           
+                        <p class="font-display text-xs text-gray-400 mb-1">Hubungi Kaprodi untuk membuka akses pengajuan yang baru</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
