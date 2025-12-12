@@ -104,8 +104,10 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
                     ->icon('heroicon-o-calendar-days')
                     ->description('Periode magang yang diinginkan')
                     ->schema([
+                        TextEntry::make('judul_laporan')
+                        ->color('gray')
+                        ->label('Judul Laporan'),
                         TextEntry::make('tanggal_mulai')
-
                         ->badge('primary')
                         ->dateTime('d/m/Y')
                         ->label('Tanggal Mulai'),
