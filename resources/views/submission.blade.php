@@ -222,6 +222,7 @@
                             selectableItems: [
                                 { title: 'S1 Informatika', value: 'S1 Informatika', disabled: false },
                                 { title: 'S1 Teknik Mesin', value: 'S1 Teknik Mesin', disabled: false },
+                                { title: 'D3 Manajemen Informatika', value: 'D3 Manajemen Informatika', disabled: false },
                             ],
                             selectableItemActive: null,
                             selectId: $id('select'),

@@ -86,14 +86,14 @@ class SubmissionPendingResource extends Resource
                             'rejected' => 'heroicon-o-x-circle',
                         ])
                         ->reactive()
-                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),                       
+                        ->visible(fn () => $user->role === 'kaprodi_informatika' || $user->role === 'kaprodi_mesin' || $user->role === 'kaprodi_manajemenit'),                       
 
                     Textarea::make('alasan_penolakan')
                         ->label('Alasan Penolakan')
                         ->rows(3)                        
                         ->required(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
-                        ->visible(fn () => $user->role === 'dosen_informatika' || $user->role === 'dosen_mesin'),
+                        ->visible(fn () => $user->role === 'kaprodi_informatika' || $user->role === 'kaprodi_mesin' || $user->role === 'kaprodi_manajemenit'),
                     Toggle::make('resubmit')
                         ->label('Izinkan pengajuan kedua')
                         ->default(false)                    
