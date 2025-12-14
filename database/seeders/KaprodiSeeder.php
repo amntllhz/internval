@@ -25,5 +25,11 @@ class KaprodiSeeder extends Seeder
             'nidn' => '0627117605',
             'prodi' => 'S1 Teknik Mesin',
         ]);
+
+        Kaprodi::create([
+            'nama_kaprodi' => 'Hadwitya Handayani Kusumawardhani S.kom., M.Kom',
+            'nidn' => '0619078903',
+            'prodi' => 'D3 Manajemen Informatika',
+        ]);
     }
 }

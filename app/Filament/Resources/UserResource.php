@@ -83,8 +83,9 @@ class UserResource extends Resource
                     ->required()
                     ->options([
                         'baak' => 'BAAK',
-                        'dosen_informatika' => 'Dosen Informatika',
-                        'dosen_mesin' => 'Dosen Mesin',
+                        'kaprodi_informatika' => 'Kaprodi Informatika',
+                        'kaprodi_mesin' => 'Kaprodi Teknik Mesin',
+                        'kaprodi_manajemenit' => 'Kaprodi Manajemen Informatika',
                     ])->native(false),
             ]);
     }

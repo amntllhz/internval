@@ -83,6 +83,7 @@ class DospemResource extends Resource
                     ->options([
                         'S1 Informatika' => 'S1 Informatika',
                         'S1 Teknik Mesin' => 'S1 Teknik Mesin',
+                        'D3 Manajemen Informatika' => 'D3 Manajemen Informatika',
                 ])->native(false)->required(),
             ]);
     }
@@ -134,6 +135,6 @@ class DospemResource extends Resource
     public static function canAccess(): bool
     {
         $user = Filament::auth()->user();
-        return in_array($user->role, ['baak','dosen_informatika', 'dosen_mesin']);
+        return in_array($user->role, ['baak','kaprodi_informatika', 'kaprodi_mesin','kaprodi_manajemenit']);
     }
 }

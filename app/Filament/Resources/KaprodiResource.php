@@ -71,6 +71,7 @@ class KaprodiResource extends Resource
                     ->options([
                         'S1 Informatika' => 'S1 Informatika',
                         'S1 Teknik Mesin' => 'S1 Teknik Mesin',
+                        'D3 Manajemen Informatika' => 'D3 Manajemen Informatika',
                 ])->native(false)->required(),
             ]);
     }

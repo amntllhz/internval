@@ -20,12 +20,13 @@ class StatsOverview extends BaseWidget
 
         $query = Submission::query();
 
-        if (str_starts_with($user->role, 'dosen')) {
+        if (str_starts_with($user->role, 'kaprodi')) {
             
             $roleToProdi = [
                 
-                'dosen_informatika' => 'S1 Informatika',
-                'dosen_mesin' => 'S1 Teknik Mesin',
+                'kaprodi_informatika' => 'S1 Informatika',
+                'kaprodi_mesin' => 'S1 Teknik Mesin',
+                'kaprodi_manajemenit' => 'D3 Manajemen Informatika',
             ];
 
             $prodi = $roleToProdi[$user->role] ?? null;

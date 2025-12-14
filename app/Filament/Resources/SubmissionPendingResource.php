@@ -38,8 +38,9 @@ class SubmissionPendingResource extends Resource
 
         // Mapping role ke prodi
         $roleToProdi = [
-            'dosen_informatika' => 'S1 Informatika',
-            'dosen_mesin' => 'S1 Teknik Mesin',
+            'kaprodi_informatika' => 'S1 Informatika',
+            'kaprodi_mesin' => 'S1 Teknik Mesin',
+            'kaprodi_manajemenit' => 'D3 Manajemen Informatika',
         ];
 
         // Filter prodi sesuai role dosen
@@ -178,7 +179,7 @@ class SubmissionPendingResource extends Resource
     public static function canAccess(): bool
     {
         $user = Filament::auth()->user();
-        return in_array($user->role, ['dosen_informatika', 'dosen_mesin']);
+        return in_array($user->role, ['kaprodi_informatika', 'kaprodi_mesin','kaprodi_manajemenit']);
     }
 
     public static function getNavigationBadge(): ?string
