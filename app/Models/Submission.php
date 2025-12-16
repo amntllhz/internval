@@ -54,6 +54,13 @@ class Submission extends Model
         return $first->resubmit === true;
     }
 
+    public static function isNimAllowed(string $nim): bool
+    {
+        return Allowlist::where('nim', $nim)
+            ->where('is_active', true)
+            ->exists();
+    }
+
     protected $fillable = [
         'nama_mahasiswa','email', 'nim', 'prodi', 'jenis_kelamin', 'telepon',
         'tempat_lahir', 'tanggal_lahir', 'alamat', 'judul_laporan',

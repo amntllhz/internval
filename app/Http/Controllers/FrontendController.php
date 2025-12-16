@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SubmissionRequest;
+use App\Models\Allowlist;
 use App\Models\Submission;
 use Illuminate\Support\Str;
 use App\Mail\SubmissionMail;
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Laravolt\Indonesia\Models\Village;
 use Laravolt\Indonesia\Models\District;
 use Laravolt\Indonesia\Models\Province;
+use App\Http\Requests\SubmissionRequest;
 use Laravolt\Indonesia\Facade as Indonesia;
 
 class FrontendController extends Controller
@@ -27,6 +28,10 @@ class FrontendController extends Controller
     {           
 
         $data = $request->validated();
+
+        if (! Submission::isNimAllowed($data['nim'])) {
+            return back()->with('nim_not_allowed', true);
+        }
         
         if (Submission::isLimitReached($data['nim'])) {
             return back()->with('nim_limit', true);

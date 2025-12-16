@@ -122,7 +122,7 @@
             </div>
         @endif
 
-        {{-- Modal NIM Exists --}}
+        {{-- Modal NIM Limit --}}
         @if(session('nim_limit'))
             <div 
                 x-data="{ open: true }" 
@@ -157,7 +157,7 @@
             </div>
         @endif
 
-        {{-- Modal NIM Exists --}}
+        {{-- Modal Need Kaprodi --}}
         @if(session('need_kaprodi'))
             <div 
                 x-data="{ open: true }" 
@@ -179,6 +179,41 @@
                     <div class="mt-4">
                         <h2 class="text-base font-display font-bold text-gray-800 mb-1">Satu Pengajuan sudah dilakukan!</h2>
                         <p class="font-display text-xs text-gray-400 mb-1">Hubungi Kaprodi untuk membuka akses pengajuan yang baru</p>                                           
+
+                        <!-- Tombol Tutup -->
+                        <button 
+                            @click="open = false" 
+                            class="text-white mt-4 font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md w-full cursor-pointer"
+                        >
+                            Tutup
+                        </button>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        {{-- Modal NIM Not Allowed --}}
+        @if(session('nim_not_allowed'))
+            <div 
+                x-data="{ open: true }" 
+                x-show="open" 
+                x-transition 
+                class="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-lg z-50 min-h-screen"
+            >
+                <div class="bg-white p-4 rounded-xl lg:max-w-xs xs:max-w-9/10 w-full text-center relative">
+                    
+
+                    {{-- Icon Warning --}}
+                    <div class="bg-red-100 p-3 rounded-full w-fit mx-auto mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8 text-red-500">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                        </svg> 
+                    </div>
+
+                    {{-- Pesan --}}
+                    <div class="mt-4">
+                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">Pengajuan Tidak Diperbolehkan!</h2>
+                        <p class="font-display text-xs text-gray-400 mb-1">Anda belum terdaftar sebagai mahasiswa yang diijinkan</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
