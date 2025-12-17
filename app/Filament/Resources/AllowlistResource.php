@@ -13,9 +13,13 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Imports\AllowlistImporter;
+use Filament\Actions\Imports\Models\Import;
 use App\Filament\Resources\AllowlistResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AllowlistResource\RelationManagers;
+use Filament\Tables\Actions\ImportAction;
+use Symfony\Component\Console\Color;
 
 class AllowlistResource extends Resource
 {
@@ -92,6 +96,13 @@ class AllowlistResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+            ])
+            ->headerActions([
+                ImportAction::make()
+                    ->importer(AllowlistImporter::class)
+                    ->label('Unggah CSV')                    
+                    ->color('primary')
+                    ->icon('heroicon-o-folder-plus'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

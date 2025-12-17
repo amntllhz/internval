@@ -151,8 +151,8 @@ class SubmissionManajemenitResource extends Resource
             ])
             ->headerActions([
                 ExportAction::make()
-                ->label('Export to Excel')
-                ->icon('heroicon-o-bookmark-square')
+                ->label('Ekspor Data')
+                ->icon('heroicon-o-table-cells')
                 ->color('primary')
                 ->exporter(SubmissionExporter::class)
                 ->formats([
