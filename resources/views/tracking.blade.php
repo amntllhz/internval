@@ -32,13 +32,13 @@
 
                     <!-- Konten Modal -->
                     <div class="mt-4">
-                        <h2 class="text-base font-display font-bold text-gray-800 mb-1">{{ session('error') }}</h2>
-                        <p class="font-display text-xs text-gray-400 mb-1">Pastikan ID yang anda tuliskan benar</p>                                           
+                        <h2 class="text-base font-display font-semibold text-gray-800 mb-1">{{ session('error') }}</h2>
+                        <p class="font-display text-xs text-gray-400 mb-1">Pengajuan dengan ID tersebut tidak ditemukan, periksa kembali penulisan ID anda</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
-                            @click="open = false" 
-                            class="text-white mt-4 font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md w-full cursor-pointer"
+                            @click="open = false"                             
+                            class="flex mt-4 justify-center items-center text-white text-center w-full cursor-pointer font-display font-bold bg-red-600 hover:bg-red-600/90 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg inset-ring inset-ring-red-700/20 outline -outline-offset-2 outline-red-500/30 shadow-md shadow-red-700/40 inset-shadow-[0_-3px_4px] inset-shadow-red-700/80"
                         >
                             Tutup
                         </button>
@@ -60,7 +60,7 @@
                 <button 
                     type="submit"
                     :disabled="loading"
-                    class="flex items-center justify-center gap-2 text-white cursor-pointer text-center font-display font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg w-full disabled:opacity-70 disabled:cursor-not-allowed"
+                    class="flex gap-2 justify-center items-center text-white text-center w-full cursor-pointer font-display font-bold bg-apple-600 hover:bg-apple-600/90 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg inset-ring inset-ring-apple-700/20 outline -outline-offset-2 outline-apple-500/30 shadow-md shadow-apple-700/40 inset-shadow-[0_-3px_4px] inset-shadow-apple-700/80 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
                     <template x-if="!loading">
                         <span>Cek Status</span>

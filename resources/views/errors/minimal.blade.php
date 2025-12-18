@@ -24,7 +24,7 @@
                                 <h1 class="text-gray-600 text-center font-bold font-display">@yield('code')</h1>
                                 <p class="text-gray-400 text-center font-display text-xs">@yield('message')</p>
                             </div>
-                            <a href="{{ url()->previous() }}" class="text-white font-display w-fit font-bold bg-gradient-to-b from-apple-600 to-apple-700 hover:from-apple-700 hover:to-apple-900 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg">
+                            <a href="{{ url()->previous() }}" class="flex gap-1 justify-center items-center text-white text-center w-fit font-display font-bold bg-apple-600 hover:bg-apple-600/90 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg inset-ring inset-ring-apple-700/20 outline -outline-offset-2 outline-apple-500/30 shadow-md shadow-apple-700/40 inset-shadow-[0_-3px_4px] inset-shadow-apple-700/80">
                                 Kembali ke Halaman Sebelumnya
                             </a>
                         </div>

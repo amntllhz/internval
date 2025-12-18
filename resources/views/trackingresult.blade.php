@@ -178,7 +178,7 @@
                         <div class="flex gap-2">
                             <button 
                                 @click="open = false" 
-                                class="flex-1 text-gray-700 font-display font-bold bg-white ring-1 ring-gray-300 hover:bg-gray-100 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md cursor-pointer"
+                                class="flex-1 justify-center items-center text-gray-400 text-center font-display font-bold bg-gray-100 hover:bg-gray-50 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg inset-ring inset-ring-gray-200 outline -outline-offset-2 outline-white/30 shadow-md shadow-gray-200/50 inset-shadow-[0_-3px_4px] inset-shadow-gray-200/80 cursor-pointer"
                             >
                                 Batal
                             </button>
@@ -188,7 +188,7 @@
                                     ? 'pointer-events-none opacity-50 bg-red-400' 
                                     : 'bg-red-600 hover:bg-red-700 cursor-pointer'"
                                 href="{{ route('submission.delete', ['id' => $submission->id]) }}"
-                                class="flex-1 text-white font-display font-bold bg-red-600 hover:bg-red-700 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-md"
+                                class="flex-1 justify-center items-center text-white text-center cursor-pointer font-display font-bold bg-red-600 hover:bg-red-600/90 transition duration-300 ease-in-out px-4 py-2 text-sm rounded-lg inset-ring inset-ring-red-700/20 outline -outline-offset-2 outline-red-500/30 shadow-md shadow-red-700/40 inset-shadow-[0_-3px_4px] inset-shadow-red-700/80"
                             >
                                 Hapus
                             </a>
