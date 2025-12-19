@@ -143,7 +143,7 @@
                     {{-- Pesan --}}
                     <div class="mt-4">
                         <h2 class="text-base font-display font-semibold text-gray-800 mb-1">Batas Pengajuan Terpenuhi!</h2>
-                        <p class="font-display text-xs text-gray-400 mb-1">Anda sudah melakukan pengajuan sebanyak 2 kali, lakukan pengajuan manual</p>                                           
+                        <p class="font-display text-xs text-gray-400 mb-1">Anda sudah mencapai batas pengajuan, lakukan pengajuan manual</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
@@ -213,7 +213,7 @@
                     {{-- Pesan --}}
                     <div class="mt-4">
                         <h2 class="text-base font-display font-semibold text-gray-800 mb-1">Pengajuan Tidak Diperbolehkan!</h2>
-                        <p class="font-display text-xs text-gray-400 mb-1">Anda belum terdaftar sebagai mahasiswa yang diijinkan</p>                                           
+                        <p class="font-display text-xs text-gray-400 mb-1">Hubungi BAAK untuk membuka akses pengajuan</p>                                           
 
                         <!-- Tombol Tutup -->
                         <button 
