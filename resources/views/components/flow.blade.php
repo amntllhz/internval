@@ -1,4 +1,4 @@
-<section id="flow" class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center h-fit lg:pt-24 md:pt-10 xs:pt-0">
+<section id="flow" class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center h-fit pt-24">
     <div class="flex flex-col bg-gradient-to-b from-white to-apple-500/20 gap-6 w-full p-10 justify-center rounded-xl">
 
         {{-- Judul --}}
