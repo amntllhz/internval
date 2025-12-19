@@ -12,27 +12,37 @@
         </div>
 
         {{-- Status Pengajuan --}}
-        <div class="flex lg:w-2/3 xs:w-full lg:flex-row xs:flex-col w-full ring-1 ring-apple-200 gap-4 p-4 rounded-xl">
-            <div class="bg-apple-500/10 p-4 rounded-md flex justify-center items-center">
+        <div class="flex lg:w-2/3 xs:w-full lg:flex-row xs:flex-col w-full gap-4 p-2 rounded-xl">
+            <div class="bg-apple-500/10 p-4 rounded-lg flex justify-center ring-1 ring-apple-200 items-center">
                 <img src="{{ asset('img/flow/sendsub.svg') }}" class="w-36" alt="">
             </div>
+
             <div class="flex flex-col gap-1 justify-start items-start w-full">
-                <h1 class="text-gray-800 bg-gray-100 px-3 py-1 lg:rounded-tr-lg text-sm w-full font-bold font-display">{{ $submission->id }}</h1>                
-                <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-1 px-3 py-2">
+
+                {{-- ID Pengajuan --}}
+                <div class="flex relative gap-2 px-3 py-2 w-fit justify-center items-center">                    
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-apple-600">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                    <h1 class="text-gray-800 text-sm w-full font-bold font-display">{{ $submission->id }}</h1>                
+                </div>                
+
+                {{-- Data Pengajuan --}}
+                <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-y-2 gap-x-1 px-3 py-2 w-full">
 
                     @php
                         $statusPengajuanColor = match($submission->status_pengajuan) {
-                            'pending' => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600',
-                            'accepted' => 'bg-apple-50 px-2 py-[0.8px] rounded-full ring-1 ring-apple-400 text-apple-600',
-                            'rejected' => 'bg-red-50 px-2 py-[0.8px] rounded-full ring-1 ring-red-400 text-red-600',
-                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600'
+                            'pending' => 'bg-gray-100 px-2 py-[0.8px] rounded-sm ring-1 ring-gray-300 text-gray-600',
+                            'accepted' => 'bg-apple-50 px-2 py-[0.8px] rounded-sm ring-1 ring-apple-400 text-apple-600',
+                            'rejected' => 'bg-red-50 px-2 py-[0.8px] rounded-sm ring-1 ring-red-400 text-red-600',
+                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-sm ring-1 ring-gray-300 text-gray-600'
                         };
 
                         $statusSuratColor = match($submission->status_surat) {
-                            'none' => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600',
-                            'made' => 'bg-yellow-50 px-2 py-[0.8px] rounded-full ring-1 ring-yellow-400 text-yellow-600',
-                            'ready' => 'bg-apple-50 px-2 py-[0.8px] rounded-full ring-1 ring-apple-400 text-apple-600',
-                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-full ring-1 ring-gray-300 text-gray-600'
+                            'none' => 'bg-gray-100 px-2 py-[0.8px] rounded-sm ring-1 ring-gray-300 text-gray-600',
+                            'made' => 'bg-yellow-50 px-2 py-[0.8px] rounded-sm ring-1 ring-yellow-400 text-yellow-600',
+                            'ready' => 'bg-apple-50 px-2 py-[0.8px] rounded-sm ring-1 ring-apple-400 text-apple-600',
+                            default => 'bg-gray-100 px-2 py-[0.8px] rounded-sm ring-1 ring-gray-300 text-gray-600'
                         };
                     @endphp
 
@@ -40,7 +50,6 @@
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Nama</p>
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full">{{ $submission->nama_mahasiswa }}</p>
                     </div>
-
                     <div class="flex flex-col gap-0.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">NIM</p>
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->nim }}</p>
@@ -48,7 +57,16 @@
                     <div class="flex flex-col gap-0.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Program Studi</p>
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->prodi }}</p>
+                    </div>                                        
+                    <div class="flex flex-col gap-0.5">
+                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Dosen Pembimbing Lapangan</p>
+                        <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->dospem->nama_dosen ?? '-' }}</p>
                     </div>
+
+                    {{-- border --}}
+                    <div class="col-span-full border-b border-gray-900/10 my-1">                        
+                    </div>
+
                     <div class="flex flex-col gap-0.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Instansi Tujuan</p>
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->instansi_tujuan }}</p>
@@ -68,14 +86,20 @@
                     <div class="flex flex-col gap-0.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Desa/Kelurahan</p>
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->desa_kelurahan }}</p>
-                    </div>
-                    <div class="flex flex-col gap-0.5">
-                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Waktu Pelaksanaan</p>
-                        <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} <span class="text-apple-600 text-[9px]">s/d</span> {{ $submission->tanggal_selesai }}</p>
                     </div>                    
-                </div>
+                    <div class="flex flex-col gap-0.5 w-full justify-start items-start">
+                        <div class="flex flex-col gap-0.5">
+                            <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Waktu Pelaksanaan</p>
+                            <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} <span class="text-apple-600 mx-1 text-[9px]">s/d</span> {{ $submission->tanggal_selesai }}</p>
+                        </div>                                                                    
+                    </div>   
 
-                <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-2 px-3 py-2 w-full">
+                    {{-- border --}}
+                    <div class="col-span-full border-b border-gray-900/10 my-1">                        
+                    </div>                                     
+                </div>                
+
+                <div class="grid lg:grid-cols-2 xs:grid-cols-1 gap-2 px-3 w-full">
 
                     <div class="flex flex-col gap-1.5">
                         <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Status Pengajuan</p>
@@ -118,6 +142,7 @@
 
 
                 </div>
+
             </div>
         </div>
             
