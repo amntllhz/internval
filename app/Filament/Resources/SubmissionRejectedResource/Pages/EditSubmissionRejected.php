@@ -98,10 +98,10 @@ class EditSubmissionRejected extends EditRecord implements HasInfolists
                     'md' => 2,
                 ])->columns(1),
 
-                Section::make('Periode Magang')
+                Section::make('Periode PKL / Magang')
                     ->iconColor('primary')
                     ->icon('heroicon-o-calendar-days')
-                    ->description('Periode magang yang diinginkan')
+                    ->description('Waktu pelaksanaan yang diajukan')
                     ->schema([
                         TextEntry::make('judul_laporan')
                         ->color('gray')
