@@ -25,7 +25,7 @@ class SubmissionPendingResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-folder-minus';
+    protected static ?string $navigationIcon = 'heroicon-o-code-bracket-square';
     protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'Pending';
     protected static ?string $pluralModelLabel = 'Pending';

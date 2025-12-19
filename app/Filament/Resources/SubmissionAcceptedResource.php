@@ -28,7 +28,7 @@ class SubmissionAcceptedResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-check';
+    protected static ?string $navigationIcon = 'heroicon-o-forward';
     protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'Accepted';
     protected static ?string $pluralModelLabel = 'Accepted';

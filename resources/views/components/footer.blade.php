@@ -23,7 +23,7 @@
             </a>
             
             {{-- mail --}}
-            <a href="mailto:fastikom@umpp.ac.id" target="_blank" rel="noopener noreferrer" class="group">
+            <a href="mailto:fastikom@umpp.ac.id?subject=Pengaduan%20PKL%20%2F%20Magang" target="_blank" rel="noopener noreferrer" class="group">
               <div class="relative bg-apple-100/10 backdrop-blur-xs rounded-lg flex-col py-6 px-6 items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute bottom-3 left-3 size-6 text-white group-hover:-translate-y-1 group-hover:transform duration-300 ease-in-out">
                     <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />

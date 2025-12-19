@@ -26,7 +26,7 @@ class SubmissionRejectedResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-x-circle';
+    protected static ?string $navigationIcon = 'heroicon-o-archive-box-x-mark';
     protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'Rejected';
     protected static ?string $pluralModelLabel = 'Rejected';
