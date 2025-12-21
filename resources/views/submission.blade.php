@@ -989,7 +989,7 @@
             {{-- data periode magang --}}
             <div class=" pb-12 grid lg:grid-cols-6 xs:grid-cols-1 gap-6 mt-10">
                 <div class="col-span-full">
-                    <h2 class="text-gray-800 text-left w-full font-bold font-display">Periode Magang</h2>
+                    <h2 class="text-gray-800 text-left w-full font-bold font-display">Periode PKL / Magang</h2>
                     <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
                 </div>                
 
