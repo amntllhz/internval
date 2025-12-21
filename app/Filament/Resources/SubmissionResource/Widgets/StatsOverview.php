@@ -40,26 +40,41 @@ class StatsOverview extends BaseWidget
         $totalAccepted = (clone $query)->where('status_pengajuan', 'accepted')->count();
         $totalRejected = (clone $query)->where('status_pengajuan', 'rejected')->count();
         
+        $newPendingToday = (clone $query)
+            ->where('status_pengajuan', 'pending')
+            ->whereDate('created_at', now()) // Filter tanggal hari ini
+            ->count();
+
+        $newAcceptedToday = (clone $query)
+            ->where('status_pengajuan', 'accepted')
+            ->whereDate('updated_at', now()) // Filter tanggal hari ini
+            ->count();
+        
+        $newRejectedToday = (clone $query)
+            ->where('status_pengajuan', 'rejected')
+            ->whereDate('updated_at', now()) // Filter tanggal hari ini
+            ->count();
+        
         return [
             //            
 
-            Stat::make('Menunggu Verifikasi', $totalPending)
-                ->description('Menunggu verifikasi')
-                ->descriptionIcon('heroicon-m-inbox-arrow-down', IconPosition::Before, IconSize::Small, IconEntrySize::Small)                
+            Stat::make('Pending', $totalPending)
+                ->description( $newPendingToday . ' Pengajuan baru')
+                ->descriptionIcon('heroicon-o-arrow-trending-down', IconPosition::After, IconSize::Small, IconEntrySize::Small)                
                 ->chart([7, 12, 10, 15, 6, 10])
-                ->color('warning'),
+                ->color('gray'),                
 
-            Stat::make('Pengajuan Diterima', $totalAccepted)
-                ->description('Pengajuan diterima')
-                ->descriptionIcon('heroicon-m-check-badge', IconPosition::Before, IconSize::Small, IconEntrySize::Small)
+            Stat::make('Accepted', $totalAccepted)
+                ->description($newAcceptedToday . ' Pengajuan tervalidasi hari ini')
+                ->descriptionIcon('heroicon-o-arrow-trending-up', IconPosition::After, IconSize::Small, IconEntrySize::Small)
                 ->chart([8, 5, 10, 12, 3, 12])
                 ->color('success'),
 
-            Stat::make('Pengajuan Ditolak', $totalRejected)
-                ->description('Pengajuan ditolak')
-                ->descriptionIcon('heroicon-m-shield-exclamation', IconPosition::Before, IconSize::Small, IconEntrySize::Small)
+            Stat::make('Rejected', $totalRejected)
+                ->description($newRejectedToday . ' Pengajuan ditolak')
+                ->descriptionIcon('heroicon-o-arrow-path-rounded-square', IconPosition::After, IconSize::Small, IconEntrySize::Small)
                 ->chart([10, 6, 10, 11, 13, 7])
-                ->color('danger'),
+                ->color('warning'),
         ];
     }
 }
