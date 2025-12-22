@@ -96,14 +96,7 @@ class AllowlistResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
-            ])
-            ->headerActions([
-                ImportAction::make()
-                    ->importer(AllowlistImporter::class)
-                    ->label('Unggah CSV')                    
-                    ->color('primary')
-                    ->icon('heroicon-o-folder-plus'),
-            ])
+            ])            
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

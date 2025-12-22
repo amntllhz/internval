@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\AllowlistResource\Pages;
 
-use App\Filament\Resources\AllowlistResource;
 use Filament\Actions;
+use Filament\Actions\ImportAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Imports\AllowlistImporter;
+use App\Filament\Resources\AllowlistResource;
 
 class ListAllowlists extends ListRecords
 {
@@ -13,7 +15,14 @@ class ListAllowlists extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->icon('heroicon-o-plus')
+                ->label('Tambah Data'),
+            ImportAction::make()
+                    ->importer(AllowlistImporter::class)
+                    ->label('Unggah CSV')                    
+                    ->color('primary')
+                    ->icon('heroicon-o-folder-plus'),
         ];
     }
 }

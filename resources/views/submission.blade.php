@@ -254,11 +254,10 @@
                         x-data="{
                             selectOpen: false,
                             selectedItem: null,
-                            selectableItems: [
-                                { title: 'S1 Informatika', value: 'S1 Informatika', disabled: false },
-                                { title: 'S1 Teknik Mesin', value: 'S1 Teknik Mesin', disabled: false },
-                                { title: 'D3 Manajemen Informatika', value: 'D3 Manajemen Informatika', disabled: false },
-                            ],
+                            selectableItems: {{ \App\Models\Prodi::select('nama')->get()->map(fn($d) => [
+                                'title' => $d->nama, 
+                                'value' => $d->nama
+                            ]) }},
                             selectableItemActive: null,
                             selectId: $id('select'),
                             selectDropdownPosition: 'bottom',

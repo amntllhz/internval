@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\SubmissionManajemenitResource\Pages;
 
-use App\Filament\Resources\SubmissionManajemenitResource;
 use Filament\Actions;
+use Filament\Actions\ExportAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Exports\SubmissionExporter;
+use App\Filament\Resources\SubmissionManajemenitResource;
 
 class ListSubmissionManajemenits extends ListRecords
 {
@@ -14,6 +16,11 @@ class ListSubmissionManajemenits extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            ExportAction::make()
+                ->label('Ekspor Data')
+                ->icon('heroicon-o-table-cells')
+                ->color('primary')
+                ->exporter(SubmissionExporter::class)                
         ];
     }
 }

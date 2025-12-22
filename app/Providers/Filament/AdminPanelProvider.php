@@ -19,6 +19,7 @@ use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Pages\Auth\EditProfile;
+use Filament\Support\Assets\Css;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 
@@ -36,6 +37,9 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => '#58CC02',
             ])
+            ->assets([
+                Css::make('custom-filament', asset('css/filament/filament-custom.css')),
+            ])            
             ->databaseNotifications()
             ->font('Manrope')
             ->brandLogo(asset('img/logo.svg'))

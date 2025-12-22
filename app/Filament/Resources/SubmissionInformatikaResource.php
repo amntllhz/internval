@@ -153,17 +153,7 @@ class SubmissionInformatikaResource extends Resource
                     Tables\Actions\DeleteAction::make(),
                 ])
                 ->color('gray'),                   
-            ])
-            ->headerActions([
-                ExportAction::make()
-                ->label('Ekspor Data')
-                ->icon('heroicon-o-table-cells')
-                ->color('primary')
-                ->exporter(SubmissionExporter::class)
-                ->formats([
-                    ExportFormat::Xlsx,
-                ])
-            ])
+            ])            
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),

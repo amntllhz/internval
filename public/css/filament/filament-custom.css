@@ -1,0 +1,9 @@
+.fi-sidebar,
+.fi-sidebar * {
+    scrollbar-width: none;
+}
+
+.fi-sidebar::-webkit-scrollbar,
+.fi-sidebar *::-webkit-scrollbar {
+    display: none;
+}
