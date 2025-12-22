@@ -114,6 +114,7 @@ class SubmissionInformatikaResource extends Resource
                         'ready' => 'heroicon-o-bell-alert',
                     }),            
             ])
+            ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')
             ->filters([
                 //
