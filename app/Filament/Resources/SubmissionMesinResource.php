@@ -114,6 +114,7 @@ class SubmissionMesinResource extends Resource
                         'ready' => 'heroicon-o-bell-alert',
                     }),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
