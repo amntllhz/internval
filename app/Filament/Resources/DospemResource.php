@@ -94,7 +94,8 @@ class DospemResource extends Resource
             ->columns([
                 //
                 Tables\Columns\TextColumn::make('nama_dosen')
-                    ->label('Nama Dosen'),
+                    ->label('Nama Dosen')
+                    ->limit(36),
                 Tables\Columns\TextColumn::make('nidn')
                     ->label('NIDN'),
                 Tables\Columns\TextColumn::make('email')

@@ -23,6 +23,9 @@ class SubmissionsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(function (Builder $query) {
+                $query->where('status_pengajuan', 'accepted');
+            })
             ->recordTitleAttribute('nama_mahasiswa')
             ->columns([
                 Tables\Columns\TextColumn::make('nama_mahasiswa')

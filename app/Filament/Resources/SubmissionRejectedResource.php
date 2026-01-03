@@ -88,6 +88,7 @@ class SubmissionRejectedResource extends Resource
                         
                     // dosen hanya bisa melihat dan ubah status pengajuan
                     ToggleButtons::make('status_pengajuan')
+                    ->disabled()
                     ->inline()
                         ->options([
                             'pending' => 'Pending',
