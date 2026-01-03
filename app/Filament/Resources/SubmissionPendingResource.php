@@ -129,7 +129,7 @@ class SubmissionPendingResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return $table
+        return $table            
             ->columns([
                 //
                 Tables\Columns\TextColumn::make('nama_mahasiswa')
@@ -166,6 +166,8 @@ class SubmissionPendingResource extends Resource
                         'ready' => 'heroicon-o-bell-alert',
                     }),                
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika ada pengajuan')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')
             ->filters([

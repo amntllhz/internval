@@ -37,6 +37,8 @@ class SubmissionsRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('prodi')
                     ->label('Program Studi'),                 
             ])
+            ->emptyStateDescription('Data akan ditampilkan jika telah tervalidasi')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->defaultSort('created_at', 'desc')
             ->filters([
                 //
