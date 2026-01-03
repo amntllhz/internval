@@ -115,10 +115,10 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
                         ->badge('primary')
                         ->dateTime('d/m/Y')
                         ->label('Tanggal Selesai'),
-                        TextEntry::make('dospem_id')
+                        TextEntry::make('dospem_req_id')
                         ->color('gray')
-                        ->label('Dosen Pembimbing')   
-                        ->formatStateUsing(fn ($state, $record) => $record?->dospem?->nama_dosen ?? '-'),
+                        ->label('DPL Pilihan Mahasiswa')   
+                        ->formatStateUsing(fn ($state, $record) => $record?->dospemRequest?->nama_dosen ?? '-'),
                     ])->columnSpan([
                         'default' => 3,
                         'md' => 1,

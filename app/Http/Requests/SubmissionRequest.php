@@ -41,7 +41,7 @@ class SubmissionRequest extends FormRequest
             'desa_kelurahan' => 'required|string',
             'jalan' => ['required','string','regex:/^[A-Za-z0-9\s.,]+$/'],
             'telepon_instansi' => ['required','string','regex:/^[0-9]{10,15}$/'],
-            'dospem_id' => 'required|exists:dospems,id',
+            'dospem_req_id' => 'required|exists:dospems,id',            
         ];
     }
 }

@@ -19,10 +19,15 @@ class Submission extends Model
         $model->id = strtoupper(Str::random(16));
         });
     }
-
-    public function dospem()
+    
+    public function dospemRequest()
     {
-        return $this->belongsTo(Dospem::class, 'dospem_id');
+        return $this->belongsTo(Dospem::class, 'dospem_req_id');
+    }
+
+    public function dospemAccept()
+    {
+        return $this->belongsTo(Dospem::class, 'dospem_acc_id');
     }
 
     public function submissionsForSameStudent()
@@ -66,6 +71,7 @@ class Submission extends Model
         'tempat_lahir', 'tanggal_lahir', 'alamat', 'judul_laporan',
         'instansi_tujuan', 'tanggal_mulai', 'tanggal_selesai','resubmit',
         'status_pengajuan', 'status_surat', 'alasan_penolakan',
-        'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan','telepon_instansi', 'dospem_id',
+        'provinsi', 'kabupaten_kota', 'kecamatan','desa_kelurahan','jalan','telepon_instansi', 
+        'dospem_req_id', 'dospem_acc_id',
     ];
 }

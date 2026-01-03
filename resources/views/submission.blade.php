@@ -1425,7 +1425,7 @@
                 </div>                
 
                 <div class="col-span-2">
-                    <label for="dospem_id" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Dosen Pembimbing <span class="text-gray-400">*</span></label>            
+                    <label for="dospem_req_id" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Dosen Pembimbing <span class="text-gray-400">*</span></label>            
                     <div 
                         x-data="{
                             selectOpen: false,
@@ -1483,7 +1483,7 @@
                             </template>
                         </ul>
 
-                        <input type="hidden" id="dospem_id" name="dospem_id" x-ref="hiddenSelect" required >
+                        <input type="hidden" id="dospem_req_id" name="dospem_req_id" x-ref="hiddenSelect" required >
                     </div>                                                                        
                 </div>
             </div>

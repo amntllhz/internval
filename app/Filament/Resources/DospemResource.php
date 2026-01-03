@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\DospemResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\DospemResource\RelationManagers;
+use App\Filament\Resources\DospemResource\RelationManagers\SubmissionsRelationManager;
+use App\Models\Prodi;
 
 class DospemResource extends Resource
 {
@@ -80,11 +82,9 @@ class DospemResource extends Resource
                     ->validationMessages([
                         'required' => 'Program Studi wajib diisi',
                     ])
-                    ->options([
-                        'S1 Informatika' => 'S1 Informatika',
-                        'S1 Teknik Mesin' => 'S1 Teknik Mesin',
-                        'D3 Manajemen Informatika' => 'D3 Manajemen Informatika',
-                ])->native(false)->required(),
+                    ->options(
+                        Prodi::all()->pluck('nama')
+                    )->native(false)->required(),
             ]);
     }
 
@@ -120,6 +120,7 @@ class DospemResource extends Resource
     {
         return [
             //
+            SubmissionsRelationManager::class
         ];
     }
 

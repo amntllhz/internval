@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Dospem;
 use Filament\Forms\Form;
 use App\Models\Submission;
 use Filament\Tables\Table;
@@ -68,6 +69,23 @@ class SubmissionRejectedResource extends Resource
                 ->iconColor('primary')
                 ->description('Lakukan pembaruan status pengajuan')
                 ->schema([
+
+                    Select::make('dospem_acc_id')
+                        ->label('DPL Tersetujui')
+                        ->validationAttribute('Program Studi')
+                        ->required()
+                        ->validationMessages([
+                            'required' => 'Anda harus memberi DPL Tersetujui',
+                        ])
+                        ->columnSpan([
+                            'default' => 2,
+                            'lg' => 1,
+                        ])
+                        ->searchable()
+                        ->options(
+                            Dospem::all()->pluck('nama_dosen','id')
+                        )->native(false)->required(),
+                        
                     // dosen hanya bisa melihat dan ubah status pengajuan
                     ToggleButtons::make('status_pengajuan')
                     ->inline()
@@ -94,13 +112,18 @@ class SubmissionRejectedResource extends Resource
                         ->rows(3)                        
                         ->required(fn ($get) => $get('status_pengajuan') === 'rejected')
                         ->dehydrated(fn ($get) => $get('status_pengajuan') === 'rejected')
-                        ->visible(fn () => $user->role === 'kaprodi_informatika' || $user->role === 'kaprodi_mesin' || $user->role === 'kaprodi_manajemenit' ),
+                        ->visible(fn () => $user->role === 'kaprodi_informatika' || $user->role === 'kaprodi_mesin' || $user->role === 'kaprodi_manajemenit' )
+                        ->columnSpan(2),
                     Toggle::make('resubmit')
                         ->label('Izinkan pengajuan kedua')
                         ->default(false)                    
-                        ->inline(), 
+                        ->inline()
+                        ->columnSpan(2), 
                                         
-                ])->columnSpan(2)->columns(1),
+                ])->columnSpan(2)->columns([
+                    'lg' => 2,
+                    'sm' => 1,
+                ]),
                                 
             ])->columns(2);
     }

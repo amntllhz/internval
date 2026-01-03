@@ -59,8 +59,8 @@
                         <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->prodi }}</p>
                     </div>                                        
                     <div class="flex flex-col gap-0.5">
-                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Dosen Pembimbing Lapangan</p>
-                        <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->dospem->nama_dosen ?? '-' }}</p>
+                        <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">DPL Tersetujui</p>
+                        <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->dospemAccept->nama_dosen ?? '-' }}</p>
                     </div>
 
                     {{-- border --}}

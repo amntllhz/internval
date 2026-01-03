@@ -17,8 +17,13 @@ class Dospem extends Model
         'prodi'
     ];
 
-    public function submissions()
+    public function requestSubmissions()
     {
-        return $this->hasMany(Submission::class, 'dospem_id');
+        return $this->hasMany(Submission::class, 'dospem_req_id');
+    }
+
+    public function acceptSubmissions()
+    {
+        return $this->hasMany(Submission::class, 'dospem_acc_id');
     }
 }
