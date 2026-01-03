@@ -75,8 +75,8 @@ class UserResource extends Resource
                     ->label('Password')                    
                     ->revealable(),
                 Select::make('role')
-                    ->label('Role')
-                    ->validationAttribute('Role')
+                    ->label('Role Pengguna')
+                    ->validationAttribute('Role Pengguna')
                     ->validationMessages([
                         'required' => 'Role wajib diisi',
                     ])
@@ -100,7 +100,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('email')
                     ->label('E-mail'),
                 Tables\Columns\TextColumn::make('role')
-                    ->label('Role'),
+                    ->label('Role Pengguna'),
             ])
             ->filters([
                 //

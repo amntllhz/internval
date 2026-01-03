@@ -13,7 +13,9 @@ class EditUser extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->icon('heroicon-s-trash')
+                ->label('Hapus Data'),
         ];
     }
 }

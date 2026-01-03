@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\KaprodiResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\KaprodiResource\RelationManagers;
+use App\Models\Prodi;
+use Filament\Forms\Components\Section;
 
 class KaprodiResource extends Resource
 {
@@ -30,7 +32,7 @@ class KaprodiResource extends Resource
     {
         return $form
             ->schema([
-                //
+                //                
                 TextInput::make('nama_kaprodi')
                     ->label('Nama Dosen')
                     ->validationAttribute('Nama Dosen')
@@ -68,11 +70,9 @@ class KaprodiResource extends Resource
                     ->validationMessages([
                         'required' => 'Program Studi wajib diisi',
                     ])
-                    ->options([
-                        'S1 Informatika' => 'S1 Informatika',
-                        'S1 Teknik Mesin' => 'S1 Teknik Mesin',
-                        'D3 Manajemen Informatika' => 'D3 Manajemen Informatika',
-                ])->native(false)->required(),
+                    ->options(
+                        Prodi::all()->pluck('nama', 'nama')
+                    )->native(false)->required(),                
             ]);
     }
 
