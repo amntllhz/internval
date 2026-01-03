@@ -15,27 +15,45 @@ class SubmissionExporter extends Exporter
     {
         return [
             //
-            ExportColumn::make('id'),
-            ExportColumn::make('nim'),
-            ExportColumn::make('nama_mahasiswa'),          
-            ExportColumn::make('prodi'),
-            ExportColumn::make('email'),
-            ExportColumn::make('telepon'),
-            ExportColumn::make('jenis_kelamin'),
-            ExportColumn::make('tempat_lahir'),
-            ExportColumn::make('tanggal_lahir'),
-            ExportColumn::make('alamat'),
-            ExportColumn::make('judul_laporan'),
-            ExportColumn::make('instansi_tujuan'),
-            ExportColumn::make('provinsi'),
-            ExportColumn::make('kabupaten_kota'),
-            ExportColumn::make('kecamatan'),
-            ExportColumn::make('desa_kelurahan'),
-            ExportColumn::make('jalan'),
-            ExportColumn::make('telepon_instansi'),
-            ExportColumn::make('dospem_id')
-                ->label('Nama Dosen Pembimbing') // Lebih jelas di Excel
-                ->getStateUsing(fn (Submission $record) => $record->dospem?->nama_dosen ?? '-'),
+            ExportColumn::make('id')
+                ->label('ID Pegajuan'),
+            ExportColumn::make('nim')
+                ->label('NIM'),
+            ExportColumn::make('nama_mahasiswa')
+                ->label('Nama Mahasiswa'),          
+            ExportColumn::make('prodi')
+                ->label('Program Studi'),
+            ExportColumn::make('email')
+                ->label('Email'),
+            ExportColumn::make('telepon')
+                ->label('Telepon'),
+            ExportColumn::make('jenis_kelamin')
+                ->label('Jenis Kelamin'),
+            ExportColumn::make('tempat_lahir')
+                ->label('Tempat Lahir'),
+            ExportColumn::make('tanggal_lahir')
+                ->label('Tanggal Lahir'),
+            ExportColumn::make('alamat')
+                ->label('Alamat'),
+            ExportColumn::make('judul_laporan')
+                ->label('Judul Laporan'),
+            ExportColumn::make('instansi_tujuan')
+                ->label('Instansi Tujuan'),
+            ExportColumn::make('provinsi')
+                ->label('Provinsi'),
+            ExportColumn::make('kabupaten_kota')
+                ->label('Kabupaten/Kota'),
+            ExportColumn::make('kecamatan')
+                ->label('Kecamatan'),
+            ExportColumn::make('desa_kelurahan')
+                ->label('Desa/Kelurahan'),
+            ExportColumn::make('jalan')
+                ->label('Jalan'),
+            ExportColumn::make('telepon_instansi')
+                ->label('Telepon Instansi'),
+            ExportColumn::make('dospem_acc_id')
+                ->label('Dosen Pembimbing Lapangan') // Lebih jelas di Excel
+                ->getStateUsing(fn (Submission $record) => $record->dospemAccept?->nama_dosen ?? '-'),
         ];
     }
 

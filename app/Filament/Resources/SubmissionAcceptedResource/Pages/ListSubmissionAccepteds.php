@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\SubmissionAcceptedResource\Pages;
 
-use App\Filament\Resources\SubmissionAcceptedResource;
 use Filament\Actions;
+use Filament\Actions\ExportAction;
 use Filament\Resources\Pages\ListRecords;
+use App\Filament\Exports\SubmissionExporter;
+use App\Filament\Resources\SubmissionAcceptedResource;
 
 class ListSubmissionAccepteds extends ListRecords
 {
@@ -14,6 +16,11 @@ class ListSubmissionAccepteds extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            ExportAction::make()
+                ->label('Ekspor Data')
+                ->icon('heroicon-o-table-cells')
+                ->color('primary')
+                ->exporter(SubmissionExporter::class)
         ];
     }
 }
