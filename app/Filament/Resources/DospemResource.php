@@ -83,7 +83,7 @@ class DospemResource extends Resource
                         'required' => 'Program Studi wajib diisi',
                     ])
                     ->options(
-                        Prodi::all()->pluck('nama')
+                        Prodi::all()->pluck('nama', 'nama')
                     )->native(false)->required(),
             ]);
     }
