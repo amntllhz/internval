@@ -24,7 +24,7 @@ class EditSubmissionInformatika extends EditRecord implements HasInfolists
 
     protected function resolveRecord(int|string $key): Model
     {
-        return parent::resolveRecord($key)->load('dospem');
+        return parent::resolveRecord($key)->load('dospemAccept');
     }
 
     protected function getHeaderActions(): array
@@ -132,10 +132,10 @@ class EditSubmissionInformatika extends EditRecord implements HasInfolists
                         ->badge('primary')
                         ->dateTime('d/m/Y')
                         ->label('Tanggal Selesai'),
-                        TextEntry::make('dospem_id')
+                        TextEntry::make('dospem_acc_id')
                         ->color('gray')
-                        ->label('Dosen Pembimbing')   
-                        ->formatStateUsing(fn ($state, $record) => $record?->dospem?->nama_dosen ?? '-'),
+                        ->label('DPL Tersetujui')   
+                        ->formatStateUsing(fn ($state, $record) => $record?->dospemAccept?->nama_dosen ?? '-'),
                     ])->columnSpan([
                         'default' => 3,
                         'md' => 1,

@@ -112,7 +112,10 @@ class SubmissionInformatikaResource extends Resource
                         'none' => 'heroicon-o-clock',
                         'made' => 'heroicon-o-cloud-arrow-up',
                         'ready' => 'heroicon-o-bell-alert',
-                    }),            
+                    }),         
+                TextColumn::make('created_at')
+                    ->label('Waktu Dibuat')
+                    ->date('d M Y'),   
             ])
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')

@@ -17,6 +17,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Forms\Components\DatePicker;
@@ -113,6 +114,9 @@ class SubmissionMesinResource extends Resource
                         'made' => 'heroicon-o-cloud-arrow-up',
                         'ready' => 'heroicon-o-bell-alert',
                     }),
+                TextColumn::make('created_at')
+                    ->label('Waktu Dibuat')
+                    ->date('d M Y'),
             ])
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')

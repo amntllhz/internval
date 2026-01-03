@@ -15,6 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
 use App\Models\SubmissionManajemenit;
 use Filament\Forms\Components\Section;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\ActionGroup;
 use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
@@ -108,6 +109,9 @@ class SubmissionManajemenitResource extends Resource
                         'made' => 'heroicon-o-cloud-arrow-up',
                         'ready' => 'heroicon-o-bell-alert',
                     }),
+                TextColumn::make('created_at')
+                    ->label('Waktu Dibuat')
+                    ->date('d M Y'),
             ])
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')
