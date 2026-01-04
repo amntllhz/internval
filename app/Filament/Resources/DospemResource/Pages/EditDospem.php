@@ -9,6 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 class EditDospem extends EditRecord
 {
     protected static string $resource = DospemResource::class;
+    protected static ?string $title = 'Ubah Dosen Pembimbing';
 
     protected function getHeaderActions(): array
     {

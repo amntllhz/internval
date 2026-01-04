@@ -9,6 +9,7 @@ use Filament\Resources\Pages\EditRecord;
 class EditAllowlist extends EditRecord
 {
     protected static string $resource = AllowlistResource::class;
+    protected static ?string $title = 'Ubah Mahasiswa';
 
     protected function getHeaderActions(): array
     {

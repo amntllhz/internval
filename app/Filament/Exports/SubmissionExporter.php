@@ -17,6 +17,8 @@ class SubmissionExporter extends Exporter
             //
             ExportColumn::make('id')
                 ->label('ID Pegajuan'),
+            ExportColumn::make('created_at')
+                ->label('Waktu Dibuat'),
             ExportColumn::make('nim')
                 ->label('NIM'),
             ExportColumn::make('nama_mahasiswa')

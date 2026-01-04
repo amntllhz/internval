@@ -18,7 +18,7 @@ class EditSubmissionMesin extends EditRecord implements HasInfolists
     use InteractsWithInfolists;
 
     protected static string $resource = SubmissionMesinResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-mesin-resource.pages.edit-submission-mesin';
 
     protected function resolveRecord(int|string $key): Model

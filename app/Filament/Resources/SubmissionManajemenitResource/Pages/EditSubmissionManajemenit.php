@@ -18,7 +18,7 @@ class EditSubmissionManajemenit extends EditRecord implements HasInfolists
     use InteractsWithInfolists;    
 
     protected static string $resource = SubmissionManajemenitResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-manajemenit-resource.pages.edit-submission-manajemenit';
 
     protected function resolveRecord(int|string $key): Model

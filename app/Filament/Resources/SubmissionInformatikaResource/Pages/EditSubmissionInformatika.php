@@ -18,7 +18,7 @@ class EditSubmissionInformatika extends EditRecord implements HasInfolists
     use InteractsWithInfolists;
 
     protected static string $resource = SubmissionInformatikaResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-informatika-resource.pages.edit-submission-informatika';
 
 
