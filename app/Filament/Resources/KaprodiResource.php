@@ -82,7 +82,8 @@ class KaprodiResource extends Resource
             ->columns([
                 //
                 Tables\Columns\TextColumn::make('nama_kaprodi')
-                    ->label('Nama Kaprodi'),
+                    ->label('Nama Kaprodi')
+                    ->limit(36),
                 Tables\Columns\TextColumn::make('nidn')
                     ->label('NIDN'),                
                 Tables\Columns\TextColumn::make('prodi')
