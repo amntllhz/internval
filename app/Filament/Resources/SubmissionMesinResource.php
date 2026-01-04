@@ -118,6 +118,8 @@ class SubmissionMesinResource extends Resource
                     ->label('Waktu Dibuat')
                     ->date('d M Y'),
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika ada pengajuan')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')
             ->filters([

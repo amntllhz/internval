@@ -88,6 +88,8 @@ class KaprodiResource extends Resource
                 Tables\Columns\TextColumn::make('prodi')
                     ->label('Program Studi'),
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika anda menambahkan data')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->filters([
                 //
             ])

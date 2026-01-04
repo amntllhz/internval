@@ -102,6 +102,8 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('role')
                     ->label('Role Pengguna'),
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika anda menambahkan data')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->filters([
                 //
             ])

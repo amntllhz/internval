@@ -61,6 +61,8 @@ class ProdiResource extends Resource
                     ->label('Program Studi'),                
 
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika anda menambahkan data')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->filters([
                 //
             ])                        

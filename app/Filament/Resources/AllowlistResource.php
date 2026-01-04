@@ -90,6 +90,8 @@ class AllowlistResource extends Resource
                     ->color(fn (bool $state): string => $state ? 'success' : 'danger')
                     ->icon(fn (bool $state): string => $state ? 'heroicon-o-check-circle' : 'heroicon-o-x-circle'),
             ])
+            ->emptyStateDescription('Data akan ditampilkan ketika anda menambahkan data')
+            ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->filters([
                 //
             ])
