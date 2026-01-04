@@ -18,7 +18,7 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
     use InteractsWithInfolists;
 
     protected static string $resource = SubmissionPendingResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-pending-resource.pages.edit-submission-pending';
 
     protected function getHeaderActions(): array

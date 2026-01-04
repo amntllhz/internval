@@ -17,7 +17,7 @@ class EditSubmissionAccepted extends EditRecord implements HasInfolists
     use InteractsWithInfolists;
 
     protected static string $resource = SubmissionAcceptedResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-accepted-resource.pages.edit-submission-accepted';
 
     protected function getHeaderActions(): array

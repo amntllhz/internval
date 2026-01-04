@@ -17,7 +17,7 @@ class EditSubmissionRejected extends EditRecord implements HasInfolists
     use InteractsWithInfolists;
 
     protected static string $resource = SubmissionRejectedResource::class;
-
+    protected static ?string $title = 'Perbarui Pengajuan';
     protected static string $view = 'filament.resources.submission-rejected-resource.pages.edit-submission-rejected';
 
     protected function getHeaderActions(): array
