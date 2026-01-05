@@ -19,6 +19,12 @@ use Laravolt\Indonesia\Facade as Indonesia;
 class FrontendController extends Controller
 {
     //
+
+    public function start(Request $request)
+    {        
+        return view('start');
+    }
+
     public function showForm()
     {   
         return view('submission');

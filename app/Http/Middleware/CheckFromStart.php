@@ -15,8 +15,9 @@ class CheckFromStart
      */
     public function handle(Request $request, Closure $next): Response
     {   
-        if (!session()->has('from_start')) {
-            return redirect('/');
+        // Pastikan session TERBENTUK
+        if (!$request->session()->get('flow.start_passed', false)) {
+            return redirect()->route('start');
         }
         
         return $next($request);
