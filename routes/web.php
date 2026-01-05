@@ -4,35 +4,40 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Middleware\CheckFromStart;
 
-// start
-Route::get('/', [FrontendController::class, 'start'])->name('start');
+Route::middleware('web')->group(function () {
 
-// session mahasiswa
-Route::get('/mahasiswa-redirect', function () {
-    session()->put('flow.start_passed', true);
-    return redirect('/home');
-})->name('mahasiswa.redirect');
-
-
-// middleware
-Route::middleware([CheckFromStart::class])->group(function () {
-
-    // home
-    Route::get('/home', function () {
-        return view('home');
+    // start
+    Route::get('/', [FrontendController::class, 'start'])->name('start');
+    
+    // session mahasiswa
+    Route::get('/mahasiswa-redirect', function () {
+        session()->put('flow.start_passed', true);
+        return redirect('/home');
+    })->name('mahasiswa.redirect');
+    
+    
+    // middleware
+    Route::middleware([CheckFromStart::class])->group(function () {
+    
+        // home
+        Route::get('/home', function () {
+            return view('home');
+        });
+    
+        // submission
+        Route::get('/submission', [FrontendController::class, 'showForm'])->name('submission.form');
+        Route::post('/submission', [FrontendController::class, 'submitForm'])->name('submission.submit');
+        Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->name('submission.success');
+        Route::get('/submission/delete/{id}', [FrontendController::class, 'deleteSubmission'])->name('submission.delete');
+    
+        // tracking
+        Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form');
+        Route::post('/tracking', [FrontendController::class, 'track'])->name('tracking.result'); 
+    
     });
 
-    // submission
-    Route::get('/submission', [FrontendController::class, 'showForm'])->name('submission.form');
-    Route::post('/submission', [FrontendController::class, 'submitForm'])->name('submission.submit');
-    Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->name('submission.success');
-    Route::get('/submission/delete/{id}', [FrontendController::class, 'deleteSubmission'])->name('submission.delete');
-
-    // tracking
-    Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form');
-    Route::post('/tracking', [FrontendController::class, 'track'])->name('tracking.result'); 
-
 });
+
 
 // data wilayah
 Route::get('/get-kabupaten', [\App\Http\Controllers\WilayahController::class, 'getKabupaten']);
