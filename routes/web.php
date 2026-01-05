@@ -4,37 +4,33 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Middleware\CheckFromStart;
 
-Route::middleware('web')->group(function () {
+// start
+Route::get('/', [FrontendController::class, 'start'])->name('start');
 
-    // start
-    Route::get('/', [FrontendController::class, 'start'])->name('start');
-    
-    // session mahasiswa
-    Route::get('/mahasiswa-redirect', function () {
-        session()->put('flow.start_passed', true);
-        return redirect('/home');
-    })->name('mahasiswa.redirect');
-    
-    
-    // middleware
-    Route::middleware([CheckFromStart::class])->group(function () {
-    
-        // home
-        Route::get('/home', function () {
-            return view('home');
-        });
-    
-        // submission
-        Route::get('/submission', [FrontendController::class, 'showForm'])->name('submission.form');
-        Route::post('/submission', [FrontendController::class, 'submitForm'])->name('submission.submit');
-        Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->name('submission.success');
-        Route::get('/submission/delete/{id}', [FrontendController::class, 'deleteSubmission'])->name('submission.delete');
-    
-        // tracking
-        Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form');
-        Route::post('/tracking', [FrontendController::class, 'track'])->name('tracking.result'); 
-    
+// session mahasiswa
+Route::get('/mahasiswa-redirect', function () {
+    session()->put('flow.start_passed', true);
+    return redirect('/home');
+})->name('mahasiswa.redirect');
+
+
+// middleware
+Route::middleware([CheckFromStart::class])->group(function () {
+
+    // home
+    Route::get('/home', function () {
+        return view('home');
     });
+
+    // submission
+    Route::get('/submission', [FrontendController::class, 'showForm'])->name('submission.form');
+    Route::post('/submission', [FrontendController::class, 'submitForm'])->name('submission.submit');
+    Route::get('/submission/success/{id}', [FrontendController::class, 'success'])->name('submission.success');
+    Route::get('/submission/delete/{id}', [FrontendController::class, 'deleteSubmission'])->name('submission.delete');
+
+    // tracking
+    Route::get('/tracking', [FrontendController::class, 'showTrackingForm'])->name('tracking.form');
+    Route::post('/tracking', [FrontendController::class, 'track'])->name('tracking.result'); 
 
 });
 
