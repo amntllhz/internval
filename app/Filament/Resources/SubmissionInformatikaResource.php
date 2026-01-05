@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionInformatikaResource\Pages;
 use App\Filament\Resources\SubmissionInformatikaResource\RelationManagers;
 use Filament\Actions\Exports\Enums\ExportFormat;
+use Filament\Tables\Actions\ExportBulkAction;
 
 class SubmissionInformatikaResource extends Resource
 {
@@ -164,6 +165,9 @@ class SubmissionInformatikaResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()                        
+                        ->exporter(SubmissionExporter::class)
+                        ->label('Ekspor Data Terpilih'),
                 ]),
             ]);
     }

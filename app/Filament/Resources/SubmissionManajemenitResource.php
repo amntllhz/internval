@@ -21,6 +21,7 @@ use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Actions\ExportBulkAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionManajemenitResource\Pages;
@@ -160,6 +161,9 @@ class SubmissionManajemenitResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
+                    ExportBulkAction::make()                        
+                        ->exporter(SubmissionExporter::class)
+                        ->label('Ekspor Data Terpilih'),
                 ]),
             ]);
     }

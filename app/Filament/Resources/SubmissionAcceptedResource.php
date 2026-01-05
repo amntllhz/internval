@@ -20,7 +20,9 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Actions\ExportBulkAction;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionAcceptedResource\Pages;
 use App\Filament\Resources\SubmissionAcceptedResource\RelationManagers;
@@ -182,6 +184,9 @@ class SubmissionAcceptedResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                ExportBulkAction::make()                        
+                        ->exporter(SubmissionExporter::class)
+                        ->label('Ekspor Data Terpilih'),
             ]);
     }
 

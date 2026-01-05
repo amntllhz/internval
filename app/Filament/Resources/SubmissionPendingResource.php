@@ -17,7 +17,9 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Actions\ExportBulkAction;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionPendingResource\Pages;
 use App\Filament\Resources\SubmissionPendingResource\RelationManagers;
@@ -179,6 +181,9 @@ class SubmissionPendingResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
+                ExportBulkAction::make()                        
+                        ->exporter(SubmissionExporter::class)
+                        ->label('Ekspor Data Terpilih'),
             ]);
     }
 
