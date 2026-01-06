@@ -51,6 +51,7 @@ class DospemResource extends Resource
                 TextInput::make('nidn')
                     ->label('NIDN')
                     ->validationAttribute('NIDN')
+                    ->unique(ignoreRecord: true)
                     ->rules([
                         'required',
                         'regex:/^[0-9\s]+$/',
@@ -58,6 +59,7 @@ class DospemResource extends Resource
                         'max:15',
                     ])
                     ->validationMessages([
+                        'unique' => 'NIDN sudah terdaftar',
                         'regex' => 'NIDN hanya boleh mengandung angka dan spasi',
                         'min' => 'NIDN minimal 10 karakter',
                         'max' => 'NIDN maksimal 15 karakter',

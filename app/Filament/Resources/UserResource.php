@@ -77,7 +77,9 @@ class UserResource extends Resource
                 Select::make('role')
                     ->label('Role Pengguna')
                     ->validationAttribute('Role Pengguna')
+                    ->unique(ignoreRecord: true)
                     ->validationMessages([
+                        'unique' => 'Kredensial dengan role tersebut sudah terdaftar',
                         'required' => 'Role wajib diisi',
                     ])
                     ->required()

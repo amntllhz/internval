@@ -36,7 +36,8 @@ class ProdiResource extends Resource
                 //
                 TextInput::make('nama')                    
                     ->label('Nama Program Studi')                    
-                    ->validationAttribute('Nama Program Studi')                                   
+                    ->validationAttribute('Nama Program Studi')  
+                    ->unique(ignoreRecord: true)                                 
                     ->rules([
                         'required',
                         'regex:/^[A-Za-z1-5\s.,]+$/',
@@ -44,6 +45,7 @@ class ProdiResource extends Resource
                         'max:255',
                     ])
                     ->validationMessages([
+                        'unique' => 'Program Studi sudah terdaftar',
                         'regex' => 'Nama Program Studi hanya boleh mengandung huruf, spasi, dan angka 1-5',
                         'min' => 'Nama Program Studi minimal 3 karakter',
                         'max' => 'Nama Program Studi maksimal 255 karakter',

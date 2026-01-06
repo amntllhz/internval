@@ -40,6 +40,7 @@ class AllowlistResource extends Resource
                 TextInput::make('nim')
                     ->label('Nomor Induk Mahasiswa')
                     ->validationAttribute('Nomor Induk Mahasiswa')
+                    ->unique(ignoreRecord: true)
                     ->rules([
                         'required',
                         'regex:/^[0-9\s]+$/',
@@ -47,6 +48,7 @@ class AllowlistResource extends Resource
                         'max:12',
                     ])
                     ->validationMessages([
+                        'unique' => 'NIM sudah terdaftar',
                         'regex' => 'Nama Dosen hanya boleh mengandung huruf, spasi, dan koma',
                         'min' => 'Nama Dosen minimal 3 karakter',
                         'max' => 'Nama Dosen maksimal 255 karakter',
