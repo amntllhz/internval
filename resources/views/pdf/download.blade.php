@@ -234,7 +234,7 @@
                     <td>{{ \Carbon\Carbon::parse($submission->tanggal_mulai)->translatedFormat('d F Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($submission->tanggal_selesai)->translatedFormat('d F Y') }}</td>
                     {{-- Asumsi ada kolom dpl atau relasi ke DPL --}}
-                    <td>{{ e($submission->dospem->nama_dosen) ?? '-' }}</td>
+                    <td>{{ e($submission->dospemAccept->nama_dosen) ?? '-' }}</td>
                 </tr>
             </tbody>
         </table>
