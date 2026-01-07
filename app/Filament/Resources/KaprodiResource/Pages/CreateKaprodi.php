@@ -9,4 +9,5 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateKaprodi extends CreateRecord
 {
     protected static string $resource = KaprodiResource::class;
+    protected static ?string $title = 'Tambah Kaprodi';
 }
