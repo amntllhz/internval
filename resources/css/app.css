@@ -1,3 +1,7 @@
+:root {
+    color-scheme: light;
+}
+
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @import "flowbite/src/themes/default";
