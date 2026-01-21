@@ -65,9 +65,7 @@ class FrontendController extends Controller
         $data['alamat'] = Str::title(Str::lower($data['alamat']));
         $data['tempat_lahir'] = Str::title(Str::lower($data['tempat_lahir']));
         $data['judul_laporan'] = Str::title(Str::lower($data['judul_laporan']));
-
-
-        $data['id'] = strtoupper(Str::random(8)); // kode unik
+        
         $data['status_pengajuan'] = 'pending';
         $data['status_surat'] = 'none';
 
