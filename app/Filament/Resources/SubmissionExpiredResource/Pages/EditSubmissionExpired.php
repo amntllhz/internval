@@ -1,25 +1,24 @@
 <?php
 
-namespace App\Filament\Resources\SubmissionPendingResource\Pages;
+namespace App\Filament\Resources\SubmissionExpiredResource\Pages;
 
-use App\Filament\Resources\SubmissionPendingResource;
-use Dom\Text;
 use Filament\Actions;
+use Filament\Infolists\Infolist;
 use Filament\Infolists\Components\Group;
+use Filament\Resources\Pages\EditRecord;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\TextEntry;
-use Filament\Infolists\Concerns\InteractsWithInfolists;
 use Filament\Infolists\Contracts\HasInfolists;
-use Filament\Infolists\Infolist;
-use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\SubmissionExpiredResource;
+use Filament\Infolists\Concerns\InteractsWithInfolists;
 
-class EditSubmissionPending extends EditRecord implements HasInfolists
+class EditSubmissionExpired extends EditRecord implements HasInfolists
 {   
     use InteractsWithInfolists;
 
-    protected static string $resource = SubmissionPendingResource::class;
+    protected static string $resource = SubmissionExpiredResource::class;
     protected static ?string $title = 'Perbarui Pengajuan';
-    protected static string $view = 'filament.resources.submission-pending-resource.pages.edit-submission-pending';
+    protected static string $view = 'filament.resources.submission-expired-resource.pages.edit-submission-expired';
 
     protected function getHeaderActions(): array
     {
@@ -27,6 +26,16 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
             Actions\DeleteAction::make()
                 ->icon('heroicon-s-trash')
                 ->label('Hapus Data'),
+        ];
+    }
+
+    protected function getFormActions(): array
+    {
+        return [
+            // Kita hanya mengembalikan tombol Batal yang diubah labelnya
+            $this->getCancelFormAction()
+                ->label('Kembali') // Mengganti label "Batal" menjadi "Kembali"
+                ->color('gray'),   // Opsional: mengatur warna tombol
         ];
     }
 
@@ -92,9 +101,7 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
                         'default' => 1,
                         'xs' => 1,
                         'md' => 3,
-                    ]),
-
-                    
+                    ]),                    
                     
                 ])->columnSpan([
                     'default' => 3,
@@ -116,7 +123,7 @@ class EditSubmissionPending extends EditRecord implements HasInfolists
                         TextEntry::make('tanggal_selesai')
                         ->badge('primary')
                         ->dateTime('d/m/Y')
-                        ->label('Tanggal Selesai'),                        
+                        ->label('Tanggal Selesai'),
                         TextEntry::make('tenggat_pengajuan')
                         ->badge('primary')
                         ->formatStateUsing(function ($state, $record) {

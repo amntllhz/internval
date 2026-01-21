@@ -39,6 +39,7 @@ class StatsOverview extends BaseWidget
         $totalPending = (clone $query)->where('status_pengajuan', 'pending')->count();
         $totalAccepted = (clone $query)->where('status_pengajuan', 'accepted')->count();
         $totalRejected = (clone $query)->where('status_pengajuan', 'rejected')->count();
+        $totalExpired = (clone $query)->where('status_pengajuan', 'expired')->count();
         
         $newPendingToday = (clone $query)
             ->where('status_pengajuan', 'pending')
@@ -55,6 +56,11 @@ class StatsOverview extends BaseWidget
             ->whereDate('updated_at', now()) // Filter tanggal hari ini
             ->count();
         
+        $newExpiredToday = (clone $query)
+            ->where('status_pengajuan', 'expired')
+            ->whereDate('updated_at', now()) // Filter tanggal hari ini
+            ->count();
+        
         return [
             //            
 
@@ -65,16 +71,22 @@ class StatsOverview extends BaseWidget
                 ->color('gray'),                
 
             Stat::make('Accepted', $totalAccepted)
-                ->description($newAcceptedToday . ' Pengajuan tervalidasi hari ini')
+                ->description($newAcceptedToday . ' Tervalidasi hari ini')
                 ->descriptionIcon('heroicon-o-arrow-trending-up', IconPosition::After, IconSize::Small, IconEntrySize::Small)
                 ->chart([8, 5, 10, 12, 3, 12])
                 ->color('success'),
 
             Stat::make('Rejected', $totalRejected)
-                ->description($newRejectedToday . ' Pengajuan ditolak')
+                ->description($newRejectedToday . '  Ditolak hari ini')
                 ->descriptionIcon('heroicon-o-arrow-path-rounded-square', IconPosition::After, IconSize::Small, IconEntrySize::Small)
                 ->chart([10, 6, 10, 11, 13, 7])
                 ->color('warning'),
+
+            Stat::make('Expired', $totalExpired)
+                ->description($newExpiredToday . ' Expired hari ini')
+                ->descriptionIcon('heroicon-o-no-symbol', IconPosition::After, IconSize::Small, IconEntrySize::Small)
+                ->chart([8, 5, 10, 12, 3, 12])
+                ->color('gray'),
         ];
     }
 }

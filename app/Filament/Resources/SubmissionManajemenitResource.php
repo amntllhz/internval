@@ -91,11 +91,13 @@ class SubmissionManajemenitResource extends Resource
                         'pending' => 'gray',
                         'accepted' => 'success',
                         'rejected' => 'danger',
+                        'expired' => 'warning',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'pending' => 'heroicon-o-clock',
                         'accepted' => 'heroicon-o-check-circle',
                         'rejected' => 'heroicon-o-x-circle',
+                        'expired' => 'heroicon-o-no-symbol',
                     }),
                 Tables\Columns\TextColumn::make('status_surat')
                     ->label('Status Surat')

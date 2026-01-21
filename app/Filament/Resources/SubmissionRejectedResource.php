@@ -34,6 +34,7 @@ class SubmissionRejectedResource extends Resource
     protected static ?string $navigationLabel = 'Rejected';
     protected static ?string $pluralModelLabel = 'Rejected';
     protected static ?string $slug = 'submission-rejected';
+    protected static ?int $navigationSort = 3;
 
     public static function getEloquentQuery(): Builder
     {
@@ -150,11 +151,13 @@ class SubmissionRejectedResource extends Resource
                         'pending' => 'gray',
                         'accepted' => 'success',
                         'rejected' => 'danger',
+                        'expired' => 'warning',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'pending' => 'heroicon-o-clock',
                         'accepted' => 'heroicon-o-check-circle',
                         'rejected' => 'heroicon-o-x-circle',
+                        'expired' => 'heroicon-o-no-symbol',
                     }),
                 Tables\Columns\TextColumn::make('status_surat')
                     ->label('Status Surat')

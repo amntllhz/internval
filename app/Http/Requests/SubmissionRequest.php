@@ -35,6 +35,7 @@ class SubmissionRequest extends FormRequest
             'instansi_tujuan' => 'required|string',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date',
+            'tenggat_pengajuan' => 'required|date',            
             'provinsi' => 'required|string',
             'kabupaten_kota' => 'required|string',
             'kecamatan' => 'required|string',

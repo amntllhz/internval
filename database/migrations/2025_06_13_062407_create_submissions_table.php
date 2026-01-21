@@ -27,8 +27,9 @@ return new class extends Migration
             $table->string('instansi_tujuan');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
+            $table->date('tenggat_pengajuan');
             $table->string('telepon_instansi');
-            $table->enum('status_pengajuan', ['pending', 'accepted', 'rejected'])->default('pending');
+            $table->enum('status_pengajuan', ['pending', 'accepted', 'rejected', 'expired'])->default('pending');
             $table->enum('status_surat', ['none', 'made', 'ready'])->default('none');
             $table->text('alasan_penolakan')->nullable(); // untuk dosen jika menolak
             $table->foreignId('dospem_req_id')->nullable()->constrained('dospems')->onDelete('set null');

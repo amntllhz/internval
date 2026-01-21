@@ -992,7 +992,7 @@
                     <p class="text-gray-400 text-xs text-left w-full font-display">Form dengan tanda ( <span class="text-gray-400">*</span> ) wajib diisi</p>
                 </div>                
 
-                <div class="col-span-2" 
+                <div class="col-span-3" 
                     x-data="{
                         datePickerOpen: false,
                         datePickerValue: '',
@@ -1208,7 +1208,7 @@
                     </div>
                 </div>
 
-                <div class="col-span-2" 
+                <div class="col-span-3" 
                     x-data="{
                         datePickerOpen: false,
                         datePickerValue: '',
@@ -1424,7 +1424,223 @@
                     </div>
                 </div>                
 
-                <div class="col-span-2">
+                <div class="col-span-3" 
+                    x-data="{
+                        datePickerOpen: false,
+                        datePickerValue: '',
+                        datePickerFormat: 'YYYY-MM-DD',
+                        datePickerMonth: '',
+                        datePickerYear: '',
+                        datePickerDay: '',
+                        datePickerDaysInMonth: [],
+                        datePickerBlankDaysInMonth: [],
+                        datePickerMonthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+                        datePickerDays: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+
+                        // view: date / year
+                        datePickerView: 'date',
+
+                        // year picker
+                        yearPickerStart: 0,
+
+                        openYearPicker() {
+                            this.datePickerView = 'year';
+                            this.yearPickerStart = Math.floor(this.datePickerYear / 12) * 12;
+                        },
+                        selectYear(year) {
+                            this.datePickerYear = year;
+                            this.datePickerCalculateDays();
+                            this.datePickerView = 'date';
+                        },
+                        prevYearRange() {
+                            this.yearPickerStart -= 12;
+                        },
+                        nextYearRange() {
+                            this.yearPickerStart += 12;
+                        },
+
+                        // day click
+                        datePickerDayClicked(day) {
+                            let selectedDate = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            this.datePickerDay = day;
+                            this.datePickerValue = this.datePickerFormatDate(selectedDate);
+                            this.datePickerOpen = false;
+                        },
+
+                        // month nav
+                        datePickerPreviousMonth(){
+                            if (this.datePickerMonth == 0) {
+                                this.datePickerYear--;
+                                this.datePickerMonth = 11;
+                            } else {
+                                this.datePickerMonth--;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+                        datePickerNextMonth(){
+                            if (this.datePickerMonth == 11) {
+                                this.datePickerMonth = 0;
+                                this.datePickerYear++;
+                            } else {
+                                this.datePickerMonth++;
+                            }
+                            this.datePickerCalculateDays();
+                        },
+
+                        datePickerIsSelectedDate(day) {
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return this.datePickerValue === this.datePickerFormatDate(d);
+                        },
+                        datePickerIsToday(day) {
+                            const today = new Date();
+                            const d = new Date(this.datePickerYear, this.datePickerMonth, day);
+                            return today.toDateString() === d.toDateString();
+                        },
+
+                        datePickerCalculateDays() {
+                            let daysInMonth = new Date(this.datePickerYear, this.datePickerMonth + 1, 0).getDate();
+                            let dayOfWeek = new Date(this.datePickerYear, this.datePickerMonth).getDay();
+                            this.datePickerBlankDaysInMonth = Array.from({length: dayOfWeek}, (_, i) => i + 1);
+                            this.datePickerDaysInMonth = Array.from({length: daysInMonth}, (_, i) => i + 1);
+                        },
+                        datePickerFormatDate(date) {
+                            let dd = ('0' + date.getDate()).slice(-2);
+                            let mm = ('0' + (date.getMonth() + 1)).slice(-2);
+                            let yyyy = date.getFullYear();
+                            return `${yyyy}-${mm}-${dd}`;
+                        },
+                    }"
+                    x-init="
+                        let currentDate = new Date();
+                        datePickerMonth = currentDate.getMonth();
+                        datePickerYear = currentDate.getFullYear();
+                        datePickerValue = datePickerFormatDate(currentDate);
+                        datePickerCalculateDays();
+                    " x-cloak>
+
+                    <label for="tenggat_pengajuan" class="block mb-2 text-xs font-display text-apple-600 font-semibold">
+                        Tenggat Verifikasi <span class="text-gray-400">*</span>
+                    </label>
+
+                    <div class="relative w-full">
+                        <input x-ref="datePickerInput" type="text" @click="datePickerOpen = !datePickerOpen" 
+                            x-model="datePickerValue" readonly
+                            class="flex p-2.5 w-full text-xs bg-white rounded-lg border text-neutral-600 border-neutral-300 placeholder:text-neutral-400 focus:ring-apple-600 focus:border-apple-400"
+                            placeholder="Pilih tanggal" />
+
+                        <input type="hidden" name="tenggat_pengajuan" x-model="datePickerValue" />
+
+                        <div 
+                            @click="datePickerOpen = !datePickerOpen; $refs.datePickerInput.focus()" 
+                            class="absolute top-0 right-0 h-full flex items-center pr-3 text-neutral-400 cursor-pointer hover:text-apple-600 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+
+                        <div x-show="datePickerOpen" x-transition @click.away="datePickerOpen = false; datePickerView = 'date';" 
+                            class="absolute z-20 top-12 left-0 p-4 bg-white border border-gray-200 rounded-lg shadow-lg w-full">
+
+
+                            <!-- 🔵 CHANGE START — HEADER DATE MODE ONLY -->
+                            <div class="flex justify-between items-center mb-2" 
+                                x-show="datePickerView === 'date'">
+
+                                <div>
+                                    <span x-text="datePickerMonthNames[datePickerMonth]" 
+                                        class="font-display font-extrabold text-gray-800"></span>
+
+                                    <span 
+                                        x-text="datePickerYear" 
+                                        class="ml-1 font-display text-sm text-gray-600 cursor-pointer hover:text-apple-600"
+                                        @click.stop="openYearPicker()"></span>
+                                </div>
+
+                                <div>
+                                    <button @click="datePickerPreviousMonth()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                        </svg>
+                                    </button>
+                                    <button @click="datePickerNextMonth()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- 🔵 CHANGE END -->
+
+
+                            <!-- DATE VIEW -->
+                            <div x-show="datePickerView === 'date'">
+                                <div class="grid grid-cols-7 text-center text-[10px] font-display font-semibold text-gray-500 mb-1">
+                                    <template x-for="(day, index) in datePickerDays" :key="index">
+                                        <div x-text="day"></div>
+                                    </template>
+                                </div>
+
+                                <div class="grid grid-cols-7 text-xs">
+                                    <template x-for="blankDay in datePickerBlankDaysInMonth">
+                                        <div class="p-1"></div>
+                                    </template>
+                                    <template x-for="(day, dayIndex) in datePickerDaysInMonth" :key="dayIndex">
+                                        <div class="p-1">
+                                            <div 
+                                                x-text="day"
+                                                @click="datePickerDayClicked(day)" 
+                                                :class="{
+                                                    'bg-apple-600 text-white': datePickerIsSelectedDate(day),
+                                                    'hover:bg-gray-100 text-gray-600': !datePickerIsSelectedDate(day)
+                                                }"
+                                                class="cursor-pointer font-display rounded-full w-6 h-6 flex items-center justify-center mx-auto">
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+
+
+                            <!-- 🔵 CHANGE START — YEAR PICKER ONLY VIEW -->
+                            <div x-show="datePickerView === 'year'" class="pt-2">
+
+                                <div class="flex justify-between items-center mb-2">
+
+                                    <button @click="prevYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                        </svg>
+                                    </button>
+
+                                    <span class="font-semibold font-display text-gray-700">
+                                        <span x-text="yearPickerStart"></span> - <span x-text="yearPickerStart + 11"></span>
+                                    </span>
+
+                                    <button @click="nextYearRange()" type="button" class="p-1 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2 text-sm">
+                                    <template x-for="i in 12" :key="i">
+                                        <div class="cursor-pointer px-2 py-1 rounded hover:bg-gray-100 text-center"
+                                            @click="selectYear(yearPickerStart + i - 1)">
+                                            <span class="font-display text-gray-500" x-text="yearPickerStart + i - 1"></span>
+                                        </div>
+                                    </template>
+                                </div>
+
+                            </div>
+                            <!-- 🔵 CHANGE END -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-3">
                     <label for="dospem_req_id" class="block mb-2 text-xs font-display text-apple-600 font-semibold">Dosen Pembimbing <span class="text-gray-400">*</span></label>            
                     <div 
                         x-data="{
@@ -1608,6 +1824,7 @@
                 const dateMulaiInput = document.querySelector('input[name="tanggal_mulai"]');
                 const dateSelesaiInput = document.querySelector('input[name="tanggal_selesai"]');
                 const dateLahirInput = document.querySelector('input[name="tanggal_lahir"]');
+                const dateTenggatInput = document.querySelector('input[name="tenggat_pengajuan"]');
 
                 // Hapus pesan error lama (jika ada)
                 document.querySelectorAll('.date-error-msg').forEach(el => el.remove());
@@ -1616,9 +1833,11 @@
                 const dateMulaiWrapper = dateMulaiInput?.closest('div.relative');
                 const dateSelesaiWrapper = dateSelesaiInput?.closest('div.relative');
                 const dateLahirWrapper = dateLahirInput?.closest('div.relative');
+                const dateTenggatWrapper = dateTenggatInput?.closest('div.relative');
                 const dateMulaiButton = dateMulaiWrapper?.querySelector('input[type="text"]');
                 const dateSelesaiButton = dateSelesaiWrapper?.querySelector('input[type="text"]');
                 const dateLahirButton = dateLahirWrapper?.querySelector('input[type="text"]');
+                const dateTenggatButton = dateTenggatWrapper?.querySelector('input[type="text"]');
 
                 // Cek wajib isi
                 if (!dateMulaiInput?.value) {
@@ -1645,7 +1864,15 @@
                     dateLahirButton?.classList.remove('ring-1', 'ring-red-400');
                 }
 
-                // === 3️⃣ Validasi durasi minimal 30 hari
+                if (!dateTenggatInput?.value) {
+                    valid = false;
+                    if (!firstErrorElement && dateTenggatWrapper) firstErrorElement = dateTenggatWrapper;
+                    dateTenggatButton?.classList.add('ring-1', 'ring-red-400');
+                } else {
+                    dateTenggatButton?.classList.remove('ring-1', 'ring-red-400');
+                }
+
+                // Validasi durasi minimal 30 hari
                 if (dateMulaiInput?.value && dateSelesaiInput?.value) {
                     const startDate = new Date(dateMulaiInput.value);
                     const endDate = new Date(dateSelesaiInput.value);
@@ -1665,7 +1892,7 @@
                     }
                 }
 
-                // === Validasi Tanggal lahir minimal 18 tahun
+                // Validasi Tanggal lahir minimal 18 tahun
                 if (dateLahirInput?.value) {
                     const today = new Date();
                     const birthDate = new Date(dateLahirInput.value);                    
@@ -1686,6 +1913,32 @@
                         msg.className = 'text-red-400/80 font-medium pl-1 font-display text-[11px] mt-1 date-error-msg';
                         msg.textContent = 'Umur minimal 18 tahun.';
                         dateLahirWrapper.parentElement.appendChild(msg);
+                    }
+                }
+
+                // Validasi tenggat_pengajuan minimal H+1
+                if (dateTenggatInput?.value) {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+
+                    const minDate = new Date(today);
+                    minDate.setDate(minDate.getDate() + 3);
+
+                    const tenggatDate = new Date(dateTenggatInput.value);
+                    tenggatDate.setHours(0, 0, 0, 0);
+
+                    if (tenggatDate < minDate) {
+                        valid = false;
+                        if (!firstErrorElement && dateTenggatWrapper) {
+                            firstErrorElement = dateTenggatWrapper;
+                        }
+
+                        dateTenggatButton?.classList.add('ring-1', 'ring-red-400');
+
+                        const msg = document.createElement('p');
+                        msg.className = 'text-red-400/80 font-medium pl-1 font-display text-[11px] mt-1 date-error-msg';
+                        msg.textContent = 'Tenggat verifikasi minimal 3 hari setelah hari ini.';
+                        dateTenggatWrapper.parentElement.appendChild(msg);
                     }
                 }
 

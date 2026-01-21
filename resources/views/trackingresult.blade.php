@@ -90,7 +90,7 @@
                     <div class="flex flex-col gap-0.5 w-full justify-start items-start">
                         <div class="flex flex-col gap-0.5">
                             <p class="font-display text-[9px] rounded-lg font-medium text-gray-400 text-left w-full">Waktu Pelaksanaan</p>
-                            <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai }} <span class="text-apple-600 mx-1 text-[9px]">s/d</span> {{ $submission->tanggal_selesai }}</p>
+                            <p class="font-display text-xs rounded-lg font-medium text-gray-800 text-left w-full"> {{ $submission->tanggal_mulai->format('d-m-Y') }} <span class="text-apple-600 mx-1 text-[9px]">s/d</span> {{ $submission->tanggal_selesai->format('d-m-Y') }}</p>
                         </div>                                                                    
                     </div>   
 

@@ -4,22 +4,23 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Prodi;
 use Filament\Forms\Form;
 use App\Models\Allowlist;
 use Filament\Tables\Table;
 use Filament\Facades\Filament;
 use Filament\Resources\Resource;
+use Symfony\Component\Console\Color;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\ImportAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Imports\AllowlistImporter;
 use Filament\Actions\Imports\Models\Import;
 use App\Filament\Resources\AllowlistResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AllowlistResource\RelationManagers;
-use Filament\Tables\Actions\ImportAction;
-use Symfony\Component\Console\Color;
 
 class AllowlistResource extends Resource
 {
@@ -49,10 +50,10 @@ class AllowlistResource extends Resource
                     ])
                     ->validationMessages([
                         'unique' => 'NIM sudah terdaftar',
-                        'regex' => 'Nama Dosen hanya boleh mengandung huruf, spasi, dan koma',
-                        'min' => 'Nama Dosen minimal 3 karakter',
-                        'max' => 'Nama Dosen maksimal 255 karakter',
-                        'required' => 'Nama Dosen wajib diisi',
+                        'regex' => 'NIM hanya boleh mengandung huruf, spasi, dan koma',
+                        'min' => 'NIM minimal 3 karakter',
+                        'max' => 'NIM maksimal 255 karakter',
+                        'required' => 'NIM wajib diisi',
                     ]),                
                 Select::make('prodi')
                     ->label('Program Studi')
@@ -63,11 +64,9 @@ class AllowlistResource extends Resource
                     ->validationMessages([
                         'required' => 'Program Studi wajib diisi',
                     ])
-                    ->options([
-                        'S1 Informatika' => 'S1 Informatika',
-                        'S1 Teknik Mesin' => 'S1 Teknik Mesin',
-                        'D3 Manajemen Informatika' => 'D3 Manajemen Informatika',                   
-                ])->native(false)->required(),
+                    ->options(
+                        Prodi::all()->pluck('nama', 'nama')
+                    )->native(false)->required(),
                 Toggle::make('is_active')
                         ->label('Ijinkan Mahasiswa Melakukan Pengajuan')
                         ->default(true)                    

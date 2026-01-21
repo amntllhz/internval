@@ -33,6 +33,7 @@ class SubmissionPendingResource extends Resource
     protected static ?string $navigationLabel = 'Pending';
     protected static ?string $pluralModelLabel = 'Pending';
     protected static ?string $slug = 'submission-pending';
+    protected static ?int $navigationSort = 1;
 
     public static function getEloquentQuery(): Builder
     {
@@ -73,7 +74,7 @@ class SubmissionPendingResource extends Resource
 
                     Select::make('dospem_acc_id')
                         ->label('DPL Tersetujui')
-                        ->validationAttribute('Program Studi')
+                        ->validationAttribute('DPL Tersetujui')
                         ->required()
                         ->validationMessages([
                             'required' => 'Anda harus memberi DPL Tersetujui',
@@ -119,6 +120,9 @@ class SubmissionPendingResource extends Resource
                         ->label('Izinkan pengajuan kedua')
                         ->default(false)                    
                         ->inline()
+                        ->disabled(fn ($record) =>
+                            ! in_array($record->status_pengajuan, ['pending', 'accepted'])
+                        )
                         ->columnSpan(2),     
                                         
                 ])->columnSpan(2)->columns([
@@ -148,11 +152,13 @@ class SubmissionPendingResource extends Resource
                         'pending' => 'gray',
                         'accepted' => 'success',
                         'rejected' => 'danger',
+                        'expired' => 'warning',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'pending' => 'heroicon-o-clock',
                         'accepted' => 'heroicon-o-check-circle',
                         'rejected' => 'heroicon-o-x-circle',
+                        'expired' => 'heroicon-o-no-symbol',
                     }),
                 Tables\Columns\TextColumn::make('status_surat')
                     ->label('Status Surat')
