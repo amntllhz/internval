@@ -21,7 +21,7 @@ class SubmissionExpiredResource extends Resource
 {
     protected static ?string $model = Submission::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-clock';
+    protected static ?string $navigationIcon = 'heroicon-o-no-symbol';
     protected static ?string $navigationGroup = 'Data Pengajuan';
     protected static ?string $navigationLabel = 'Expired';
     protected static ?string $pluralModelLabel = 'Expired';

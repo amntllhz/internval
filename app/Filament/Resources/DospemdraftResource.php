@@ -29,6 +29,28 @@ class DospemdraftResource extends Resource
     protected static ?string $slug = 'draft-bimbingan';
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+
+    public static function getEloquentQuery(): Builder
+    {
+        $user = Filament::auth()->user();
+        $query = parent::getEloquentQuery();
+
+        // Mapping role ke prodi
+        $roleToProdi = [
+            'kaprodi_informatika' => 'S1 Informatika',
+            'kaprodi_mesin' => 'S1 Teknik Mesin',
+            'kaprodi_manajemenit' => 'D3 Manajemen Informatika',
+        ];
+
+        // Filter prodi sesuai role dosen
+        $prodi = $roleToProdi[$user->role] ?? null;
+        if ($prodi) {
+            $query->where('prodi', $prodi);
+        }        
+
+        return $query;
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -108,7 +130,7 @@ class DospemdraftResource extends Resource
                 Tables\Columns\TextColumn::make('prodi')
                     ->label('Program Studi'),  
             ])
-            ->emptyStateDescription('Data akan ditampilkan ketika ada pengajuan')
+            ->emptyStateDescription('Data akan ditampilkan ketika anda menambahkan data')
             ->emptyStateIcon('heroicon-o-bookmark-slash')
             ->searchPlaceholder('Cari NIM')
             ->defaultSort('created_at', 'desc')
