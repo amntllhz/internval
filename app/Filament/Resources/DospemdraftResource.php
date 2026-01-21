@@ -24,9 +24,9 @@ class DospemdraftResource extends Resource
     protected static ?string $model = Dospemdraft::class;
 
     protected static ?string $navigationGroup = 'Data Internal';
-    protected static ?string $navigationLabel = 'Draft Bimbingan';
-    protected static ?string $pluralModelLabel = 'Draft Bimbingan';
-    protected static ?string $slug = 'draft-bimbingan';
+    protected static ?string $navigationLabel = 'Draf Bimbingan';
+    protected static ?string $pluralModelLabel = 'Draf Bimbingan';
+    protected static ?string $slug = 'draf-bimbingan';
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
 
