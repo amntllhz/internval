@@ -23,7 +23,7 @@
                     </div>
                     <div class="flex flex-col space-y-4 justify-center items-center">
                         <div class="flex flex-col gap-1 lg:max-w-sm xs:w-full  mx-auto">
-                            <h1 class="text-gray-600 text-center font-semibold font-display">Dokumen Tervalidasi !</h1>                            
+                            <h1 class="text-gray-600 text-center font-semibold font-display">Dokumen Ini Valid !</h1>                            
                             <div class="flex py-2 px-2.5 rounded-lg w-full bg-gray-100/70 mt-2">
                                 <div class="flex flex-col w-full items-start space-y-1.5">
                                     <p class="text-gray-400 font-semibold text-left font-display text-[10px]">ID</p>
