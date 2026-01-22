@@ -14,7 +14,7 @@
 
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
         <div class="items-center justify-center min-h-screen w-full flex">
-            <div class="flex flex-col gap-2 lg:max-w-sm xs:w-full rounded-xl text-center">
+            <div class="flex flex-col gap-2 lg:max-w-sm xs:w-full rounded-xl text-center lg:mt-28 xs:mt-0">
 
                 {{-- Verified --}}
                 <div class="flex flex-col gap-4 justify-center w-full">
