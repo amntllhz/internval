@@ -32,34 +32,49 @@
                             <h1 class="text-gray-600 text-center font-semibold font-display">Dokumen Ini Valid !</h1>                            
 
                             {{-- data dasar --}}
-                            <div class="flex py-2 px-2.5 rounded-lg w-full bg-gray-100/70 mt-2">
-                                <div class="flex flex-col w-full items-start space-y-2">
+                            <div class="flex flex-col py-2 px-2.5 rounded-lg w-full bg-gray-100/70 mt-2 space-y-2">
+                                <div class="flex justify-between">                                
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">ID</p>
-                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Status Pengajuan</p>
-                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Disetujui Oleh</p>                            
-                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Jabatan</p>                            
-                                </div>
-                                <div class="flex flex-col w-full items-end space-y-2">
                                     <p class="text-gray-400 text-right font-display text-xs">{{ $submission->id }}</p>                                    
+                                </div>         
+                                <hr class="border-gray-200">                        
+                                <div class="flex justify-between">
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Status Pengajuan</p>
                                     <p class="font-display font-medium text-[10px] {{ $statusPengajuanColor }} text-left w-fit">
                                         {{ ucfirst($submission->status_pengajuan) }}
                                     </p>
-                                    <p class="text-gray-400 text-right font-display text-xs">{{ $kaprodi->nama_kaprodi }}</p>                            
-                                    <p class="text-gray-400 text-right font-display text-xs">Kaprodi {{ $kaprodi->prodi }}</p>                            
+                                </div>
+                                <hr class="border-gray-200"> 
+                                <div class="flex justify-between">                                
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">NIM</p>
+                                    <p class="text-gray-400 text-right font-display text-xs">{{ $submission->nim }}</p>                                    
                                 </div>
                             </div>
+                            
+                            <div class="flex flex-col py-2 px-2.5 rounded-lg w-full bg-gray-100/70 space-y-2">
+                                <div class="flex justify-between">
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Disetujui Oleh</p>
+                                    <p class="text-gray-400 text-right font-display text-xs">Kaprodi {{ $kaprodi->prodi }}</p>                                    
+                                </div>                     
+                                <hr class="border-gray-200">           
+                                <div class="flex justify-center">
+                                    <p class="text-gray-400 text-left font-display text-xs">{{ $kaprodi->nama_kaprodi }}</p>
+                                </div>
+                            </div>                                            
 
                             {{-- data tambahan --}}
-                            <div class="flex py-2 px-2.5 rounded-lg w-full bg-gray-100/70">
-                                <div class="flex flex-col w-full items-start space-y-2">
+                            <div class="flex flex-col py-2 px-2.5 rounded-lg w-full bg-gray-100/70 space-y-2">
+                                <div class="flex justify-between">
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">Dibuat Pada</p>
-                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Terakhir Diperbarui</p>                                    
+                                    <p class="text-gray-400 text-right font-display text-xs"> {{ $submission->created_at->format('d-m-Y · H:i:s') }}</p>                                    
+                                </div>                     
+                                <hr class="border-gray-200">           
+                                <div class="flex justify-between">
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Terakhir Diperbarui</p>
+                                    <p class="text-gray-400 text-right font-display text-xs"> {{ $submission->updated_at->format('d-m-Y · H:i:s') }}</p>                                    
                                 </div>
-                                <div class="flex flex-col w-full items-end space-y-2">
-                                    <p class="text-gray-400 text-right font-display text-xs">{{ $submission->created_at->format('d-m-Y · H:i:s') }}</p>                            
-                                    <p class="text-gray-400 text-right font-display text-xs">{{ $submission->updated_at->format('d-m-Y · H:i:s') }}</p>
-                                </div>                                
-                            </div>
+                            </div>  
+                            
                         </div>
 
                         {{-- button kembali --}}
