@@ -14,9 +14,9 @@
 
     <section class="lg:max-w-5xl xs:max-w-9/10 w-full mx-auto flex flex-col justify-center items-center min-h-screen">
         <div class="items-center justify-center min-h-screen w-full flex">
-            <div class="flex flex-col gap-2 mt-10 bg-white p-4 lg:max-w-sm xs:max-w-9/10 w-full rounded-xl text-center">
+            <div class="flex flex-col gap-2 lg:max-w-sm xs:w-full rounded-xl text-center">
 
-                {{-- Delete Success --}}
+                {{-- Verified --}}
                 <div class="flex flex-col gap-4 justify-center w-full">
                     <div class="justify-center items-center flex flex-col rounded-lg p-2">
                         <img class="h-40" src="{{ asset('img/verified/verified.svg') }}" alt="">
@@ -25,19 +25,19 @@
                         <div class="flex flex-col gap-1 lg:max-w-sm xs:w-full  mx-auto">
                             <h1 class="text-gray-600 text-center font-semibold font-display">Dokumen Ini Valid !</h1>                            
                             <div class="flex py-2 px-2.5 rounded-lg w-full bg-gray-100/70 mt-2">
-                                <div class="flex flex-col w-full items-start space-y-1.5">
-                                    <p class="text-gray-400 font-semibold text-left font-display text-[10px]">ID</p>
-                                    <p class="text-gray-400 font-semibold text-left font-display text-[10px]">Status Pengajuan</p>
-                                    <p class="text-gray-400 font-semibold text-left font-display text-[10px]">Disetujui Oleh</p>                            
-                                    <p class="text-gray-400 font-semibold text-left font-display text-[10px]">Jabatan</p>                            
+                                <div class="flex flex-col w-full items-start space-y-2">
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">ID</p>
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Status Pengajuan</p>
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Disetujui Oleh</p>                            
+                                    <p class="text-gray-400 font-semibold text-left font-display text-xs">Jabatan</p>                            
                                 </div>
-                                <div class="flex flex-col w-full items-end space-y-1.5">
-                                    <p class="text-gray-400 text-right font-display text-[10px]">{{ $submission->id }}</p>                                    
+                                <div class="flex flex-col w-full items-end space-y-2">
+                                    <p class="text-gray-400 text-right font-display text-xs">{{ $submission->id }}</p>                                    
                                     <p class="font-display font-medium text-[10px] {{ $statusPengajuanColor }} text-left w-fit">
                                         {{ ucfirst($submission->status_pengajuan) }}
                                     </p>
-                                    <p class="text-gray-400 text-right font-display text-[10px]">{{ $kaprodi->nama_kaprodi }}</p>                            
-                                    <p class="text-gray-400 text-right font-display text-[10px]">Kaprodi {{ $kaprodi->prodi }}</p>                            
+                                    <p class="text-gray-400 text-right font-display text-xs">{{ $kaprodi->nama_kaprodi }}</p>                            
+                                    <p class="text-gray-400 text-right font-display text-xs">Kaprodi {{ $kaprodi->prodi }}</p>                            
                                 </div>
                             </div>
                         </div>
