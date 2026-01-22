@@ -1,11 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendController;
 use App\Http\Middleware\CheckFromStart;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\VerifySubmissionController;
 
 // start
 Route::get('/', [FrontendController::class, 'start'])->name('start');
+
+// verify
+Route::get('/verify/{id}', [VerifySubmissionController::class, 'showVerify'])
+    ->name('submission.verify');
 
 // session mahasiswa
 Route::get('/mahasiswa-redirect', function () {

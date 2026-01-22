@@ -92,9 +92,10 @@
         .table-period th {
             background-color: #f2f2f2;
         }
+
         .signature-section {
             display: block;
-            margin: 50px auto 0 auto;
+            margin: 40px auto 0 auto;
             width: 90%;
         }
         .signature-column {
@@ -111,16 +112,14 @@
 
         .signature-kaprodi {            
             text-decoration: underline;
-            margin-top: 30px;
+            margin-top: 10px;
             padding: 0;
             line-height: 1.2;
         }
 
-        .signature-mahasiswa {            
-            text-decoration: underline;            
-            padding: 0;
-            margin-top: 48px;
-            line-height: 1.2;
+        .qr-code {
+            text-align: center;
+            margin-top: 5px;
         }
 
         .clear {
@@ -129,8 +128,8 @@
         .note {
             font-size: 9pt;
             margin-left: 16px;
-            margin-top: 100px;
-            line-height: 0.8;
+            margin-top: 24px;
+            line-height: 0.5;
         }
 
         .badge-id {
@@ -241,30 +240,31 @@
     </div>
 
     <div class="signature-section">
-        <div class="signature-column">
+        <div class="signature-column signature-right">
             <p>Mengetahui,</p>
             <p>Ka. Prodi {{ e($submission->prodi) }}</p>
             <p>Fakultas Teknik dan Ilmu Komputer UMPP</p>
-            <br><br><br><br>
+
+            <div class="qr-code">
+                <img src="data:image/png;base64,{{ base64_encode(
+                        QrCode::format('png')
+                            ->size(120)                            
+                            ->generate($verificationUrl)
+                    )
+                }}"
+                alt="QR Code Verifikasi">                
+            </div>
+            
             {{-- Asumsi data Ka. Prodi tersedia --}}
             <p class="signature-kaprodi">{{ e($kaprodi->nama_kaprodi) }}</p>
             <p>NIDN. {{ e($kaprodi->nidn) }}</p>
-        </div>
-        <div class="signature-column signature-right">
-            {{-- Tanggal pengajuan --}}
-            <p>Pekalongan, {{ \Carbon\Carbon::parse($submission->created_at)->translatedFormat('d F Y') }}</p>
-            <p>Yang bersangkutan,</p>
-            <br><br><br><br>
-            <p class="signature-mahasiswa">{{ e($submission->nama_mahasiswa) }}</p>
-            <p>NIM. {{ e($submission->nim) }}</p>
-        </div>
+        </div>        
         <div class="clear"></div>
-    </div>
+    </div>    
 
     <div class="note">
         <p>** Catatan:</p>
-        <p>** Pengajuan ini telah terverifikasi melalui Internval</p>  
-        <p>** <span class="badge-id">{{ e($submission->id) }}</span></p>      
+        <p>** Pengajuan ini telah terverifikasi melalui Internval</p>               
     </div>
 </body>
 </html>
