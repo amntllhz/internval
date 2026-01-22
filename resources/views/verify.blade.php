@@ -37,14 +37,14 @@
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">ID</p>
                                     <p class="text-gray-400 text-right font-display text-xs">{{ $submission->id }}</p>                                    
                                 </div>         
-                                <hr class="border-gray-200">                        
+                                <hr class="border-gray-200/60">                        
                                 <div class="flex justify-between">
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">Status Pengajuan</p>
                                     <p class="font-display font-medium text-[10px] {{ $statusPengajuanColor }} text-left w-fit">
                                         {{ ucfirst($submission->status_pengajuan) }}
                                     </p>
                                 </div>
-                                <hr class="border-gray-200"> 
+                                <hr class="border-gray-200/60"> 
                                 <div class="flex justify-between">                                
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">NIM</p>
                                     <p class="text-gray-400 text-right font-display text-xs">{{ $submission->nim }}</p>                                    
@@ -56,7 +56,7 @@
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">Disetujui Oleh</p>
                                     <p class="text-gray-400 text-right font-display text-xs">Kaprodi {{ $kaprodi->prodi }}</p>                                    
                                 </div>                     
-                                <hr class="border-gray-200">           
+                                <hr class="border-gray-200/60">           
                                 <div class="flex justify-center">
                                     <p class="text-gray-400 text-left font-display text-xs">{{ $kaprodi->nama_kaprodi }}</p>
                                 </div>
@@ -68,7 +68,7 @@
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">Dibuat Pada</p>
                                     <p class="text-gray-400 text-right font-display text-xs"> {{ $submission->created_at->format('d-m-Y · H:i:s') }}</p>                                    
                                 </div>                     
-                                <hr class="border-gray-200">           
+                                <hr class="border-gray-200/60">           
                                 <div class="flex justify-between">
                                     <p class="text-gray-400 font-semibold text-left font-display text-xs">Terakhir Diperbarui</p>
                                     <p class="text-gray-400 text-right font-display text-xs"> {{ $submission->updated_at->format('d-m-Y · H:i:s') }}</p>                                    
