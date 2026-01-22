@@ -150,10 +150,13 @@ class SubmissionMesinResource extends Resource
 
                         Carbon::setLocale('id');
 
+                        $verificationUrl = route('submission.verify', $record->id);
+
                         // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                         $pdf = Pdf::loadView('pdf.download', [
                             'submission' => $record,
-                            'kaprodi' => $kaprodi
+                            'kaprodi' => $kaprodi,
+                            'verificationUrl' => $verificationUrl
                         ]);
 
                         return response()->streamDownload(function() use ($pdf){

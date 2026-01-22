@@ -185,7 +185,7 @@
         <div class="data-value">{{ e($submission->email) }}</div>
     </div>    
 
-    <div class="section-title">2.  <span class="title-span">Lembaga Tempat Praktek Kerja Lapangan (PKL) / Magang</span></div>
+    <div class="section-title">2.  <span class="title-span">Lembaga Tempat Praktik Kerja Lapangan (PKL) / Magang</span></div>
     <div class="data-row">
         <div class="data-label">Nama Lembaga / Instansi</div>
         <div class="data-separator">:</div>        
