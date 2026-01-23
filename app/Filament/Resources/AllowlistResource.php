@@ -51,8 +51,8 @@ class AllowlistResource extends Resource
                     ->validationMessages([
                         'unique' => 'NIM sudah terdaftar',
                         'regex' => 'NIM hanya boleh mengandung huruf, spasi, dan koma',
-                        'min' => 'NIM minimal 3 karakter',
-                        'max' => 'NIM maksimal 255 karakter',
+                        'min' => 'NIM minimal 12 karakter',
+                        'max' => 'NIM maksimal 12 karakter',
                         'required' => 'NIM wajib diisi',
                     ]),                
                 Select::make('prodi')

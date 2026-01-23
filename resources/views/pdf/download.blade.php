@@ -147,7 +147,7 @@
     <div class="header">
         <h1 class="header-one">FORMULIR PENGAJUAN</h1>
         <div class="header-two-group">
-            <h2 class="header-two">PRAKTEK KERJA LAPANGAN (PKL) / MAGANG</h2>
+            <h2 class="header-two">PRAKTIK KERJA LAPANGAN (PKL) / MAGANG</h2>
             <h2 class="header-two">FAKULTAS TEKNIK DAN ILMU KOMPUTER (FASTIKOM)</h2>
             <h2 class="header-two">UNIVERSITAS MUHAMMADIYAH PEKAJANGAN PEKALONGAN (UMPP)</h2>
         </div>
