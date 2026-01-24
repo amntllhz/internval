@@ -14,6 +14,7 @@ use App\Models\SubmissionMesin;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\URL;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs\Tab;
@@ -150,7 +151,11 @@ class SubmissionMesinResource extends Resource
 
                         Carbon::setLocale('id');
 
-                        $verificationUrl = route('submission.verify', $record->id);
+                        $verificationUrl = URL::temporarySignedRoute(
+                            'submission.verify', 
+                            Carbon::now()->addDays(7), 
+                            ['id' =>$record->id]
+                        );
 
                         // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                         $pdf = Pdf::loadView('pdf.download', [

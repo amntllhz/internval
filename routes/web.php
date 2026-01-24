@@ -10,7 +10,8 @@ Route::get('/', [FrontendController::class, 'start'])->name('start');
 
 // verify
 Route::get('/verify/{id}', [VerifySubmissionController::class, 'showVerify'])
-    ->name('submission.verify');
+    ->name('submission.verify')
+    ->middleware('signed');
 
 // session mahasiswa
 Route::get('/mahasiswa-redirect', function () {

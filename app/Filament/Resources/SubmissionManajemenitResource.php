@@ -13,6 +13,7 @@ use Filament\Facades\Filament;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\URL;
 use App\Models\SubmissionManajemenit;
 use Filament\Forms\Components\Section;
 use Filament\Tables\Columns\TextColumn;
@@ -145,7 +146,11 @@ class SubmissionManajemenitResource extends Resource
 
                         Carbon::setLocale('id');
 
-                        $verificationUrl = route('submission.verify', $record->id);
+                        $verificationUrl = URL::temporarySignedRoute(
+                            'submission.verify', 
+                            Carbon::now()->addDays(7), 
+                            ['id' =>$record->id]
+                        );
 
                         // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                         $pdf = Pdf::loadView('pdf.download', [

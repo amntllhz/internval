@@ -14,6 +14,7 @@ use Filament\Facades\Filament;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Resources\Resource;
 use Filament\Tables\Actions\Action;
+use Illuminate\Support\Facades\URL;
 use App\Models\SubmissionInformatika;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -26,11 +27,11 @@ use Filament\Tables\Actions\ExportAction;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Exports\SubmissionExporter;
 use Filament\Forms\Components\ToggleButtons;
+use Filament\Tables\Actions\ExportBulkAction;
+use Filament\Actions\Exports\Enums\ExportFormat;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SubmissionInformatikaResource\Pages;
 use App\Filament\Resources\SubmissionInformatikaResource\RelationManagers;
-use Filament\Actions\Exports\Enums\ExportFormat;
-use Filament\Tables\Actions\ExportBulkAction;
 
 class SubmissionInformatikaResource extends Resource
 {
@@ -149,7 +150,11 @@ class SubmissionInformatikaResource extends Resource
 
                         Carbon::setLocale('id');
 
-                        $verificationUrl = route('submission.verify', $record->id);
+                        $verificationUrl = URL::temporarySignedRoute(
+                            'submission.verify', 
+                            Carbon::now()->addDays(7), 
+                            ['id' =>$record->id]
+                        );
 
                         // Gunakan BARRYVDH PDF FACADE (bukan dompdf langsung!)
                         $pdf = Pdf::loadView('pdf.download', [
